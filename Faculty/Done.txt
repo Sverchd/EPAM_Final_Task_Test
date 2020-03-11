@@ -1,0 +1,4 @@
+– Dependancy resolve
+– User management
+* Devide to several db contexts
+* Add sorting tables bootstrap

@@ -1,0 +1,19 @@
+﻿@model Faculty.Models.ThemeView
+@{
+    ViewBag.Title = "Add";
+}
+    <section>
+        <h2 style="text-align: center">Add</h2>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            @Html.LabelFor(m => m.Name, new { @class = "col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+            </div>
+            <a class="btn btn-default" role="button" href="@Url.Action("List", "Theme")"><i class="fas fa-arrow-left"></i> Back to List</a>
+            <input type="submit" value="Create" class="btn btn-success" style="background-color: blue"/>
+}
+    </section>

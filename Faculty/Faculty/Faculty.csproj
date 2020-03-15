@@ -182,8 +182,10 @@
     <Compile Include="Models\CourseView.cs" />
     <Compile Include="Models\LoginViewModel.cs" />
     <Compile Include="Models\RegisterViewModel.cs" />
+    <Compile Include="Models\TeacherListViewModel.cs" />
     <Compile Include="Models\ThemeListViewModel.cs" />
     <Compile Include="Models\ThemeView.cs" />
+    <Compile Include="Models\UserView.cs" />
     <Compile Include="NinjectDependencyResolver.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -342,10 +344,10 @@
     <Content Include="Views\Course\Add.cshtml" />
     <Content Include="Views\Theme\List.cshtml" />
     <Content Include="Views\Theme\Add.cshtml" />
+    <Content Include="Views\Teacher\List.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Teacher\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -6,8 +6,12 @@ using System.Threading.Tasks;
 
 namespace BusinessLogicLayer
 {
-    public interface ITheme
+    public interface IUserRepository
     {
-        string Name { get; set; }
+        List<User> GetAllTeachers();
+
+        bool AddUser(User user);
+
+        bool DeleteUser(string email);
     }
 }

@@ -29,6 +29,7 @@ namespace DataAccessLayer
                     courses.Add(new Course(courseEntity.CourseEntityId,new Theme(courseEntity.theme.ThemeEntityId,courseEntity.theme.Name ), courseEntity.name, courseEntity.start, courseEntity.end));
                     
                 }
+                
                 return courses;
         }
 

@@ -1,4 +1,4 @@
-﻿@model Faculty.Models.ThemeListViewModel
+﻿@model Faculty.Models.TeacherListViewModel
 @{
     ViewBag.Title = "List";
 }
@@ -6,7 +6,7 @@
 <h2 style="text-align: center">List</h2>
 
 <section style="margin-left: auto; margin-right: auto">
-    @if (Model == null || Model.Themes.Count() == 0)
+    @if (Model == null || Model.Teachers.Count() == 0)
     {
         <p>Here is no courses :(</p>
     }
@@ -16,10 +16,10 @@
             <thead>
                 <tr>
                     <th>
-                        @Html.DisplayNameFor(model => model.Themes[0].Name)
+                        @Html.DisplayNameFor(model => model.Teachers[0].Name)
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.Themes[0].CourseCount)
+                        @Html.DisplayNameFor(model => model.Teachers[0].CourseCount)
                     </th>
 
                     <th>
@@ -30,7 +30,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach (var item in Model.Themes)
+                @foreach (var item in Model.Teachers)
                 {
                     <tr>
                         <td>
@@ -43,10 +43,13 @@
                         <td>
                             <div>
                                 @{
-                                    string id = "exampleModal" + item.ThemeEntityId;
+                                    var str = item.Email.Replace("@", "");
+                                    str = str.Replace(".", "");
+                                    string id = "Control" + str;
                                     string hid = "#" + id;
                                 }
-                                @Html.ActionLink("Edit", "Edit", "Theme", null, new {role = "button", @class = "btn btn-success"})
+
+                                @Html.ActionLink("Edit", "Edit", "Teacher", null, new { role = "button", @class = "btn btn-success" })
                                 <button type="button" class="btn btn-danger" data-toggle="modal" data-target="@hid">
                                     Delete
                                 </button>
@@ -64,7 +67,7 @@
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                @Html.ActionLink("Delete", "Delete", "Theme", routeValues: new {themeId = item.ThemeEntityId}, htmlAttributes: new {@class = "btn btn-danger"})
+                                                @Html.ActionLink("Delete", "Delete", "Teacher", routeValues: new { userEmail = item.Email }, htmlAttributes: new { @class = "btn btn-danger" })
 
                                             </div>
                                         </div>
@@ -74,14 +77,14 @@
                             </div>
 
                         </td>
-                     
+
 
                     </tr>
                 }
             </tbody>
         </table>
     }
-    @Html.ActionLink("Add new Theme", "Add", "Theme", null, new { role = "button", @class = "btn btn-primary btn-lg active", style = "margin-bottom: 10px" })
+    @Html.ActionLink("Add new Teacher", "Add", "Teacher", null, new { role = "button", @class = "btn btn-primary btn-lg active", style = "margin-bottom: 10px" })
 
 
 </section>

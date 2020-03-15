@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using BusinessLogicLayer;
 using DataAccessLayer;
 using DataAccessLayer.Context;
+using Microsoft.AspNet.Identity;
 using Ninject;
 using Ninject.Web.Common;
 
@@ -36,6 +37,9 @@ namespace Faculty
             kernel.Bind<ICourseRepository>().To<CourseRepository>();
             kernel.Bind<ICourseService>().To<CourseService>();
             kernel.Bind<FacultyDbContext>().ToSelf().WithConstructorArgument("FacultyContext");
+
+            kernel.Bind<IUserRepository>().To<UserRepository>();
+            kernel.Bind<IUserService>().To<UserService>();
 
             kernel.Bind<IThemeRepository>().To<ThemeRepository>();
             kernel.Bind<IThemeService>().To<ThemeService>();

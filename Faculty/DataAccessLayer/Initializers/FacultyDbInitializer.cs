@@ -78,12 +78,21 @@ namespace DataAccessLayer.Initializers
                 new ThemeEntity("Science"),new  ThemeEntity("IT"), new ThemeEntity("Language")
 
             };
+
             var course = new CourseEntity(themes[0], "Physics", DateTime.Today, DateTime.Now);
+            course.Teacher = context.Users.Where(u => u.Email == "teacher@gmail.com")
+                .SingleOrDefault();
+            course.students.Add(context.Users.Where(u => u.Email == "student@gmail.com").SingleOrDefault());
+            course.students.Add(context.Users.Where(u => u.Email == "student1@gmail.com").SingleOrDefault());
             var course1 = new CourseEntity(themes[1], "Programming", new DateTime(2020,4,14), new DateTime(2020,8,5));
             context.Themes.AddRange(themes);
             context.Courses.Add(course);
             context.Courses.Add(course1);
+            context.Users.Include("courses").Where(u=>u.Email== "teacher@gmail.com").SingleOrDefault().courses.Add(course1);
             context.SaveChanges();
+
+            var s = context.Courses.ToList();
+
         }
 
     }

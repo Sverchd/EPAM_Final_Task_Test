@@ -30,7 +30,7 @@ namespace Faculty.Controllers
         {
             
             bool isUser = IsUser();
-            var themeList = new ThemeListViewModel() { };
+            var themeList = new ThemeListViewModel();
             var vb = ViewBag;
             var themeListb = _themeService.GetAllThemes();
             //if (isUser)

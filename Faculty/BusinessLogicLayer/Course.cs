@@ -6,13 +6,14 @@ using System.Threading.Tasks;
 
 namespace BusinessLogicLayer
 {
-    public class Course : ICourse
+    public class Course
     {
         public int CourseId { get; set; }
         public Theme theme { get; set; }
         public string name { get; set; }
         public DateTime start { get; set; }
         public DateTime end { get; set; }
+        public Dictionary<string, int?> gradebook;
         //private List<ApplicationUser> students;
         //public ApplicationUser teacher;
         public Course()

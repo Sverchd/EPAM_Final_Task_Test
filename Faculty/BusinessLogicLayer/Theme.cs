@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BusinessLogicLayer
 {
-    public class Theme : ITheme
+    public class Theme
     {
         public int ThemeId { get; set; }
         public string Name { get; set; }

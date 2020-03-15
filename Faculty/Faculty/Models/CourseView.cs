@@ -12,7 +12,7 @@ namespace Faculty.Models
         public string name { get; set; }
         public DateTime start { get; set; }
         public DateTime end { get; set; }
-
+        public Dictionary<string, int?> gradebook;
         public CourseView(int id, ThemeView th, string nm, DateTime sdt, DateTime edt)
         {
             CourseEntityId = id;

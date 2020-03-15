@@ -20,5 +20,8 @@ namespace DataAccessLayer.Models
             // Add custom user claims here
             return userIdentity;
         }
+
+        public List<CourseEntity> courses { get; set; }
+
     }
 }

@@ -6,9 +6,9 @@
 <h2 style="text-align: center">List</h2>
 
 <section style="margin-left: auto; margin-right: auto">
-    @if (Model == null || Model.Teachers.Count() == 0)
+    @if (Model == null || !Model.Teachers.Any())
     {
-        <p>Here is no courses :(</p>
+        <p>Here is no teachers :(</p>
     }
     else
     {
@@ -20,11 +20,15 @@
                     </th>
                     <th>
                         @Html.DisplayNameFor(model => model.Teachers[0].CourseCount)
-                    </th>
 
-                    <th>
-                        Controls
                     </th>
+                    
+                    @if (User.IsInRole("admin"))
+                    {<th>
+                         Controls
+                     </th>
+                    }
+                    
 
 
                 </tr>
@@ -32,24 +36,29 @@
             <tbody>
                 @foreach (var item in Model.Teachers)
                 {
-                    <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Name)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.CourseCount)
-                        </td>
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CourseCount)
+                        
+                        @Html.ActionLink("List", "ListByTeacher", "Course", new { userEmail = item.Email }, new { role = "button", @class = "btn btn-success", style = "float:right" })
+                        
+                    </td>
 
-                        <td>
-                            <div>
-                                @{
-                                    var str = item.Email.Replace("@", "");
-                                    str = str.Replace(".", "");
-                                    string id = "Control" + str;
-                                    string hid = "#" + id;
-                                }
+                    @{
+                        var str = item.Email.Replace("@", "");
+                        str = str.Replace(".", "");
+                        string id = "Control" + str;
+                        string hid = "#" + id;
+                    }
 
-                                @Html.ActionLink("Edit", "Edit", "Teacher", null, new { role = "button", @class = "btn btn-success" })
+
+                    @if (User.IsInRole("admin"))
+                    {
+                        <td>
+                            <div style="float:right">
                                 <button type="button" class="btn btn-danger" data-toggle="modal" data-target="@hid">
                                     Delete
                                 </button>
@@ -73,13 +82,17 @@
                                         </div>
                                     </div>
                                 </div>
-
                             </div>
 
                         </td>
+                    }
 
 
-                    </tr>
+
+
+
+
+                </tr>
                 }
             </tbody>
         </table>

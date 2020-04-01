@@ -3,9 +3,14 @@
     {
         Layout = "~/Views/Shared/_AdminLayout.cshtml";
     }
+    else if (User.IsInRole("student"))
+    {
+        Layout = "~/Views/Shared/_StudentLayout.cshtml";
+    }
     else
     {
         Layout = "~/Views/Shared/_Layout.cshtml";
     }
+    
     }
     

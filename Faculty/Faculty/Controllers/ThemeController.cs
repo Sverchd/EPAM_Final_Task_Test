@@ -1,9 +1,8 @@
-﻿using BusinessLogicLayer;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Linq;
 using System.Web.Mvc;
+using BusinessLogicLayer.Contracts;
+using BusinessLogicLayer.Models;
+using Faculty.Mappers;
 using Faculty.Models;
 
 namespace Faculty.Controllers
@@ -13,10 +12,6 @@ namespace Faculty.Controllers
         // GET: Theme
         private readonly IThemeService _themeService;
         private readonly ICourseService _courseService;
-        public ThemeController()
-        {
-
-        }
 
         public ThemeController(IThemeService themeService, ICourseService courseService)
         {
@@ -39,18 +34,18 @@ namespace Faculty.Controllers
             {
                 //_themeService.GetFilteredCoursesByTheme(theme);
                 var count = _courseService.GetCoursesByTheme(theme).Count();
-                themeList.Themes.Add(new ThemeView(theme.ThemeId,theme.Name,count));
+                themeList.Themes.Add(theme.Map(count));
             }
 
             //}
 
             return View(themeList);
         }
+
         [HttpGet]
         [Authorize]
         public ActionResult Add()
         {
-            //ViewBag.Countries = _themeService.GetAllThemes();
             return View();
         }
 
@@ -58,27 +53,42 @@ namespace Faculty.Controllers
         public ActionResult Add(ThemeView theme)
         {
 
-            var result = _themeService.AddTheme(new Theme(theme.ThemeEntityId,theme.Name));
+            var result = _themeService.AddTheme(theme.Map());
             if (result)
             {
                 return RedirectToAction("List");
             }
-            //    flightResult = _flightService.CreateFlight(flight, request).Flight;
-          //  }
-          //  else
-          //  {
-             //   flightResult = _flightService.CreateFlight(flight);
-          //  }
-          //  Logger.Log.Info($"Flight with Id - {flightResult.Id}, created successfully.");
-           // return RedirectToAction("Details", new { Id = flightResult.Id });
-            //return Details(flightResult.Id);
-            return RedirectToAction("Index","Home");
+       
+            ModelState.AddModelError("Name", "Theme already exists!");
+            return View();
         }
 
+        [HttpGet]
         public ActionResult Delete(int themeId)
         {
             _themeService.DeleteTheme(themeId);
             return RedirectToAction("List");
+        }
+
+        [HttpGet]
+        [Authorize]
+        public ActionResult Edit(int themeId)
+        {
+            var theme = _themeService.GeThemeById(themeId);
+            return View(theme.Map());
+        }
+        [HttpPost]
+        public ActionResult Edit(ThemeView theme)
+        {
+            var result = _themeService.Edit(theme.Map());
+            //var result = _themeService.AddTheme(new Theme(theme.ThemeEntityId, theme.Name));
+            if (result)
+            {
+                return RedirectToAction("List");
+            }
+
+            ModelState.AddModelError("Name", "Theme already exists!");
+            return View();
         }
         private bool IsUser()
         {

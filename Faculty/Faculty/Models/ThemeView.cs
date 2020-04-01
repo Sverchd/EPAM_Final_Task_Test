@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace Faculty.Models
 {
@@ -10,7 +6,9 @@ namespace Faculty.Models
     {
         public int ThemeEntityId { get; set; }
         [Required]
+        [Display(Name = "Name")]
         public string Name { get; set; }
+        [Display(Name = "Course count")]
         public int CourseCount { get; set; }
         public ThemeView()
         { }
@@ -24,6 +22,12 @@ namespace Faculty.Models
             ThemeEntityId = id;
             Name = nm;
             CourseCount = courseCount;
+        }
+        public ThemeView(int id, string nm)
+        {
+            ThemeEntityId = id;
+            Name = nm;
+            
         }
     }
 }

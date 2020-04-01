@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using BusinessLogicLayer.Models;
 
-namespace BusinessLogicLayer
+namespace BusinessLogicLayer.Contracts
 {
     public interface IThemeService
     {
@@ -13,5 +10,7 @@ namespace BusinessLogicLayer
         bool AddTheme(Theme theme);
         //List<Course> GetFilteredCoursesByTheme(Theme theme);
         bool DeleteTheme(int id);
+        bool Edit(Theme theme);
+        Theme GeThemeById(int id);
     }
 }

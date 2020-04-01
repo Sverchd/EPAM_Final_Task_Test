@@ -1,10 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Web.Mvc;
 using BusinessLogicLayer;
+using BusinessLogicLayer.Contracts;
+using BusinessLogicLayer.Models;
+using Faculty.Mappers;
 using Faculty.Models;
+using Ninject.Infrastructure.Language;
 
 namespace Faculty.Controllers
 {
@@ -23,11 +25,9 @@ namespace Faculty.Controllers
             
             _userService = userService;
         }
-        // GET: Teacher
-        public ActionResult Index()
-        {
-            return View();
-        }
+
+
+
         [HttpGet]
         [Authorize]
         public ActionResult List()
@@ -39,23 +39,37 @@ namespace Faculty.Controllers
             var teachersListb = _userService.GetAllTeachers();
             //if (isUser)
             //{
-            foreach (var teacher in teachersListb)
-            {
-                //_themeService.GetFilteredCoursesByTheme(theme);
-                var count =teacher.Courses.Count();
-                
-                teacherList.Teachers.Add(new UserView(teacher.Name,teacher.Role,count));
-            }
-
+            teacherList.Teachers = teachersListb.Select(x => x.Map()).ToList();
+            
             //}
-
             return View(teacherList);
         }
+        [HttpGet]
+        [Authorize]
+        public ActionResult Add()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Add(AddUserViewModel user)
+        {
+
+            var result = _userService.AddTeacher(new UserView(user.Email,"teacher").MapFlat(), user.Password);
+            if (result)
+            {
+                return RedirectToAction("List");
+            }
+            ModelState.AddModelError("Name", "User already exists!");
+            return View();
+        }
+        [HttpGet]
         public ActionResult Delete(string userEmail)
         {
             _userService.DeleteTeacher(userEmail);
             return RedirectToAction("List");
         }
+
         private bool IsUser()
         {
             return !(User.IsInRole("admin") || User.IsInRole("teacher"));

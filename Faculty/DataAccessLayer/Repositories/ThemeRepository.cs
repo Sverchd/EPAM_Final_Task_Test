@@ -1,12 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity.Core.Common.CommandTrees;
+﻿using System.Collections.Generic;
 using System.Linq;
-using BusinessLogicLayer;
+using BusinessLogicLayer.Contracts;
+using BusinessLogicLayer.Models;
 using DataAccessLayer.Context;
+using DataAccessLayer.Mappers;
 using DataAccessLayer.Models;
 
-namespace DataAccessLayer
+namespace DataAccessLayer.Repositories
 {
     public class ThemeRepository : IThemeRepository
     {
@@ -21,40 +21,46 @@ namespace DataAccessLayer
         {
             var datalist = _facultyDbContext.Themes.ToList();
 
-            var themes = new List<Theme>();
+            //var themes = new List<Theme>();
 
-            foreach (var themeEntity in datalist)
-            {
-                
-                themes.Add(new Theme(themeEntity.ThemeEntityId,themeEntity.Name));
-            }
+            //TODO: use mapper
+            var themes = datalist.Select(x => x.Map()).ToList();
+            //foreach (var themeEntity in datalist)
+            //{
+            //    
+            //    themes.Add(new Theme(themeEntity.ThemeEntityId,themeEntity.Name));
+            //}
 
             return themes;
         }
 
         public bool AddTheme(Theme theme)
         {
-            var entityTheme = new ThemeEntity(theme.Name);
-            var themeList = _facultyDbContext.Themes.Select(m => m.Name).Contains(theme.Name);
-            if (!themeList)
+            var entityTheme = theme.Map();
+            var existingTheme = _facultyDbContext.Themes.Select(m => m.Name).Contains(theme.Name);
+            if (!existingTheme)
             {
                 _facultyDbContext.Themes.Add(entityTheme);
                 _facultyDbContext.SaveChanges();
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-
+            } 
+            return !existingTheme;
         }
 
         public bool DeleteTheme(int themeId)
         {
-           var theme= _facultyDbContext.Themes.Where(i => i.ThemeEntityId == themeId).First();
+           var theme= _facultyDbContext.Themes.FirstOrDefault(i => i.ThemeEntityId == themeId);
 
            _facultyDbContext.Themes.Remove(theme);
            _facultyDbContext.SaveChanges();
+            return true;
+        }
+
+        public bool Edit(Theme theme)
+        {
+            var themes = _facultyDbContext.Themes.ToList();
+            var entityTheme =_facultyDbContext.Themes.First(x => x.ThemeEntityId == theme.ThemeId);
+            entityTheme.Name = theme.Name;
+            _facultyDbContext.SaveChanges();
             return true;
         }
         //public List<Course> GetFilteredCourses(Func<Course., bool> predicate)

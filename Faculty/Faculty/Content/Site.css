@@ -22,7 +22,10 @@ select,
 textarea {
     max-width: 280px;
 }
-
+footer {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+}
 
 
 table.dataTable thead .sorting:after,
@@ -72,10 +75,14 @@ table.dataTable thead .sorting_desc_disabled {
 }
 section {
     width: 90%;
+    padding-bottom: 10px;
 }
 .row {
     margin-left: 0;
     margin-right: 0;
     padding-left: 20px;
     padding-right: 20px;
+}
+.col-1 {
+    padding: 0;
 }

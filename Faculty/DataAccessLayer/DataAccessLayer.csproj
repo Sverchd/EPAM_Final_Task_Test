@@ -78,9 +78,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
     <Compile Include="Context\FacultyDbContext.cs" />
-    <Compile Include="CourseRepository.cs" />
+    <Compile Include="Mappers\ThemeMapper.cs" />
+    <Compile Include="Mappers\UserMapper.cs" />
+    <Compile Include="Repositories\CourseRepository.cs" />
     <Compile Include="Initializers\FacultyDbInitializer.cs" />
     <Compile Include="Interfaces\IUserService.cs" />
     <Compile Include="Managers\ApplicationSignInManager.cs" />
@@ -90,8 +91,9 @@
     <Compile Include="Models\CourseEntity.cs" />
     <Compile Include="Models\ThemeEntity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ThemeRepository.cs" />
-    <Compile Include="UserRepository.cs" />
+    <Compile Include="Repositories\ThemeRepository.cs" />
+    <Compile Include="Repositories\UserRepository.cs" />
+    <Compile Include="Mappers\CourseMapper.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BusinessLogicLayer\BusinessLogicLayer.csproj">

@@ -12,7 +12,7 @@ using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
 using Owin;
 
-namespace Faculty.App_Start
+namespace Faculty
 {
     public class IdentityConfig
     {

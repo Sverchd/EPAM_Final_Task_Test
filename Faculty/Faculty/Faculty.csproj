@@ -173,15 +173,24 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\CourseController.cs" />
+    <Compile Include="Controllers\ProfileController.cs" />
+    <Compile Include="Controllers\StudentController.cs" />
     <Compile Include="Controllers\TeacherController.cs" />
     <Compile Include="Controllers\ThemeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Mappers\CourseMapper.cs" />
+    <Compile Include="Mappers\ThemeMapper.cs" />
+    <Compile Include="Mappers\UserMapper.cs" />
+    <Compile Include="Models\AddCourseViewModel.cs" />
+    <Compile Include="Models\AddUserViewModel.cs" />
     <Compile Include="Models\CourseListViewModel.cs" />
     <Compile Include="Models\CourseView.cs" />
     <Compile Include="Models\LoginViewModel.cs" />
+    <Compile Include="Models\ProfileViewModel.cs" />
     <Compile Include="Models\RegisterViewModel.cs" />
+    <Compile Include="Models\StudentListViewModel.cs" />
     <Compile Include="Models\TeacherListViewModel.cs" />
     <Compile Include="Models\ThemeListViewModel.cs" />
     <Compile Include="Models\ThemeView.cs" />
@@ -345,6 +354,16 @@
     <Content Include="Views\Theme\List.cshtml" />
     <Content Include="Views\Theme\Add.cshtml" />
     <Content Include="Views\Teacher\List.cshtml" />
+    <Content Include="Views\Theme\Edit.cshtml" />
+    <Content Include="Views\Teacher\Add.cshtml" />
+    <Content Include="Views\Theme\FormPartial.cshtml" />
+    <Content Include="Views\Teacher\FormPartial.cshtml" />
+    <Content Include="Views\Teacher\Edit.cshtml" />
+    <Content Include="Views\Course\Edit.cshtml" />
+    <Content Include="Views\Shared\_StudentLayout.cshtml" />
+    <Content Include="Views\Course\ListByTeacher.cshtml" />
+    <Content Include="Views\Student\List.cshtml" />
+    <Content Include="Views\Profile\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

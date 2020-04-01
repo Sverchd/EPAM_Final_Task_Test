@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using BusinessLogicLayer.Models;
 
-namespace BusinessLogicLayer
+namespace BusinessLogicLayer.Contracts
 {
     public interface IThemeRepository
     {
@@ -13,6 +10,8 @@ namespace BusinessLogicLayer
         bool AddTheme(Theme theme);
 
         bool DeleteTheme(int themeId);
+
+        bool Edit(Theme theme);
         //List<T> GetFilteredEntities<T>(Func<T, bool> predicate) where T : class;
         //List<Course> GetFilteredCourses(Func<ICourse, bool> predicate);
     }

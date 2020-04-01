@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
+﻿using System.Data.SqlTypes;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
@@ -20,7 +17,13 @@ namespace Faculty.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private IUserService _userManager;
-
+        private BusinessLogicLayer.Contracts.IUserService _userService;
+        public AccountController()
+        { }
+        public AccountController(BusinessLogicLayer.Contracts.IUserService userService)
+        {
+            _userService = userService;
+        }
         public ApplicationSignInManager SignInManager
         {
             get
@@ -76,7 +79,12 @@ namespace Faculty.Controllers
 
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, change to shouldLockout: true
+            
             var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
+            //var user = _userService.GetUserByEmail(model.Email);
+            // bool banned;
+            //if (UserManager.IsInRole(user.id, "banned"))
+            //    banned = true;
             switch (result)
             {
                 case SignInStatus.Success:
@@ -106,9 +114,11 @@ namespace Faculty.Controllers
             if (ModelState.IsValid)
             {
                 var user = new AppUser { UserName = model.Email, Email = model.Email };
+
                 var result = UserManager.Create(user, model.Password);
                 if (result.Succeeded)
                 {
+                    UserManager.AddToRole(user.Id, "student");
                     await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
 
                     // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771

@@ -21,32 +21,35 @@
                     <th>
                         @Html.DisplayNameFor(model => model.Themes[0].CourseCount)
                     </th>
-
+                @if (User.IsInRole("admin"))
+                {
                     <th>
                         Controls
                     </th>
+                }
 
-
-                </tr>
+                    </tr>
             </thead>
             <tbody>
                 @foreach (var item in Model.Themes)
                 {
-                    <tr>
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CourseCount)
+                        @Html.ActionLink("List", "ListByTheme", "Course", new { themeId = item.ThemeEntityId }, new { role = "button", @class = "btn btn-success", style = "float:right" })
+                    </td>
+                    @if (User.IsInRole("admin"))
+                    {
                         <td>
-                            @Html.DisplayFor(modelItem => item.Name)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.CourseCount)
-                        </td>
-
-                        <td>
-                            <div>
+                            <div style="float: right">
                                 @{
                                     string id = "exampleModal" + item.ThemeEntityId;
                                     string hid = "#" + id;
                                 }
-                                @Html.ActionLink("Edit", "Edit", "Theme", null, new {role = "button", @class = "btn btn-success"})
+                                @Html.ActionLink("Edit", "Edit", "Theme", routeValues: new {themeId = item.ThemeEntityId}, htmlAttributes: new {role = "button", @class = "btn btn-success"})
                                 <button type="button" class="btn btn-danger" data-toggle="modal" data-target="@hid">
                                     Delete
                                 </button>
@@ -74,7 +77,7 @@
                             </div>
 
                         </td>
-                     
+                    }
 
                     </tr>
                 }

@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace BusinessLogicLayer
+namespace BusinessLogicLayer.Models
 {
     public class Course
     {
@@ -14,11 +11,13 @@ namespace BusinessLogicLayer
         public DateTime start { get; set; }
         public DateTime end { get; set; }
         public Dictionary<string, int?> gradebook;
-        //private List<ApplicationUser> students;
-        //public ApplicationUser teacher;
+        public List<User> students;
+        public User teacher;
+        public int length { get; set; }
         public Course()
         {
-
+            teacher = new User();
+            students = new List<User>();
         }
 
         //public Course(Theme th, string nm, DateTime sdt, DateTime edt)
@@ -38,6 +37,16 @@ namespace BusinessLogicLayer
             end = edt;
             //students = std;
             //teacher = tch;
+        }
+        public Course(int id, Theme th, string nm, DateTime sdt, DateTime edt, User tch)
+        {
+            CourseId = id;
+            theme = th;
+            name = nm;
+            start = sdt;
+            end = edt; 
+            //students = std;
+            teacher = tch;
         }
     }
 }

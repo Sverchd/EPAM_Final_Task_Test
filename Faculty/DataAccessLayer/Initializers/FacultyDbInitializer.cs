@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using DataAccessLayer.Context;
 using DataAccessLayer.Managers;
 using DataAccessLayer.Models;
@@ -33,7 +31,7 @@ namespace DataAccessLayer.Initializers
         
            // Create 3 roles
             var roleAdmin = new IdentityRole { Name = "admin" };
-
+            var roleBanned = new IdentityRole { Name = "banned" };
             var roleTeacher = new IdentityRole { Name = "teacher" };
             
             var roleStudent = new IdentityRole { Name = "student" };
@@ -42,6 +40,7 @@ namespace DataAccessLayer.Initializers
             roleManager.Create(roleAdmin);
             roleManager.Create(roleTeacher);
             roleManager.Create(roleStudent);
+            roleManager.Create(roleBanned);
             var admin = new AppUser { Email = "admin@gmail.com", UserName = "admin@gmail.com" };
             var teacher = new AppUser { Email = "teacher@gmail.com", UserName = "teacher@gmail.com" };
             var student = new AppUser { Email = "student@gmail.com", UserName = "student@gmail.com" };
@@ -84,11 +83,16 @@ namespace DataAccessLayer.Initializers
                 .SingleOrDefault();
             course.students.Add(context.Users.Where(u => u.Email == "student@gmail.com").SingleOrDefault());
             course.students.Add(context.Users.Where(u => u.Email == "student1@gmail.com").SingleOrDefault());
+
+            
             var course1 = new CourseEntity(themes[1], "Programming", new DateTime(2020,4,14), new DateTime(2020,8,5));
             context.Themes.AddRange(themes);
             context.Courses.Add(course);
             context.Courses.Add(course1);
-            context.Users.Include("courses").Where(u=>u.Email== "teacher@gmail.com").SingleOrDefault().courses.Add(course1);
+            
+            context.Users.Include("courses").Where(u=>u.Email== "teacher@gmail.com").SingleOrDefault().courses.Add(course);
+            context.Users.Include("courses").Where(u => u.Email == "student@gmail.com").SingleOrDefault().scourses.Add(course);
+            context.Users.Include("courses").Where(u => u.Email == "student1@gmail.com").SingleOrDefault().scourses.Add(course);
             context.SaveChanges();
 
             var s = context.Courses.ToList();

@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Data.Entity;
+using BusinessLogicLayer.Models;
 using DataAccessLayer.Initializers;
 using DataAccessLayer.Models;
 using Microsoft.AspNet.Identity.EntityFramework;
@@ -19,5 +15,13 @@ namespace DataAccessLayer.Context
         }
         public DbSet<CourseEntity> Courses { get; set; }
         public DbSet<ThemeEntity> Themes { get; set; }
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+            
+            //modelBuilder.Entity<Course>().HasMany(c => c.students).WithMany(s => s.Courses).
+
+        }
     }
+
 }

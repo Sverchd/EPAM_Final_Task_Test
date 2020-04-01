@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using BusinessLogicLayer;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DataAccessLayer.Models
 {
@@ -14,7 +11,9 @@ namespace DataAccessLayer.Models
         public string name { get; set; }
         public DateTime start { get; set; }
         public DateTime end { get; set; }
+        [InverseProperty("scourses")]
         public List<AppUser> students { get; set; }
+        [InverseProperty("courses")]
         public AppUser Teacher { get; set; }
         public Dictionary<string, int?> gradebook { get; set; }
 

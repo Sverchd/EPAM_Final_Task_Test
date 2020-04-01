@@ -42,7 +42,15 @@ namespace Faculty.Controllers
             var courseList = new CourseListViewModel();
             var courses = _courseService.GetCoursesByTeacher(userEmail);
             courseList.Courses = courses.Select(x => x.Map()).ToList();
-            ViewBag.Title = userEmail + "`s courses";
+            if (User.IsInRole("teacher"))
+            {
+                ViewBag.Title ="Your courses";
+            }
+            else
+            {
+                ViewBag.Title = userEmail + "`s courses";
+            }
+            
             return View("List", courseList);
         }
 

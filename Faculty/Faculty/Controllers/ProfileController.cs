@@ -42,21 +42,22 @@ namespace Faculty.Controllers
             {
                 profileModel.role = "Student";
                 courses = _courseService.GetCoursesByStudent(User.Identity.Name).Select(c => c.Map()).ToList();
+                profileModel.CoursesApplied = courses.Where(x => x.start > DateTime.Now).ToList();
+                profileModel.CoursesFinished = courses.Where(x => x.end < DateTime.Now).ToList();
+                profileModel.CoursesInProgress =
+                    courses.Where(x => x.start < DateTime.Now && x.end > DateTime.Now).ToList();
             }
             else if (User.IsInRole("teacher"))
             {
                 profileModel.role = "Teacher";
-                courses = _userService.GetTeacherByEmail(User.Identity.Name).Courses.Select(c => c.Map()).ToList();
+                //courses = _userService.GetTeacherByEmail(User.Identity.Name).Courses.Select(c => c.Map()).ToList();
             }
             else if (User.IsInRole("admin"))
             {
                 profileModel.role = "Admin";
             }
 
-            profileModel.CoursesApplied = courses.Where(x=>x.start>DateTime.Now).ToList();
-            profileModel.CoursesFinished = courses.Where(x => x.end < DateTime.Now).ToList();
-            profileModel.CoursesInProgress =
-                courses.Where(x => x.start < DateTime.Now && x.end > DateTime.Now).ToList();
+            
             profileModel.Email = User.Identity.Name;
 
             return View(profileModel);

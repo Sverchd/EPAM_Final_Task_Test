@@ -7,10 +7,14 @@
     {
         Layout = "~/Views/Shared/_StudentLayout.cshtml";
     }
+    else if (User.IsInRole("teacher"))
+    {
+        Layout= "~/Views/Shared/_TeacherLayout.cshtml";
+    }
     else
     {
         Layout = "~/Views/Shared/_Layout.cshtml";
     }
-    
+
     }
     

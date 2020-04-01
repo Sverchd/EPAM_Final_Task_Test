@@ -1,0 +1,48 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Faculty</title>
+
+    @{
+        var test = Model;
+    }
+</head>
+<body>
+
+    <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
+        <h5 class="my-0 mr-md-auto font-weight-normal">Faculty management system</h5>
+        <nav class="my-2 my-md-0 mr-md-3">
+            <div class="btn-group">
+                @Html.ActionLink("Home", "Index", "Home", null, new { @class = "p-2 text-dark" })
+            </div>
+            <div class="btn-group">
+                @Html.ActionLink("List of Courses", "ListByTeacher", "Course", new {userEmail = User.Identity.Name}, new { @class = "p-2 text-dark" })
+            </div>
+            
+            
+        </nav>
+        @Html.Partial("_LoginPartial")
+    </div>
+    <div class="shadow-sm">
+        @RenderBody()
+    </div>
+    <footer class="text-muted">
+        <div class="container">
+            <p class="float-right">
+                <a href="#">Back to top</a>
+            </p>
+            <p>Faculty system © Faculty</p>
+        </div>
+    </footer>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/Scripts/umd/popper.js")
+    @Scripts.Render("~/bundles/bootstrap")
+
+    @RenderSection("scripts", false)
+</body>
+</html>

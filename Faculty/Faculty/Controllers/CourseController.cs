@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading;
 using System.Web.Mvc;
-using BusinessLogicLayer;
 using BusinessLogicLayer.Contracts;
 using BusinessLogicLayer.Models;
 using Faculty.Mappers;
@@ -24,33 +22,36 @@ namespace Faculty.Controllers
             _userService = userService;
             _themeService = themeService;
         }
+
         [HttpGet]
         [Authorize]
         public ActionResult ListByTheme(int themeId)
         {
-            var courseList = new CourseListViewModel() { };
-            var theme =_themeService.GeThemeById(themeId);
+            var courseList = new CourseListViewModel();
+            var theme = _themeService.GeThemeById(themeId);
             var courses = _courseService.GetCoursesByTheme(theme);
             courseList.Courses = courses.Select(x => x.Map()).ToList();
-            ViewBag.Title = "Courses of "+theme.Name;
+            ViewBag.Title = "Courses of " + theme.Name;
             return View("List", courseList);
         }
+
         [HttpGet]
         [Authorize]
         public ActionResult ListByTeacher(string userEmail)
         {
-            var courseList = new CourseListViewModel() { };
+            var courseList = new CourseListViewModel();
             var courses = _courseService.GetCoursesByTeacher(userEmail);
             courseList.Courses = courses.Select(x => x.Map()).ToList();
             ViewBag.Title = userEmail + "`s courses";
             return View("List", courseList);
         }
+
         [HttpGet]
         [Authorize]
         public ActionResult List(string email)
         {
-            bool isUser = IsUser();
-            var courseList = new CourseListViewModel(){};
+            var isUser = IsUser();
+            var courseList = new CourseListViewModel();
             var vb = ViewBag;
             var courseListb = _courseService.GetAllCourses();
             //if (isUser)
@@ -77,28 +78,25 @@ namespace Faculty.Controllers
         public ActionResult Add()
         {
             var addCourseViewModel = new AddCourseViewModel();
-            var teacherListView = new List<SelectListItem>() { };
-            
+            var teacherListView = new List<SelectListItem>();
+
             var teachers = _userService.GetAllTeachers();
-            foreach (var teacher  in teachers)
-            {
-                teacherListView.Add(new SelectListItem{Value = teacher.Email,Text = teacher.Name});
-            }
+            foreach (var teacher in teachers)
+                teacherListView.Add(new SelectListItem {Value = teacher.Email, Text = teacher.Name});
             addCourseViewModel.Teachers = new SelectList(teacherListView, "Value", "Text");
 
 
             var themes = _themeService.GetAllThemes();
-            var themeListView = new List<SelectListItem>() { };
-            foreach (var theme  in themes)
-            {
-                themeListView.Add(new SelectListItem{Value = theme.ThemeId.ToString(),Text = theme.Name});
-            }
+            var themeListView = new List<SelectListItem>();
+            foreach (var theme in themes)
+                themeListView.Add(new SelectListItem {Value = theme.ThemeId.ToString(), Text = theme.Name});
             addCourseViewModel.Teachers = new SelectList(teacherListView, "Value", "Text");
             addCourseViewModel.Themes = new SelectList(themeListView, "Value", "Text");
             addCourseViewModel.start = DateTime.Today;
             addCourseViewModel.end = DateTime.Today;
             return View(addCourseViewModel);
         }
+
         [HttpPost]
         public ActionResult Add(AddCourseViewModel addCourseViewModel)
         {
@@ -114,34 +112,31 @@ namespace Faculty.Controllers
             ModelState.AddModelError("Name", "Course already exists!");
             return RedirectToAction("List");
         }
+
         [HttpGet]
         [Authorize]
         public ActionResult Edit(int CourseId)
         {
             var addCourseViewModel = new AddCourseViewModel();
-            var teacherListView = new List<SelectListItem>() { };
+            var teacherListView = new List<SelectListItem>();
 
             var teachers = _userService.GetAllTeachers();
             foreach (var teacher in teachers)
-            {
-                teacherListView.Add(new SelectListItem { Value = teacher.Email, Text = teacher.Name });
-            }
+                teacherListView.Add(new SelectListItem {Value = teacher.Email, Text = teacher.Name});
             addCourseViewModel.Teachers = new SelectList(teacherListView, "Value", "Text");
 
 
             var themes = _themeService.GetAllThemes();
-            var themeListView = new List<SelectListItem>() { };
+            var themeListView = new List<SelectListItem>();
             foreach (var theme in themes)
-            {
-                themeListView.Add(new SelectListItem { Value = theme.ThemeId.ToString(), Text = theme.Name });
-            }
+                themeListView.Add(new SelectListItem {Value = theme.ThemeId.ToString(), Text = theme.Name});
 
             addCourseViewModel.CourseId = CourseId;
             addCourseViewModel.Teachers = new SelectList(teacherListView, "Value", "Text");
             addCourseViewModel.Themes = new SelectList(themeListView, "Value", "Text");
             var course = _courseService.GetCourseById(CourseId);
             addCourseViewModel.name = course.name;
-            
+
             addCourseViewModel.Teacher = course.teacher.Name;
             addCourseViewModel.theme = course.theme.ThemeId;
             addCourseViewModel.start = course.start;
@@ -150,6 +145,7 @@ namespace Faculty.Controllers
 
             return View(addCourseViewModel);
         }
+
         [HttpPost]
         public ActionResult Edit(AddCourseViewModel addCourseViewModel)
         {
@@ -166,18 +162,21 @@ namespace Faculty.Controllers
             ModelState.AddModelError("Name", "Course already exists!");
             return RedirectToAction("List");
         }
+
         [HttpGet]
         public ActionResult Delete(int CourseId)
         {
             _courseService.DeleteCourse(CourseId);
             return RedirectToAction("List");
         }
+
         [HttpGet]
         public ActionResult Register(int CourseId)
         {
             var result = _courseService.Register(CourseId, User.Identity.Name);
             return RedirectToAction("List");
         }
+
         private bool IsUser()
         {
             return !(User.IsInRole("admin") || User.IsInRole("teacher"));

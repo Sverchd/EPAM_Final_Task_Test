@@ -14,13 +14,13 @@
     {
         <table id="CourseListTable" class="table table-striped table-bordered" style="width: 100%">
             <thead>
-                <tr>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Themes[0].Name)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Themes[0].CourseCount)
-                    </th>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Themes[0].Name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Themes[0].CourseCount)
+                </th>
                 @if (User.IsInRole("admin"))
                 {
                     <th>
@@ -28,28 +28,28 @@
                     </th>
                 }
 
-                    </tr>
+            </tr>
             </thead>
             <tbody>
-                @foreach (var item in Model.Themes)
-                {
+            @foreach (var item in Model.Themes)
+            {
                 <tr>
                     <td>
                         @Html.DisplayFor(modelItem => item.Name)
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.CourseCount)
-                        @Html.ActionLink("List", "ListByTheme", "Course", new { themeId = item.ThemeEntityId }, new { role = "button", @class = "btn btn-success", style = "float:right" })
+                        @Html.ActionLink("List", "ListByTheme", "Course", new {themeId = item.ThemeEntityId}, new {role = "button", @class = "btn btn-success", style = "float:right"})
                     </td>
                     @if (User.IsInRole("admin"))
                     {
                         <td>
                             <div style="float: right">
                                 @{
-                                    string id = "exampleModal" + item.ThemeEntityId;
-                                    string hid = "#" + id;
+                                    var id = "exampleModal" + item.ThemeEntityId;
+                                    var hid = "#" + id;
                                 }
-                                @Html.ActionLink("Edit", "Edit", "Theme", routeValues: new {themeId = item.ThemeEntityId}, htmlAttributes: new {role = "button", @class = "btn btn-success"})
+                                @Html.ActionLink("Edit", "Edit", "Theme", new {themeId = item.ThemeEntityId}, new {role = "button", @class = "btn btn-success"})
                                 <button type="button" class="btn btn-danger" data-toggle="modal" data-target="@hid">
                                     Delete
                                 </button>
@@ -67,7 +67,7 @@
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                @Html.ActionLink("Delete", "Delete", "Theme", routeValues: new {themeId = item.ThemeEntityId}, htmlAttributes: new {@class = "btn btn-danger"})
+                                                @Html.ActionLink("Delete", "Delete", "Theme", new {themeId = item.ThemeEntityId}, new {@class = "btn btn-danger"})
 
                                             </div>
                                         </div>
@@ -79,12 +79,12 @@
                         </td>
                     }
 
-                    </tr>
-                }
+                </tr>
+            }
             </tbody>
         </table>
     }
-    @Html.ActionLink("Add new Theme", "Add", "Theme", null, new { role = "button", @class = "btn btn-primary btn-lg active", style = "margin-bottom: 10px" })
+    @Html.ActionLink("Add new Theme", "Add", "Theme", null, new {role = "button", @class = "btn btn-primary btn-lg active", style = "margin-bottom: 10px"})
 
 
 </section>

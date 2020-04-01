@@ -32,31 +32,32 @@ namespace DataAccessLayer.Managers
                 RequireNonLetterOrDigit = true,
                 RequireDigit = true,
                 RequireLowercase = true,
-                RequireUppercase = true,
+                RequireUppercase = true
             };
             // optionally configure your manager
             // ...
 
             return manager;
         }
+
         public IdentityResult AddToRole(string userId, string role)
         {
-            return this.AddToRoleAsync(userId, role).Result;
+            return AddToRoleAsync(userId, role).Result;
         }
+
         public IdentityResult Create(AppUser user, string password)
         {
-            return this.CreateAsync(user, password).Result;
+            return CreateAsync(user, password).Result;
         }
 
         public bool IsInRole(string userId, string role)
         {
-
-            return this.IsInRoleAsync(userId, role).Result;
+            return IsInRoleAsync(userId, role).Result;
         }
 
         public IdentityResult AddLogin(string userid, UserLoginInfo login)
         {
-            return this.AddLoginAsync(userid, login).Result;
+            return AddLoginAsync(userid, login).Result;
         }
     }
 }

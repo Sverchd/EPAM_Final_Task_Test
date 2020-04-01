@@ -2,7 +2,6 @@
 using BusinessLogicLayer.Models;
 using Faculty.Models;
 
-
 namespace Faculty.Mappers
 {
     public static class CourseMapper
@@ -15,7 +14,7 @@ namespace Faculty.Mappers
             resultCourse.teacher = courseView.teacher.MapFlat();
             return resultCourse;
         }
-        
+
         public static Course MapFlat(this CourseView courseView)
         {
             var resultCourse = new Course();
@@ -26,6 +25,7 @@ namespace Faculty.Mappers
             return resultCourse;
         }
     }
+
     public static class CourseViewMapper
     {
         public static CourseView Map(this Course course)
@@ -36,7 +36,7 @@ namespace Faculty.Mappers
             resultCourse.teacher = course.teacher.MapFlat();
             return resultCourse;
         }
-        
+
         public static CourseView MapFlat(this Course course)
         {
             var resultCourse = new CourseView();

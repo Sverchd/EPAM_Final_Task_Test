@@ -1,12 +1,12 @@
 ﻿using System.Web.Mvc;
-using BusinessLogicLayer;
 using BusinessLogicLayer.Contracts;
 
 namespace Faculty.Controllers
 {
     public class HomeController : Controller
     {
-        private ICourseService _courseService;
+        private readonly ICourseService _courseService;
+
         public HomeController(ICourseService courseService)
         {
             _courseService = courseService;

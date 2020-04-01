@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Security.Cryptography;
 using BusinessLogicLayer.Models;
 
 namespace BusinessLogicLayer.Contracts
@@ -9,7 +8,7 @@ namespace BusinessLogicLayer.Contracts
         List<User> GetAllTeachers();
 
         bool AddTeacher(User teacher, string password);
-        //List<Course> GetFilteredCoursesByTheme(Theme theme);
+
         bool DeleteTeacher(string email);
         User GetTeacherByEmail(string email);
         List<User> GetAllStudents();

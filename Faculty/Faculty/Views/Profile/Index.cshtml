@@ -14,7 +14,7 @@
                 <li class="nav-item">
                     <a href="" data-target="#courses" data-toggle="tab" class="nav-link">Courses</a>
                 </li>
-                
+
             </ul>
             <div class="tab-content p-b-3">
                 <div class="tab-pane active" id="profile">
@@ -24,16 +24,16 @@
                             <h6>About</h6>
                             <p> Email: @Model.Email </p>
                             <p>Role: @Model.role</p>
-                            
+
                         </div>
-                        
-                        
+
+
                     </div>
                     <!--/row-->
                 </div>
                 <div class="tab-pane" id="courses">
                     <h4 class="m-y-2">Courses</h4>
-                    
+
                     <section style="margin-left: auto; margin-right: auto">
                         @if (Model == null || Model.Courses.Count() == 0)
                         {
@@ -43,119 +43,85 @@
                         {
                             <table id="CourseListTable" class="table table-striped table-bordered" style="width: 100%">
                                 <thead>
-                                    <tr>
-                                        <th>
-                                            @Html.DisplayNameFor(model => model.Courses[0].name)
-                                        </th>
-                                        <th>
-                                            @Html.DisplayNameFor(model => model.Courses[0].theme)
-                                        </th>
-                                        <th>
-                                            @Html.DisplayNameFor(model => model.Courses[0].teacher)
-                                        </th>
-                                        <th>
-                                            @Html.DisplayNameFor(model => model.Courses[0].start)
-                                        </th>
-                                        <th>
-                                            @Html.DisplayNameFor(model => model.Courses[0].end)
-                                        </th>
-                                        <th>
-                                            @Html.DisplayNameFor(model => model.Courses[0].length)
-                                        </th>
-                                        <th>
-                                            @Html.DisplayNameFor(model => model.Courses[0].students.Count)
-                                        </th>
-                                        <th>
-                                            Controls
-                                        </th>
-                                    </tr>
+                                <tr>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Courses[0].name)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Courses[0].theme)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Courses[0].teacher)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Courses[0].start)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Courses[0].end)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Courses[0].length)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Courses[0].students.Count)
+                                    </th>
+                                    <th>
+                                        Controls
+                                    </th>
+                                </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach (var item in Model.Courses)
-                                    {
-                                        <tr>
+                                @foreach (var item in Model.Courses)
+                                {
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.name)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.theme.Name)
+
+                                        </td>
+
+                                        @if (item.teacher.Name != null)
+                                        {
                                             <td>
-                                                @Html.DisplayFor(modelItem => item.name)
+                                                @Html.DisplayFor(modelItem => item.teacher.Name)
                                             </td>
+                                        }
+                                        else
+                                        {
                                             <td>
-                                                @Html.DisplayFor(modelItem => item.theme.Name)
+                                                No teacher!
 
                                             </td>
-
-                                            @if (item.teacher.Name != null)
-                                            {
-                                                <td>
-                                                    @Html.DisplayFor(modelItem => item.teacher.Name)
-                                                </td>
-                                            }
-                                            else
-                                            {
-                                                <td>
-                                                    No teacher!
-
-                                                </td>
-                                            }
+                                        }
 
 
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.start)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.end)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.length)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.students.Count)
-                                            </td>
-                                            <td>
-                                                @{
-                                                    if (User.IsInRole("admin"))
-                                                    {
-                                                        <div style="float: right">
-                                                            @{
-                                                                var id = "exampleModal" + item.CourseEntityId;
-                                                                var hid = "#" + id;
-                                                            }
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.start)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.end)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.length)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.students.Count)
+                                        </td>
+                                        <td>
+                                            @{
+                                                if (User.IsInRole("admin"))
+                                                {
+                                                    <div style="float: right">
+                                                        @{
+                                                            var id = "exampleModal" + item.CourseEntityId;
+                                                            var hid = "#" + id;
+                                                        }
 
-                                                            @Html.ActionLink("Edit", "Edit", "Course", new { CourseId = item.CourseEntityId }, new { role = "button", @class = "btn btn-success" })
-                                                            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="@hid">
-                                                                Delete
-                                                            </button>
-                                                            <div class="modal fade" id="@id" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                                <div class="modal-dialog" role="document">
-                                                                    <div class="modal-content">
-                                                                        <div class="modal-header">
-                                                                            <h5 class="modal-title" id="exampleModalLabel">Delete</h5>
-                                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                                <span aria-hidden="true">&times;</span>
-                                                                            </button>
-                                                                        </div>
-                                                                        <div class="modal-body">
-                                                                            Are you sure want to delete?
-                                                                        </div>
-                                                                        <div class="modal-footer">
-                                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                                            @Html.ActionLink("Delete", "Delete", "Course", new { CourseId = item.CourseEntityId }, new { @class = "btn btn-danger" })
-
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-
-                                                        </div>
-                                                    }
-                                                    else if (User.IsInRole("student") &&
-                                                             !item.students.Where(x => x.Name == User.Identity.Name).Any()
-                                                             )
-                                                    //item.teacher.Name != null
-                                                    {
-                                                        var id = "exampleModal" + item.CourseEntityId;
-                                                        var hid = "#" + id;
-
-                                                        <button type="button" class="btn btn-success" data-toggle="modal" data-target="@hid">
-                                                            Register
+                                                        @Html.ActionLink("Edit", "Edit", "Course", new {CourseId = item.CourseEntityId}, new {role = "button", @class = "btn btn-success"})
+                                                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="@hid">
+                                                            Delete
                                                         </button>
                                                         <div class="modal fade" id="@id" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                             <div class="modal-dialog" role="document">
@@ -167,33 +133,67 @@
                                                                         </button>
                                                                     </div>
                                                                     <div class="modal-body">
-                                                                        Are you sure want to register for this course?
+                                                                        Are you sure want to delete?
                                                                     </div>
                                                                     <div class="modal-footer">
                                                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                                        @Html.ActionLink("Register", "Register", "Course", new { CourseId = item.CourseEntityId, username = User.Identity.Name }, new { @class = "btn btn-success" })
+                                                                        @Html.ActionLink("Delete", "Delete", "Course", new {CourseId = item.CourseEntityId}, new {@class = "btn btn-danger"})
 
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                    }
+
+                                                    </div>
                                                 }
+                                                else if (User.IsInRole("student") &&
+                                                         !item.students.Where(x => x.Name == User.Identity.Name).Any()
+                                                    )
+                                                    //item.teacher.Name != null
+                                                {
+                                                    var id = "exampleModal" + item.CourseEntityId;
+                                                    var hid = "#" + id;
+
+                                                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="@hid">
+                                                        Register
+                                                    </button>
+                                                    <div class="modal fade" id="@id" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                        <div class="modal-dialog" role="document">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h5 class="modal-title" id="exampleModalLabel">Delete</h5>
+                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                        <span aria-hidden="true">&times;</span>
+                                                                    </button>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    Are you sure want to register for this course?
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                    @Html.ActionLink("Register", "Register", "Course", new {CourseId = item.CourseEntityId, username = User.Identity.Name}, new {@class = "btn btn-success"})
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                }
+                                            }
 
 
-                                            </td>
+                                        </td>
 
-                                        </tr>
-                                    }
+                                    </tr>
+                                }
                                 </tbody>
                             </table>
                         }
-                        
-                        
+
+
 
                     </section>
                 </div>
-                
+
             </div>
         </div>
 
@@ -202,17 +202,16 @@
 <hr>
 
 
-
-    }
-    @{
-        var s = ViewContext.RouteData.Values["action"].ToString();
-    }
-    @if (User.IsInRole("admin") && ViewContext.RouteData.Values["action"].ToString() == "List")
-    {
-        <div class="row">
-            @Html.ActionLink("Add new Course", "Add", "Course", null, new { role = "button", @class = "btn btn-primary btn-lg active", style = "margin-bottom: 10px" })
-        </div>
-    }
+}
+@{
+    var s = ViewContext.RouteData.Values["action"].ToString();
+}
+@if (User.IsInRole("admin") && ViewContext.RouteData.Values["action"].ToString() == "List")
+{
+    <div class="row">
+        @Html.ActionLink("Add new Course", "Add", "Course", null, new {role = "button", @class = "btn btn-primary btn-lg active", style = "margin-bottom: 10px"})
+    </div>
+}
 
 
 <script type="text/javascript" src="~/Scripts/jquery-3.4.1.min.js"></script>
@@ -220,7 +219,7 @@
 
 
 <script>
-    $(document).ready(function () {
+    $(document).ready(function() {
         $.noConflict();
         var table = $('#CourseListTable').DataTable(
             {

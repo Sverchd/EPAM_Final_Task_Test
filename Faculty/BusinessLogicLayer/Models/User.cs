@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Data.Entity.Infrastructure;
 
 namespace BusinessLogicLayer.Models
 {
@@ -13,7 +12,7 @@ namespace BusinessLogicLayer.Models
 
         public User()
         {
-            Courses=new List<Course>();
+            Courses = new List<Course>();
         }
 
         public User(string email, string role, List<Course> courses)

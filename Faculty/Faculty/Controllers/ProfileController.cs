@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using BusinessLogicLayer.Contracts;
-using BusinessLogicLayer.Models;
 using DataAccessLayer.Managers;
-
 using Faculty.Mappers;
 using Faculty.Models;
 using Microsoft.AspNet.Identity.Owin;
@@ -21,29 +18,24 @@ namespace Faculty.Controllers
 
         public ProfileController()
         {
-
         }
+
         public DataAccessLayer.Interfaces.IUserService UserManager
         {
-            get
-            {
-                return _userManager ?? HttpContext.GetOwinContext().GetUserManager<AppUserManager>();
-            }
-            private set
-            {
-                _userManager = value;
-            }
+            get => _userManager ?? HttpContext.GetOwinContext().GetUserManager<AppUserManager>();
+            private set => _userManager = value;
         }
+
         public ProfileController(IUserService userService, ICourseService courseService)
         {
-
             _userService = userService;
             _courseService = courseService;
         }
+
         // GET: Profile
         public ActionResult Index()
         {
-            List<CourseView> courses = new List<CourseView>();
+            var courses = new List<CourseView>();
             var profileModel = new ProfileViewModel();
             if (User.IsInRole("student"))
             {
@@ -53,7 +45,7 @@ namespace Faculty.Controllers
             else if (User.IsInRole("teacher"))
             {
                 profileModel.role = "Teacher";
-                courses =_userService.GetTeacherByEmail(User.Identity.Name).Courses.Select(c => c.Map()).ToList();
+                courses = _userService.GetTeacherByEmail(User.Identity.Name).Courses.Select(c => c.Map()).ToList();
             }
             else if (User.IsInRole("admin"))
             {

@@ -2,23 +2,23 @@
 @{
     ViewBag.Title = "Edit";
 }
-    <section>
-        <h2 style="text-align: center">Edit</h2>
+<section>
+    <h2 style="text-align: center">Edit</h2>
 
-        @using (Html.BeginForm())
-        {
-            @Html.AntiForgeryToken()
-            <div class="col-md-10">
-                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                @Html.HiddenFor(m => m.ThemeEntityId)
-                <div class="form-group">
-                    @Html.LabelFor(m => m.Name, new { @class = "col-md-2" })
-                    @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(m => m.Name, "", new { @class = "text-danger" })
-                </div>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <div class="col-md-10">
+            @Html.ValidationSummary(true, "", new {@class = "text-danger"})
+            @Html.HiddenFor(m => m.ThemeEntityId)
+            <div class="form-group">
+                @Html.LabelFor(m => m.Name, new {@class = "col-md-2"})
+                @Html.TextBoxFor(m => m.Name, new {@class = "form-control"})
+                @Html.ValidationMessageFor(m => m.Name, "", new {@class = "text-danger"})
             </div>
-            <a class="btn btn-default" role="button" href="@Url.Action("List", "Theme")"><i class="fas fa-arrow-left"></i> Back to List</a>
-            <input type="submit" value="Save" class="btn btn-success" style="background-color: blue" />
-        }
+        </div>
+        <a class="btn btn-default" role="button" href="@Url.Action("List", "Theme")"><i class="fas fa-arrow-left"></i> Back to List</a>
+        <input type="submit" value="Save" class="btn btn-success" style="background-color: blue"/>
+    }
 
-    </section>
+</section>

@@ -1,9 +1,10 @@
 ﻿body {
-    width: 100%;
     padding-bottom: 20px;
+    width: 100%;
 }
 
 /* Set padding to keep content from hitting the edges */
+
 .body-content {
     padding-left: 15px;
     padding-right: 15px;
@@ -12,19 +13,18 @@
 /* Override the default bootstrap behavior where horizontal description lists 
    will truncate terms that are too long to fit in the left column 
 */
-.dl-horizontal dt {
-    white-space: normal;
-}
+
+.dl-horizontal dt { white-space: normal; }
 
 /* Set width on the form input elements since they're 100% wide by default */
+
 input,
 select,
-textarea {
-    max-width: 280px;
-}
+textarea { max-width: 280px; }
+
 footer {
-    padding-top: 3rem;
     padding-bottom: 3rem;
+    padding-top: 3rem;
 }
 
 
@@ -38,51 +38,40 @@ table.dataTable thead .sorting_desc:after,
 table.dataTable thead .sorting_desc:before,
 table.dataTable thead .sorting_desc_disabled:after,
 table.dataTable thead .sorting_desc_disabled:before {
+    background: url('/Content/images/sort_both.png') no-repeat center right;
     bottom: .5em;
-    background: url('/Content/images/sort_both.png') no-repeat center right;
 }
 
 
-table.dataTable thead .sorting {
-    background: url('/Content/images/sort_both.png') no-repeat center right;
-}
+table.dataTable thead .sorting { background: url('/Content/images/sort_both.png') no-repeat center right; }
 
-table.dataTable thead .sorting_asc {
-    background: url('/Content/images/sort_asc.png') no-repeat center right;
-}
+table.dataTable thead .sorting_asc { background: url('/Content/images/sort_asc.png') no-repeat center right; }
 
-table.dataTable thead .sorting_desc {
-    background: url('/Content/images/sort_desc.png') no-repeat center right;
-}
+table.dataTable thead .sorting_desc { background: url('/Content/images/sort_desc.png') no-repeat center right; }
 
-table.dataTable thead .sorting_asc_disabled {
-    background: url('/Content/images/sort_asc_disabled.png') no-repeat center right;
-}
+table.dataTable thead .sorting_asc_disabled { background: url('/Content/images/sort_asc_disabled.png') no-repeat center right; }
 
-table.dataTable thead .sorting_desc_disabled {
-    background: url('/Content/images/sort_desc_disabled.png') no-repeat center right;
-}
+table.dataTable thead .sorting_desc_disabled { background: url('/Content/images/sort_desc_disabled.png') no-repeat center right; }
+
 .dropdown {
-    float: left;
     background-color: white;
+    float: left;
 }
-.btn {
-    
-    border-width: 0;
-}
-.container {
-    width: 90%;
-}
+
+.btn { border-width: 0; }
+
+.container { width: 90%; }
+
 section {
-    width: 90%;
     padding-bottom: 10px;
+    width: 90%;
 }
+
 .row {
     margin-left: 0;
     margin-right: 0;
     padding-left: 20px;
     padding-right: 20px;
 }
-.col-1 {
-    padding: 0;
-}
+
+.col-1 { padding: 0; }

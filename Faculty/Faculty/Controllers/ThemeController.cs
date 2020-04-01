@@ -1,7 +1,6 @@
 ﻿using System.Linq;
 using System.Web.Mvc;
 using BusinessLogicLayer.Contracts;
-using BusinessLogicLayer.Models;
 using Faculty.Mappers;
 using Faculty.Models;
 
@@ -23,8 +22,7 @@ namespace Faculty.Controllers
         [Authorize]
         public ActionResult List()
         {
-            
-            bool isUser = IsUser();
+            var isUser = IsUser();
             var themeList = new ThemeListViewModel();
             var vb = ViewBag;
             var themeListb = _themeService.GetAllThemes();
@@ -52,13 +50,9 @@ namespace Faculty.Controllers
         [HttpPost]
         public ActionResult Add(ThemeView theme)
         {
-
             var result = _themeService.AddTheme(theme.Map());
-            if (result)
-            {
-                return RedirectToAction("List");
-            }
-       
+            if (result) return RedirectToAction("List");
+
             ModelState.AddModelError("Name", "Theme already exists!");
             return View();
         }
@@ -77,19 +71,18 @@ namespace Faculty.Controllers
             var theme = _themeService.GeThemeById(themeId);
             return View(theme.Map());
         }
+
         [HttpPost]
         public ActionResult Edit(ThemeView theme)
         {
             var result = _themeService.Edit(theme.Map());
             //var result = _themeService.AddTheme(new Theme(theme.ThemeEntityId, theme.Name));
-            if (result)
-            {
-                return RedirectToAction("List");
-            }
+            if (result) return RedirectToAction("List");
 
             ModelState.AddModelError("Name", "Theme already exists!");
             return View();
         }
+
         private bool IsUser()
         {
             return !(User.IsInRole("admin") || User.IsInRole("teacher"));

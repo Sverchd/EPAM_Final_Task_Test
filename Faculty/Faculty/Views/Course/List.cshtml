@@ -62,7 +62,7 @@
                     {
                         <td>
                             No teacher!
-                            
+
                         </td>
                     }
 
@@ -116,9 +116,9 @@
 
                                 </div>
                             }
-                            else if (User.IsInRole("student") && 
+                            else if (User.IsInRole("student") &&
                                      !item.students.Where(x => x.Name == User.Identity.Name).Any()
-                                     )
+                                )
                                 //item.teacher.Name != null
                             {
                                 var id = "exampleModal" + item.CourseEntityId;

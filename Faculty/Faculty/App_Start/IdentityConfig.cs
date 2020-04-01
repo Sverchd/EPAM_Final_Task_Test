@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using DataAccessLayer.Context;
+﻿using DataAccessLayer.Context;
 using DataAccessLayer.Managers;
 using DataAccessLayer.Models;
 using Microsoft.AspNet.Identity;
@@ -28,7 +24,7 @@ namespace Faculty
             app.UseCookieAuthentication(new CookieAuthenticationOptions
             {
                 AuthenticationType = DefaultAuthenticationTypes.ApplicationCookie,
-                LoginPath = new PathString("/Account/Login"),
+                LoginPath = new PathString("/Account/Login")
             });
         }
     }

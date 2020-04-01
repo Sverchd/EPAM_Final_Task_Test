@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using BusinessLogicLayer.Models;
+﻿using BusinessLogicLayer.Models;
 using Faculty.Models;
-
 
 namespace Faculty.Mappers
 {
@@ -24,7 +19,7 @@ namespace Faculty.Mappers
 
     public static class ThemeViewMapper
     {
-        public static ThemeView Map(this Theme theme, int count=0)
+        public static ThemeView Map(this Theme theme, int count = 0)
         {
             var resultTheme = new ThemeView
             {

@@ -8,7 +8,7 @@ namespace BusinessLogicLayer.Contracts
         List<Theme> GetAllThemes();
 
         bool AddTheme(Theme theme);
-        //List<Course> GetFilteredCoursesByTheme(Theme theme);
+
         bool DeleteTheme(int id);
         bool Edit(Theme theme);
         Theme GeThemeById(int id);

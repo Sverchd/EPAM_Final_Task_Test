@@ -1,5 +1,4 @@
-﻿using System.Data.SqlTypes;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using DataAccessLayer.Interfaces;
@@ -18,41 +17,29 @@ namespace Faculty.Controllers
         private ApplicationSignInManager _signInManager;
         private IUserService _userManager;
         private BusinessLogicLayer.Contracts.IUserService _userService;
+
         public AccountController()
-        { }
+        {
+        }
+
         public AccountController(BusinessLogicLayer.Contracts.IUserService userService)
         {
             _userService = userService;
         }
+
         public ApplicationSignInManager SignInManager
         {
-            get
-            {
-                return _signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
-            }
-            private set
-            {
-                _signInManager = value;
-            }
+            get => _signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
+            private set => _signInManager = value;
         }
+
         public IUserService UserManager
         {
-            get
-            {
-                return _userManager ?? HttpContext.GetOwinContext().GetUserManager<AppUserManager>();
-            }
-            private set
-            {
-                _userManager = value;
-            }
+            get => _userManager ?? HttpContext.GetOwinContext().GetUserManager<AppUserManager>();
+            private set => _userManager = value;
         }
-        private IAuthenticationManager AuthenticationManager
-        {
-            get
-            {
-                return HttpContext.GetOwinContext().Authentication;
-            }
-        }
+
+        private IAuthenticationManager AuthenticationManager => HttpContext.GetOwinContext().Authentication;
 
 
         // GET: Account
@@ -72,15 +59,12 @@ namespace Faculty.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Login(LoginViewModel model, string returnUrl)
         {
-            if (!ModelState.IsValid)
-            {
-                return View(model);
-            }
+            if (!ModelState.IsValid) return View(model);
 
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, change to shouldLockout: true
-            
-            var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
+
+            var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, false);
             //var user = _userService.GetUserByEmail(model.Email);
             // bool banned;
             //if (UserManager.IsInRole(user.id, "banned"))
@@ -91,7 +75,7 @@ namespace Faculty.Controllers
                     return RedirectToLocal(returnUrl);
                 case SignInStatus.LockedOut:
                     return View("Lockout");
-                
+
                 case SignInStatus.Failure:
                 default:
                     ModelState.AddModelError("", "Invalid login attempt.");
@@ -104,6 +88,7 @@ namespace Faculty.Controllers
         {
             return View();
         }
+
         //
         // POST: /Account/Register
         [HttpPost]
@@ -113,13 +98,13 @@ namespace Faculty.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new AppUser { UserName = model.Email, Email = model.Email };
+                var user = new AppUser {UserName = model.Email, Email = model.Email};
 
                 var result = UserManager.Create(user, model.Password);
                 if (result.Succeeded)
                 {
                     UserManager.AddToRole(user.Id, "student");
-                    await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+                    await SignInManager.SignInAsync(user, false, false);
 
                     // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
@@ -129,6 +114,7 @@ namespace Faculty.Controllers
 
                     return RedirectToAction("Index", "Home");
                 }
+
                 AddErrors(result);
             }
 
@@ -146,21 +132,16 @@ namespace Faculty.Controllers
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
             return RedirectToAction("Index", "Home");
         }
+
         private ActionResult RedirectToLocal(string returnUrl)
         {
-            if (Url.IsLocalUrl(returnUrl))
-            {
-                return Redirect(returnUrl);
-            }
+            if (Url.IsLocalUrl(returnUrl)) return Redirect(returnUrl);
             return RedirectToAction("Index", "Home");
         }
 
         private void AddErrors(IdentityResult result)
         {
-            foreach (var error in result.Errors)
-            {
-                ModelState.AddModelError("", error);
-            }
+            foreach (var error in result.Errors) ModelState.AddModelError("", error);
         }
     }
 }

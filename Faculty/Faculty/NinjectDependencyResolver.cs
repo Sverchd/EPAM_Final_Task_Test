@@ -1,12 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Web.Mvc;
-using BusinessLogicLayer;
 using BusinessLogicLayer.Contracts;
 using BusinessLogicLayer.Services;
-using DataAccessLayer;
 using DataAccessLayer.Context;
-using DataAccessLayer.Managers;
 using DataAccessLayer.Repositories;
 using Ninject;
 
@@ -14,7 +11,7 @@ namespace Faculty
 {
     public class NinjectDependencyResolver : IDependencyResolver
     {
-        private IKernel kernel;
+        private readonly IKernel kernel;
 
         public NinjectDependencyResolver(IKernel kernelParam)
         {
@@ -38,7 +35,6 @@ namespace Faculty
             kernel.Bind<ICourseService>().To<CourseService>();
             kernel.Bind<FacultyDbContext>().ToSelf().WithConstructorArgument("FacultyContext");
 
-            
 
             kernel.Bind<IUserRepository>().To<UserRepository>();
             kernel.Bind<IUserService>().To<UserService>();

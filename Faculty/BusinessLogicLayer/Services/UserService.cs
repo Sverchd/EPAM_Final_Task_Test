@@ -2,11 +2,10 @@
 using System.Linq;
 using BusinessLogicLayer.Contracts;
 using BusinessLogicLayer.Models;
-using Microsoft.SqlServer.Server;
 
 namespace BusinessLogicLayer.Services
 {
-    public class UserService:IUserService
+    public class UserService : IUserService
     {
         private readonly IUserRepository _userRepository;
 
@@ -14,6 +13,7 @@ namespace BusinessLogicLayer.Services
         {
             _userRepository = userRepository;
         }
+
         public List<User> GetAllTeachers()
         {
             var teachers = _userRepository.GetAllTeachers();
@@ -31,6 +31,7 @@ namespace BusinessLogicLayer.Services
             var result = _userRepository.AddUser(teacher, "teacher", password);
             return result;
         }
+
         //List<Course> GetFilteredCoursesByTheme(Theme theme);
         public bool DeleteTeacher(string email)
         {
@@ -51,7 +52,5 @@ namespace BusinessLogicLayer.Services
             var student = students.Where(x => x.Email == email).FirstOrDefault();
             return student;
         }
-        
-        
     }
 }

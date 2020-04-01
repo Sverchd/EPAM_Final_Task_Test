@@ -17,10 +17,11 @@ namespace DataAccessLayer.Managers
 
         public override Task<ClaimsIdentity> CreateUserIdentityAsync(AppUser user)
         {
-            return user.GenerateUserIdentityAsync((AppUserManager)UserManager);
+            return user.GenerateUserIdentityAsync((AppUserManager) UserManager);
         }
 
-        public static ApplicationSignInManager Create(IdentityFactoryOptions<ApplicationSignInManager> options, IOwinContext context)
+        public static ApplicationSignInManager Create(IdentityFactoryOptions<ApplicationSignInManager> options,
+            IOwinContext context)
         {
             return new ApplicationSignInManager(context.GetUserManager<AppUserManager>(), context.Authentication);
         }

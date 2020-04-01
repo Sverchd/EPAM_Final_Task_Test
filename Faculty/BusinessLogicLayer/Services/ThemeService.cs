@@ -25,6 +25,7 @@ namespace BusinessLogicLayer.Services
             _themeRepository.Edit(theme);
             return true;
         }
+
         public bool AddTheme(Theme theme)
         {
             _themeRepository.GetAllThemes();
@@ -32,26 +33,20 @@ namespace BusinessLogicLayer.Services
             //TODO: Check if exists
             //TODO: if not exists - delete
 
-            var result =_themeRepository.AddTheme(theme);
+            var result = _themeRepository.AddTheme(theme);
             return result;
         }
 
         public Theme GeThemeById(int id)
         {
-            var theme =_themeRepository.GetAllThemes().Where(x => x.ThemeId == id).First();
+            var theme = _themeRepository.GetAllThemes().Where(x => x.ThemeId == id).First();
             return theme;
         }
+
         public bool DeleteTheme(int themeId)
         {
-
             var res = _themeRepository.DeleteTheme(themeId);
             return res;
         }
-        //public List<Course> GetFilteredCoursesByTheme(Theme theme)
-        //{
-        //    var c = _themeRepository.GetFilteredCourses((x => x.theme == theme))
-        //    var courses = _themeRepository.GetFilteredEntities<Course>((x => x.theme == theme));
-        //    return courses;
-        //}
     }
 }

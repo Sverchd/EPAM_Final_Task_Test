@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -52,7 +53,10 @@ namespace Faculty.Controllers
                 profileModel.role = "Admin";
             }
 
-            profileModel.Courses = courses;
+            profileModel.CoursesApplied = courses.Where(x=>x.start>DateTime.Now).ToList();
+            profileModel.CoursesFinished = courses.Where(x => x.end < DateTime.Now).ToList();
+            profileModel.CoursesInProgress =
+                courses.Where(x => x.start < DateTime.Now && x.end > DateTime.Now).ToList();
             profileModel.Email = User.Identity.Name;
 
             return View(profileModel);

@@ -70,8 +70,10 @@ section {
 .row {
     margin-left: 0;
     margin-right: 0;
-    padding-left: 20px;
-    padding-right: 20px;
+    
 }
 
 .col-1 { padding: 0; }
+.col-sm-12 {
+    padding: 0;
+}

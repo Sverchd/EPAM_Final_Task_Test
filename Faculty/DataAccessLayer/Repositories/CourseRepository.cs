@@ -19,14 +19,14 @@ namespace DataAccessLayer.Repositories
 
         public List<Course> GetAllCourses()
         {
-            var datalist = _facultyDbContext.Courses.Include(x => x.theme).Include(x => x.Teacher)
-                .Include(x => x.students).ToList();
+            var datalist = _facultyDbContext.Courses.Include(x => x.Theme).Include(x => x.Teacher)
+                .Include(x => x.Students).ToList();
             var courses = datalist.Select(x => x.Map()).ToList();
 
             //TODO: use mapper
             //foreach (var courseEntity in datalist)
             //    {
-            //        courses.Add(new Course(courseEntity.CourseEntityId,new Theme(courseEntity.theme.ThemeEntityId,courseEntity.theme.Name ), courseEntity.name, courseEntity.start, courseEntity.end));
+            //        courses.Add(new Course(courseEntity.CourseEntityId,new Theme(courseEntity.Theme.ThemeEntityId,courseEntity.Theme.Name ), courseEntity.name, courseEntity.start, courseEntity.end));
             //        
             //    }
             //    
@@ -36,8 +36,8 @@ namespace DataAccessLayer.Repositories
         public List<Course> GetCoursesByTheme(Theme theme)
         {
             var entityCourses = _facultyDbContext.Courses
-                .Include(x => x.theme).Include(x => x.students).Include(x => x.Teacher)
-                .Where(x => x.theme.Name == theme.Name).ToList();
+                .Include(x => x.Theme).Include(x => x.Students).Include(x => x.Teacher)
+                .Where(x => x.Theme.Name == theme.Name).ToList();
 
             var courses = entityCourses.Select(x => x.Map()).ToList();
 
@@ -46,19 +46,21 @@ namespace DataAccessLayer.Repositories
 
         public bool AddCourse(Course course)
         {
-            var user = _facultyDbContext.Users.Include(x => x.courses).Where(x => x.Email == course.teacher.Email)
+            var user = _facultyDbContext.Users.Include(x => x.Courses).Where(x => x.Email == course.teacher.Email)
                 .FirstOrDefault();
             var entityCourse = course.Map();
+            entityCourse.Theme = _facultyDbContext.Themes.Where(x => x.ThemeEntityId == course.theme.ThemeId)
+                .SingleOrDefault();
             entityCourse.Teacher = user;
-            user.courses.Add(entityCourse);
+            user.Courses.Add(entityCourse);
             _facultyDbContext.SaveChanges();
             return true;
         }
 
         public Course GetCourseById(int id)
         {
-            var course = _facultyDbContext.Courses.Include(x => x.theme).Include(x => x.Teacher)
-                .Include(x => x.students).Where(x => x.CourseEntityId == id).FirstOrDefault();
+            var course = _facultyDbContext.Courses.Include(x => x.Theme).Include(x => x.Teacher)
+                .Include(x => x.Students).Where(x => x.CourseEntityId == id).FirstOrDefault();
             return course.Map();
         }
 
@@ -66,19 +68,19 @@ namespace DataAccessLayer.Repositories
         {
             var entityCourse = _facultyDbContext.Courses.Include(x => x.Teacher)
                 .Where(x => x.CourseEntityId == course.CourseId).FirstOrDefault();
-            entityCourse.name = course.name;
-            var newtTeacher = _facultyDbContext.Users.Include(x => x.courses)
+            entityCourse.Name = course.name;
+            var newtTeacher = _facultyDbContext.Users.Include(x => x.Courses)
                 .Where(x => x.Email == course.teacher.Email).FirstOrDefault();
             if (entityCourse.Teacher == null || newtTeacher.Email != entityCourse.Teacher.Email)
             {
                 entityCourse.Teacher =
                     _facultyDbContext.Users.Where(x => x.Email == course.teacher.Email).FirstOrDefault();
-                newtTeacher.courses.Add(entityCourse);
+                newtTeacher.Courses.Add(entityCourse);
             }
 
-            entityCourse.start = course.start;
-            entityCourse.end = course.end;
-            entityCourse.theme = _facultyDbContext.Themes.Where(x => x.ThemeEntityId == course.theme.ThemeId)
+            entityCourse.Start = course.start;
+            entityCourse.End = course.end;
+            entityCourse.Theme = _facultyDbContext.Themes.Where(x => x.ThemeEntityId == course.theme.ThemeId)
                 .FirstOrDefault();
             _facultyDbContext.SaveChanges();
             return true;
@@ -86,12 +88,12 @@ namespace DataAccessLayer.Repositories
 
         public bool DeleteCourse(int courseId)
         {
-            var course = _facultyDbContext.Courses.Include(x => x.Teacher).Include(x => x.students)
+            var course = _facultyDbContext.Courses.Include(x => x.Teacher).Include(x => x.Students)
                 .Where(x => x.CourseEntityId == courseId).FirstOrDefault();
             var usersWithCourse =
-                _facultyDbContext.Users.Include(x => x.courses).Where(x => x.courses.Contains(course));
+                _facultyDbContext.Users.Include(x => x.Courses).Where(x => x.Courses.Contains(course));
 
-            usersWithCourse.Select(x => x.courses.Remove(course));
+            usersWithCourse.Select(x => x.Courses.Remove(course));
             _facultyDbContext.Courses.Remove(course);
             _facultyDbContext.SaveChanges();
             return true;
@@ -99,12 +101,12 @@ namespace DataAccessLayer.Repositories
 
         public bool Register(int courseId, string username)
         {
-            var student = _facultyDbContext.Users.Include(u => u.courses).Where(s => s.UserName == username)
+            var student = _facultyDbContext.Users.Include(u => u.Courses).Where(s => s.UserName == username)
                 .SingleOrDefault();
-            var course = _facultyDbContext.Courses.Include(c => c.students).Where(c => c.CourseEntityId == courseId)
+            var course = _facultyDbContext.Courses.Include(c => c.Students).Where(c => c.CourseEntityId == courseId)
                 .SingleOrDefault();
-            student.courses.Add(course);
-            course.students.Add(student);
+            student.Courses.Add(course);
+            course.Students.Add(student);
             _facultyDbContext.SaveChanges();
             return true;
         }

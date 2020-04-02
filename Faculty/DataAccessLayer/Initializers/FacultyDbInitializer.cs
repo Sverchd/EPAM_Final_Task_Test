@@ -99,8 +99,8 @@ namespace DataAccessLayer.Initializers
             //Adding users to course
             course.Teacher = context.Users
                 .SingleOrDefault(u => u.Email == "teacher@gmail.com");
-            course.students.Add(context.Users.SingleOrDefault(u => u.Email == "student@gmail.com"));
-            course.students.Add(context.Users.SingleOrDefault(u => u.Email == "student1@gmail.com"));
+            course.Students.Add(context.Users.SingleOrDefault(u => u.Email == "student@gmail.com"));
+            course.Students.Add(context.Users.SingleOrDefault(u => u.Email == "student1@gmail.com"));
 
 
             //Adding themes to context
@@ -112,11 +112,11 @@ namespace DataAccessLayer.Initializers
 
             //Adding courses to users
             context.Users?.Include("courses").SingleOrDefault(u => u.Email == "teacher@gmail.com")
-                .courses
+                .Courses
                 .Add(course);
-            context.Users.Include("courses").SingleOrDefault(u => u.Email == "student@gmail.com").scourses
+            context.Users.Include("courses").SingleOrDefault(u => u.Email == "student@gmail.com").Scourses
                 .Add(course);
-            context.Users.Include("courses").SingleOrDefault(u => u.Email == "student1@gmail.com").scourses
+            context.Users.Include("courses").SingleOrDefault(u => u.Email == "student1@gmail.com").Scourses
                 .Add(course);
 
             //Adding marks to context

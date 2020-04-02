@@ -30,7 +30,7 @@ namespace Faculty.Controllers
             //{
             foreach (var theme in themeListb)
             {
-                //_themeService.GetFilteredCoursesByTheme(theme);
+                //_themeService.GetFilteredCoursesByTheme(Theme);
                 var count = _courseService.GetCoursesByTheme(theme).Count();
                 themeList.Themes.Add(theme.Map(count));
             }
@@ -76,7 +76,7 @@ namespace Faculty.Controllers
         public ActionResult Edit(ThemeView theme)
         {
             var result = _themeService.Edit(theme.Map());
-            //var result = _themeService.AddTheme(new Theme(theme.ThemeEntityId, theme.Name));
+            //var result = _themeService.AddTheme(new Theme(Theme.ThemeEntityId, Theme.Name));
             if (result) return RedirectToAction("List");
 
             ModelState.AddModelError("Name", "Theme already exists!");

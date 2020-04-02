@@ -71,7 +71,7 @@ namespace Faculty.Controllers
             // foreach (var course in courseListb)
             //  {
             //
-            //        courseList.Courses.Add(new CourseView(course.CourseId,new ThemeView(course.theme.Name), course.name,course.start,course.end));
+            //        courseList.Courses.Add(new CourseView(course.CourseId,new ThemeView(course.Theme.Name), course.name,course.start,course.end));
             //     }
 
             //}
@@ -116,7 +116,7 @@ namespace Faculty.Controllers
             viewCourse.start = addCourseViewModel.start;
             viewCourse.end = addCourseViewModel.end;
             _courseService.AddCourse(viewCourse);
-            //use Get theme by id
+            //use Get Theme by id
             ModelState.AddModelError("Name", "Course already exists!");
             return RedirectToAction("List");
         }
@@ -166,7 +166,7 @@ namespace Faculty.Controllers
             viewCourse.start = addCourseViewModel.start;
             viewCourse.end = addCourseViewModel.end;
             _courseService.EditCourse(viewCourse);
-            //use Get theme by id
+            //use Get Theme by id
             ModelState.AddModelError("Name", "Course already exists!");
             return RedirectToAction("List");
         }

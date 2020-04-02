@@ -14,10 +14,10 @@
         /// <summary>
         /// constructor with parameter
         /// </summary>
-        /// <param name="nm">name of theme</param>
-        public ThemeEntity(string nm)
+        /// <param name="name">name of Theme</param>
+        public ThemeEntity(string name)
         {
-            Name = nm;
+            Name = name;
         }
     }
 }

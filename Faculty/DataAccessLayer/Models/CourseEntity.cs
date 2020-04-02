@@ -8,51 +8,51 @@ namespace DataAccessLayer.Models
     {
 
         public int CourseEntityId { get; set; }
-        public ThemeEntity theme { get; set; }
-        public string name { get; set; }
-        public DateTime start { get; set; }
-        public DateTime end { get; set; }
-        [InverseProperty("scourses")] public List<AppUser> students { get; set; }
+        public ThemeEntity Theme { get; set; }
+        public string Name { get; set; }
+        public DateTime Start { get; set; }
+        public DateTime End { get; set; }
+        [InverseProperty("scourses")] public List<AppUser> Students { get; set; }
         [InverseProperty("courses")] public AppUser Teacher { get; set; }
-        public Dictionary<string, int?> gradebook { get; set; }
+        
         /// <summary>
         /// course constructor
         /// </summary>
         public CourseEntity()
         {
-            students = new List<AppUser>();
+            Students = new List<AppUser>();
         }
         /// <summary>
         /// course constructor with parameters
         /// </summary>
-        /// <param name="th">theme</param>
-        /// <param name="nm">name</param>
-        /// <param name="sdt">start time</param>
-        /// <param name="edt">end time</param>
+        /// <param name="theme">Theme</param>
+        /// <param name="name">name</param>
+        /// <param name="start">start time</param>
+        /// <param name="end">end time</param>
         /// <param name="teacher">teacher</param>
-        public CourseEntity(ThemeEntity th, string nm, DateTime sdt, DateTime edt, AppUser teacher)
+        public CourseEntity(ThemeEntity theme, string name, DateTime start, DateTime end, AppUser teacher)
         {
-            theme = th;
-            name = nm;
-            start = sdt;
-            end = edt;
+            Theme = theme;
+            Name = name;
+            Start = start;
+            End = end;
             Teacher = teacher;
-            students = new List<AppUser>();
+            Students = new List<AppUser>();
         }
         /// <summary>
         /// course constructor with parameters
         /// </summary>
-        /// <param name="th">theme</param>
-        /// <param name="nm">name</param>
-        /// <param name="sdt">start time</param>
-        /// <param name="edt">end time</param>
-        public CourseEntity(ThemeEntity th, string nm, DateTime sdt, DateTime edt)
+        /// <param name="theme">Theme</param>
+        /// <param name="name">name</param>
+        /// <param name="start">start time</param>
+        /// <param name="end">end time</param>
+        public CourseEntity(ThemeEntity theme, string name, DateTime start, DateTime end)
         {
-            theme = th;
-            name = nm;
-            start = sdt;
-            end = edt;
-            students = new List<AppUser>();
+            Theme = theme;
+            Name = name;
+            Start = start;
+            End = end;
+            Students = new List<AppUser>();
         }
     }
 }

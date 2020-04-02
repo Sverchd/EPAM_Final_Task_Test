@@ -18,10 +18,10 @@ namespace DataAccessLayer.Mappers
         public static User Map(this AppUser userEntity, string role = "")
         {
             var resultUser = userEntity.MapFlat(role);
-            if (userEntity.courses == null)
-                resultUser.Courses = userEntity.scourses?.Select(x => x.MapFlat()).ToList();
+            if (userEntity.Courses == null)
+                resultUser.Courses = userEntity.Scourses?.Select(x => x.MapFlat()).ToList();
             else
-                resultUser.Courses = userEntity.courses?.Select(x => x.MapFlat()).ToList();
+                resultUser.Courses = userEntity.Courses?.Select(x => x.MapFlat()).ToList();
             return resultUser;
         }
 
@@ -55,7 +55,7 @@ namespace DataAccessLayer.Mappers
         public static AppUser Map(this User User)
         {
             var resultUser = User.MapFlat();
-            resultUser.courses = User.Courses?.Select(x => x.MapFlat()).ToList();
+            resultUser.Courses = User.Courses?.Select(x => x.MapFlat()).ToList();
             return resultUser;
         }
 

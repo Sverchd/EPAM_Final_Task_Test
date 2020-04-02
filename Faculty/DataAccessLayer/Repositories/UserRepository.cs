@@ -32,7 +32,7 @@ namespace DataAccessLayer.Repositories
 
             //EnityTeachers =EnityTeachers.ToList();
             var entityTeachers = _facultyDbContext.Users
-                .Include(us => us.courses)
+                .Include(us => us.Courses)
                 .Where(us => userIds.Contains(us.Id))
                 .ToList();
 
@@ -40,7 +40,7 @@ namespace DataAccessLayer.Repositories
 
             //foreach (var eteacher in EnityTeachers)
             //{
-            //    var entityTeacher = _facultyDbContext.Users.Include(x => x.courses.Select(y => y.theme)).SingleOrDefault(u => u.Id == eteacher.UserId);
+            //    var entityTeacher = _facultyDbContext.Users.Include(x => x.courses.Select(y => y.Theme)).SingleOrDefault(u => u.Id == eteacher.UserId);
             //    //var courses = new List<Course>();
             //    var courses = entityTeacher.courses.Select(x => x.Map()).ToList();
             //    //TODO: Use mappers
@@ -66,7 +66,7 @@ namespace DataAccessLayer.Repositories
                 .ToList();
 
             var entityStudents = _facultyDbContext.Users
-                .Include(us => us.scourses)
+                .Include(us => us.Scourses)
                 .Where(us => userIds.Contains(us.Id))
                 .ToList();
             var resultStudents = entityStudents.AsEnumerable().Select(x => x.Map()).ToList();

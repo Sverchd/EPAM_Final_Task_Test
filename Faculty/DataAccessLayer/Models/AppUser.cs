@@ -11,11 +11,11 @@ namespace DataAccessLayer.Models
         /// <summary>
         /// list of courses for teachers
         /// </summary>
-        public List<CourseEntity> courses { get; set; }
+        public List<CourseEntity> Courses { get; set; }
         /// <summary>
         /// list of courses for students
         /// </summary>
-        public List<CourseEntity> scourses { get; set; }
+        public List<CourseEntity> Scourses { get; set; }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<AppUser> manager)
         {

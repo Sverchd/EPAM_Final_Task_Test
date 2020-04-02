@@ -17,10 +17,10 @@ namespace DataAccessLayer.Mappers
         public static Course Map(this CourseEntity courseEntity)
         {
             var resultCourse = courseEntity.MapFlat();
-            resultCourse.theme = courseEntity.theme.Map();
+            resultCourse.theme = courseEntity.Theme.Map();
             if (courseEntity.Teacher != null)
                 resultCourse.teacher = courseEntity.Teacher.MapFlat();
-            resultCourse.students = courseEntity.students.Select(x => x.MapFlat()).ToList();
+            resultCourse.students = courseEntity.Students.Select(x => x.MapFlat()).ToList();
 
             return resultCourse;
         }
@@ -33,10 +33,10 @@ namespace DataAccessLayer.Mappers
         public static Course MapFlat(this CourseEntity courseEntity)
         {
             var resultCourse = new Course();
-            resultCourse.name = courseEntity.name;
+            resultCourse.name = courseEntity.Name;
             resultCourse.CourseId = courseEntity.CourseEntityId;
-            resultCourse.start = courseEntity.start;
-            resultCourse.end = courseEntity.end;
+            resultCourse.start = courseEntity.Start;
+            resultCourse.end = courseEntity.End;
             return resultCourse;
         }
     }
@@ -54,9 +54,9 @@ namespace DataAccessLayer.Mappers
         public static CourseEntity Map(this Course course)
         {
             var resultCourse = course.MapFlat();
-            resultCourse.theme = course.theme.Map();
+            resultCourse.Theme = course.theme.Map();
             resultCourse.Teacher = course.teacher.MapFlat();
-            resultCourse.students = course.students.Select(x => x.MapFlat()).ToList();
+            resultCourse.Students = course.students.Select(x => x.MapFlat()).ToList();
             return resultCourse;
         }
 
@@ -68,9 +68,9 @@ namespace DataAccessLayer.Mappers
         public static CourseEntity MapFlat(this Course course)
         {
             var resultCourse = new CourseEntity();
-            resultCourse.name = course.name;
-            resultCourse.start = course.start;
-            resultCourse.end = course.end;
+            resultCourse.Name = course.name;
+            resultCourse.Start = course.start;
+            resultCourse.End = course.end;
             return resultCourse;
         }
     }

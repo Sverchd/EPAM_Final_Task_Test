@@ -9,6 +9,10 @@ namespace BusinessLogicLayer.Services
     {
         private readonly IThemeRepository _themeRepository;
 
+        /// <summary>
+        ///     Constructor of theme service
+        /// </summary>
+        /// <param name="themeRepository">interface of theme repository</param>
         public ThemeService(IThemeRepository themeRepository)
         {
             _themeRepository = themeRepository;

@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace BusinessLogicLayer.Models
+﻿namespace BusinessLogicLayer.Models
 {
     public class Mark
     {
@@ -13,11 +7,19 @@ namespace BusinessLogicLayer.Models
         public User Student { get; set; }
         public int? Grade { get; set; }
 
+        /// <summary>
+        ///     default constructor
+        /// </summary>
         public Mark()
         {
-
         }
 
+        /// <summary>
+        ///     constructor
+        /// </summary>
+        /// <param name="course">course instance</param>
+        /// <param name="student">student instance</param>
+        /// <param name="grade">grade(mark)</param>
         public Mark(Course course, User student, int? grade)
         {
             Course = course;

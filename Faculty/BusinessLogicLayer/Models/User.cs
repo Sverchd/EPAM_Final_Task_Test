@@ -10,11 +10,20 @@ namespace BusinessLogicLayer.Models
         public string Role { get; set; }
         public List<Course> Courses { get; set; }
 
+        /// <summary>
+        ///     default user constructor
+        /// </summary>
         public User()
         {
             Courses = new List<Course>();
         }
 
+        /// <summary>
+        ///     user constructor with parameters
+        /// </summary>
+        /// <param name="email">email</param>
+        /// <param name="role">role</param>
+        /// <param name="courses">list of courses</param>
         public User(string email, string role, List<Course> courses)
         {
             Name = email;

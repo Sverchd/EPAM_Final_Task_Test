@@ -9,6 +9,10 @@ namespace BusinessLogicLayer.Services
     {
         private readonly IUserRepository _userRepository;
 
+        /// <summary>
+        ///     Constructor of user service
+        /// </summary>
+        /// <param name="userRepository">interface pf user repository</param>
         public UserService(IUserRepository userRepository)
         {
             _userRepository = userRepository;

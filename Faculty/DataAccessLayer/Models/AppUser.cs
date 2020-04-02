@@ -8,20 +8,18 @@ namespace DataAccessLayer.Models
 {
     public class AppUser : IdentityUser
     {
-        //add your custom properties which have not included in IdentityUser before
-        public string MyExtraProperty { get; set; }
-
-
+        /// <summary>
+        /// list of courses for teachers
+        /// </summary>
         public List<CourseEntity> courses { get; set; }
+        /// <summary>
+        /// list of courses for students
+        /// </summary>
         public List<CourseEntity> scourses { get; set; }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<AppUser> manager)
         {
-            // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
             var userIdentity = await manager.CreateIdentityAsync(this, DefaultAuthenticationTypes.ApplicationCookie);
-            // Add custom user claims here
-
-
             return userIdentity;
         }
     }

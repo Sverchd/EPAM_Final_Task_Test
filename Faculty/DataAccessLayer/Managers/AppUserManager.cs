@@ -15,7 +15,6 @@ namespace DataAccessLayer.Managers
         {
         }
 
-        // this method is called by Owin therefore this is the best place to configure your User Manager
         public static AppUserManager Create(
             IdentityFactoryOptions<AppUserManager> options, IOwinContext context)
         {
@@ -34,8 +33,6 @@ namespace DataAccessLayer.Managers
                 RequireLowercase = true,
                 RequireUppercase = true
             };
-            // optionally configure your manager
-            // ...
 
             return manager;
         }

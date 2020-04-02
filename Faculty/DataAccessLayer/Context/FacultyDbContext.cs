@@ -13,15 +13,19 @@ namespace DataAccessLayer.Context
             Database.SetInitializer(new FacultyDbContextInitializer());
         }
 
+        /// <summary>
+        ///     Dbset for courses
+        /// </summary>
         public DbSet<CourseEntity> Courses { get; set; }
+
+        /// <summary>
+        ///     Dbset for themes
+        /// </summary>
         public DbSet<ThemeEntity> Themes { get; set; }
+
+        /// <summary>
+        ///     Dbset for marks
+        /// </summary>
         public DbSet<MarkEntity> Marks { get; set; }
-
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
-        {
-            base.OnModelCreating(modelBuilder);
-
-            //modelBuilder.Entity<Course>().HasMany(c => c.students).WithMany(s => s.Courses).
-        }
     }
 }

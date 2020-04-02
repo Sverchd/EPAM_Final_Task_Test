@@ -12,6 +12,10 @@ namespace DataAccessLayer.Initializers
 {
     public class FacultyDbContextInitializer : DropCreateDatabaseAlways<FacultyDbContext>
     {
+        /// <summary>
+        ///     Seed for database context of faculty
+        /// </summary>
+        /// <param name="context">faculty database context</param>
         protected override void Seed(FacultyDbContext context)
         {
             ApplicationUserInit(context);
@@ -20,39 +24,47 @@ namespace DataAccessLayer.Initializers
             base.Seed(context);
         }
 
+        /// <summary>
+        ///     Initializer of users, roles etc.
+        /// </summary>
+        /// <param name="context">faculty database context</param>
         private void ApplicationUserInit(FacultyDbContext context)
         {
             var userManager = new AppUserManager(new UserStore<AppUser>(context));
-
             var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
 
-            // Create 3 roles
+            // Creating 3 roles
             var roleAdmin = new IdentityRole {Name = "admin"};
-            var roleBanned = new IdentityRole {Name = "banned"};
             var roleTeacher = new IdentityRole {Name = "teacher"};
-
             var roleStudent = new IdentityRole {Name = "student"};
+            // Creating role for user ban
+            var roleBanned = new IdentityRole {Name = "banned"};
 
-            // Add roles to DB
+            // Adding roles to DB
             roleManager.Create(roleAdmin);
             roleManager.Create(roleTeacher);
             roleManager.Create(roleStudent);
             roleManager.Create(roleBanned);
+
+            //Creating users
             var admin = new AppUser {Email = "admin@gmail.com", UserName = "admin@gmail.com"};
             var teacher = new AppUser {Email = "teacher@gmail.com", UserName = "teacher@gmail.com"};
             var student = new AppUser {Email = "student@gmail.com", UserName = "student@gmail.com"};
             var student1 = new AppUser {Email = "student1@gmail.com", UserName = "student1@gmail.com"};
 
+            //Creating passwords for users
             var passwordAdmin = "Admin_222";
             var passwordTeacher = "Teacher_22";
             var passwordStudent = "Student_22";
             var passwordStudent1 = "Student_22";
 
+            //Adding users to manager
             var resultAdmin = userManager.Create(admin, passwordAdmin);
             var resultTeacher = userManager.Create(teacher, passwordTeacher);
             var resultStudent = userManager.Create(student, passwordStudent);
             var resultStudent1 = userManager.Create(student1, passwordStudent1);
-            // If creation is succeeded
+
+            // If creation is successful
             if (resultAdmin.Succeeded
                 && resultTeacher.Succeeded && resultStudent.Succeeded && resultStudent1.Succeeded)
             {
@@ -67,38 +79,52 @@ namespace DataAccessLayer.Initializers
             }
         }
 
+        /// <summary>
+        ///     Models initializer
+        /// </summary>
+        /// <param name="context">faculty database context</param>
         private void ModelsInit(FacultyDbContext context)
         {
+            //Creating themes
             var themes = new List<ThemeEntity>
             {
                 new ThemeEntity("Science"), new ThemeEntity("IT"), new ThemeEntity("Language")
             };
 
+            //Creating courses
             var course = new CourseEntity(themes[0], "Physics", DateTime.Today, DateTime.Now);
-            course.Teacher = context.Users.Where(u => u.Email == "teacher@gmail.com")
-                .SingleOrDefault();
-            course.students.Add(context.Users.Where(u => u.Email == "student@gmail.com").SingleOrDefault());
-            course.students.Add(context.Users.Where(u => u.Email == "student1@gmail.com").SingleOrDefault());
-
-
             var course1 = new CourseEntity(themes[1], "Programming", new DateTime(2020, 4, 14),
                 new DateTime(2020, 8, 5));
+
+            //Adding users to course
+            course.Teacher = context.Users
+                .SingleOrDefault(u => u.Email == "teacher@gmail.com");
+            course.students.Add(context.Users.SingleOrDefault(u => u.Email == "student@gmail.com"));
+            course.students.Add(context.Users.SingleOrDefault(u => u.Email == "student1@gmail.com"));
+
+
+            //Adding themes to context
             context.Themes.AddRange(themes);
+
+            //Adding courses to context
             context.Courses.Add(course);
             context.Courses.Add(course1);
 
-            context.Users.Include("courses").Where(u => u.Email == "teacher@gmail.com").SingleOrDefault().courses
+            //Adding courses to users
+            context.Users?.Include("courses").SingleOrDefault(u => u.Email == "teacher@gmail.com")
+                .courses
                 .Add(course);
-            context.Users.Include("courses").Where(u => u.Email == "student@gmail.com").SingleOrDefault().scourses
+            context.Users.Include("courses").SingleOrDefault(u => u.Email == "student@gmail.com").scourses
                 .Add(course);
-            context.Users.Include("courses").Where(u => u.Email == "student1@gmail.com").SingleOrDefault().scourses
+            context.Users.Include("courses").SingleOrDefault(u => u.Email == "student1@gmail.com").scourses
                 .Add(course);
 
+            //Adding marks to context
             context.Marks.Add(new MarkEntity(course,
-                (context.Users.Where(u => u.Email == "student@gmail.com").SingleOrDefault()), 12));
-            context.SaveChanges();
+                context.Users.SingleOrDefault(u => u.Email == "student@gmail.com"), 12));
 
-            var s = context.Courses.ToList();
+            //Saving changes to context
+            context.SaveChanges();
         }
     }
 }

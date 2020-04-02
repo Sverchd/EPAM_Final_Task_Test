@@ -68,7 +68,7 @@ namespace Faculty.Controllers
         [Authorize]
         public ActionResult Edit(int themeId)
         {
-            var theme = _themeService.GeThemeById(themeId);
+            var theme = _themeService.GetThemeById(themeId);
             return View(theme.Map());
         }
 

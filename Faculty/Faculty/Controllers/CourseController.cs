@@ -28,7 +28,7 @@ namespace Faculty.Controllers
         public ActionResult ListByTheme(int themeId)
         {
             var courseList = new CourseListViewModel();
-            var theme = _themeService.GeThemeById(themeId);
+            var theme = _themeService.GetThemeById(themeId);
             var courses = _courseService.GetCoursesByTheme(theme);
             courseList.Courses = courses.Select(x => x.Map()).ToList();
             ViewBag.Title = "Courses of " + theme.Name;
@@ -110,7 +110,7 @@ namespace Faculty.Controllers
         {
             var model = addCourseViewModel;
             var viewCourse = new Course();
-            viewCourse.theme = _themeService.GeThemeById(addCourseViewModel.theme);
+            viewCourse.theme = _themeService.GetThemeById(addCourseViewModel.theme);
             viewCourse.name = addCourseViewModel.name;
             viewCourse.teacher = _userService.GetTeacherByEmail(addCourseViewModel.Teacher);
             viewCourse.start = addCourseViewModel.start;
@@ -160,7 +160,7 @@ namespace Faculty.Controllers
             var model = addCourseViewModel;
             var viewCourse = new Course();
             viewCourse.CourseId = addCourseViewModel.CourseId;
-            viewCourse.theme = _themeService.GeThemeById(addCourseViewModel.theme);
+            viewCourse.theme = _themeService.GetThemeById(addCourseViewModel.theme);
             viewCourse.name = addCourseViewModel.name;
             viewCourse.teacher = _userService.GetTeacherByEmail(addCourseViewModel.Teacher);
             viewCourse.start = addCourseViewModel.start;

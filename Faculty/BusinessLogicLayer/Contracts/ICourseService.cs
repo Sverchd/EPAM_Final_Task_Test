@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Data.Entity.Core;
 using BusinessLogicLayer.Models;
 
 namespace BusinessLogicLayer.Contracts
@@ -14,5 +15,6 @@ namespace BusinessLogicLayer.Contracts
         List<Course> GetCoursesByTeacher(string email);
         int Register(int courseId, string username);
         List<Course> GetCoursesByStudent(string email);
+        List<Mark> GetGradebookForCourse(int courseId);
     }
 }

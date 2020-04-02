@@ -108,5 +108,12 @@ namespace DataAccessLayer.Repositories
             _facultyDbContext.SaveChanges();
             return true;
         }
+
+        public List<Mark> GetAllMarks()
+        {
+            var marks = _facultyDbContext.Marks.Include(m=>m.Course).Include(m=>m.Student).ToList().Select(m => m.Map()).ToList();
+
+            return marks;
+        }
     }
 }

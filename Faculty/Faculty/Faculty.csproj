@@ -171,6 +171,7 @@
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\GradebookController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\CourseController.cs" />
     <Compile Include="Controllers\ProfileController.cs" />
@@ -187,6 +188,8 @@
     <Compile Include="Models\AddUserViewModel.cs" />
     <Compile Include="Models\CourseListViewModel.cs" />
     <Compile Include="Models\CourseView.cs" />
+    <Compile Include="Models\GradebookViewModel.cs" />
+    <Compile Include="Models\GradeViewModel.cs" />
     <Compile Include="Models\LoginViewModel.cs" />
     <Compile Include="Models\ProfileViewModel.cs" />
     <Compile Include="Models\RegisterViewModel.cs" />
@@ -366,6 +369,7 @@
     <Content Include="Views\Profile\Index.cshtml" />
     <Content Include="Views\Profile\CourseList.cshtml" />
     <Content Include="Views\Shared\_TeacherLayout.cshtml" />
+    <Content Include="Views\Gradebook\List.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

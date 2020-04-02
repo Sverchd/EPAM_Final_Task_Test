@@ -79,8 +79,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Context\FacultyDbContext.cs" />
+    <Compile Include="Mappers\MarkMapper.cs" />
     <Compile Include="Mappers\ThemeMapper.cs" />
     <Compile Include="Mappers\UserMapper.cs" />
+    <Compile Include="Models\MarkEntity.cs" />
     <Compile Include="Repositories\CourseRepository.cs" />
     <Compile Include="Initializers\FacultyDbInitializer.cs" />
     <Compile Include="Interfaces\IUserService.cs" />

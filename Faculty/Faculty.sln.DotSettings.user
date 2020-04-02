@@ -8,4 +8,5 @@
   &lt;Assembly Path="D:\EPAM\ASP MVC\AspFinalTask\VaniaEditNotWorking\EPAM_Final_Task_Test\Faculty\packages\Microsoft.AspNet.Mvc.5.2.7\lib\net45\System.Web.Mvc.dll" /&gt;&#xD;
   &lt;Assembly Path="D:\EPAM\ASP MVC\AspFinalTask\BackupBeforeTeacherLikeTheme\EPAM_Final_Task_Test\Faculty\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.3\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll" /&gt;&#xD;
   &lt;Assembly Path="D:\EPAM\ASP MVC\AspFinalTask\TestUsers\EPAM_Final_Task_Test\Faculty\packages\Microsoft.AspNet.Identity.Owin.2.2.3\lib\net45\Microsoft.AspNet.Identity.Owin.dll" /&gt;&#xD;
+  &lt;Assembly Path="C:\Users\Sterben\Pictures\ASPTask3\EPAM_Final_Task_Test\Faculty\packages\Microsoft.AspNet.Mvc.5.2.7\lib\net45\System.Web.Mvc.dll" /&gt;&#xD;
 &lt;/AssemblyExplorer&gt;</s:String></wpf:ResourceDictionary>

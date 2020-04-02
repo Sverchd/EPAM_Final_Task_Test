@@ -1,0 +1,72 @@
+﻿@using Faculty.Models
+@model IList<GradeViewModel>
+@{
+    ViewBag.Title = "List";
+}
+
+<h2 style="text-align: center">List</h2>
+
+<section style="margin-left: auto; margin-right: auto">
+    @if (Model == null || !Model.Any())
+    {
+        <p>Here is no teachers :(</p>
+    }
+    else
+    {
+        using (Html.BeginForm("Save", "Gradebook",FormMethod.Post))
+        {
+            <table id="CourseListTable" class="table table-striped table-bordered" style="width: 100%">
+                <thead>
+                <tr>
+                    <th>
+                        Name
+                    </th>
+                    <th>
+                        Mark
+                    </th>
+
+
+                </tr>
+                </thead>
+                <tbody>
+
+
+                @for (var i = 0; i < Model.Count; i++)
+                {
+                    <tr>
+                        <td>
+                            @Model[i].Student
+                            @Html.HiddenFor(modelItem => Model[i].Student)
+
+                        </td>
+                        <td>
+
+                            @Html.EditorFor(modelItem => Model[i].Mark)
+
+                        </td>
+                    </tr>
+                }
+                </tbody>
+            </table>
+            <input type="submit" value="Create" class="btn btn-success" style="background-color: blue"/>
+        }
+    }
+
+
+
+</section>
+<script type="text/javascript" src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script type="text/javascript" src="~/Scripts/data-table/datatables.js"></script>
+
+
+<script>
+    $(document).ready(function() {
+        $.noConflict();
+        var table = $('#CourseListTable').DataTable(
+            {
+                "paging": false,
+                "searching": false,
+                "info": false
+            });
+    });
+</script>

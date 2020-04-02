@@ -52,6 +52,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Models\Course.cs" />
+    <Compile Include="Models\Mark.cs" />
     <Compile Include="Services\CourseService.cs" />
     <Compile Include="Contracts\ICourseRepository.cs" />
     <Compile Include="Contracts\ICourseService.cs" />

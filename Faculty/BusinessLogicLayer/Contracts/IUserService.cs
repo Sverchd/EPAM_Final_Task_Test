@@ -13,5 +13,6 @@ namespace BusinessLogicLayer.Contracts
         User GetTeacherByEmail(string email);
         List<User> GetAllStudents();
         User GetStudentByEmail(string email);
+        List<User> GetStudentsByCourse(int courseId);
     }
 }

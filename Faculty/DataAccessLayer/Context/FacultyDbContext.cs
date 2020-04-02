@@ -15,6 +15,7 @@ namespace DataAccessLayer.Context
 
         public DbSet<CourseEntity> Courses { get; set; }
         public DbSet<ThemeEntity> Themes { get; set; }
+        public DbSet<MarkEntity> Marks { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

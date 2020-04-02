@@ -50,6 +50,11 @@ namespace Faculty.Controllers
             else if (User.IsInRole("teacher"))
             {
                 profileModel.role = "Teacher";
+                courses = _courseService.GetCoursesByTeacher(User.Identity.Name).Select(c => c.Map()).ToList();
+                profileModel.CoursesApplied = courses.Where(x => x.start > DateTime.Now).ToList();
+                profileModel.CoursesFinished = courses.Where(x => x.end < DateTime.Now).ToList();
+                profileModel.CoursesInProgress =
+                    courses.Where(x => x.start < DateTime.Now && x.end > DateTime.Now).ToList();
                 //courses = _userService.GetTeacherByEmail(User.Identity.Name).Courses.Select(c => c.Map()).ToList();
             }
             else if (User.IsInRole("admin"))

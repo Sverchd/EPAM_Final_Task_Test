@@ -52,5 +52,12 @@ namespace BusinessLogicLayer.Services
             var student = students.Where(x => x.Email == email).FirstOrDefault();
             return student;
         }
+
+        public List<User> GetStudentsByCourse(int courseId)
+        {
+            var students = _userRepository.GetAllStudents();
+            var selectedStudents = students.Where(s =>s.Courses.Find(x => x.CourseId == courseId) != null).ToList();
+            return selectedStudents;
+        }
     }
 }

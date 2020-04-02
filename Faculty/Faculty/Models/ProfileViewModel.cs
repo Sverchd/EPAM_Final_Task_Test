@@ -14,7 +14,7 @@ namespace Faculty.Models
         public List<CourseView> CoursesApplied;
         public List<CourseView> CoursesInProgress;
         public List<CourseView> CoursesFinished;
-
+        public Dictionary<int, int> GradeBook;
         public ProfileViewModel()
         {
             Courses = new List<CourseView>();

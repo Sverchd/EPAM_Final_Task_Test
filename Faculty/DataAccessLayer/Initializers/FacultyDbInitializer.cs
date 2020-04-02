@@ -93,6 +93,9 @@ namespace DataAccessLayer.Initializers
                 .Add(course);
             context.Users.Include("courses").Where(u => u.Email == "student1@gmail.com").SingleOrDefault().scourses
                 .Add(course);
+
+            context.Marks.Add(new MarkEntity(course,
+                (context.Users.Where(u => u.Email == "student@gmail.com").SingleOrDefault()), 12));
             context.SaveChanges();
 
             var s = context.Courses.ToList();

@@ -8,10 +8,12 @@ namespace BusinessLogicLayer.Services
     public class CourseService : ICourseService
     {
         private readonly ICourseRepository _courseRepository;
+        private readonly IUserService _userService;
 
-        public CourseService(ICourseRepository courseRepository)
+        public CourseService(ICourseRepository courseRepository, IUserService userService)
         {
             _courseRepository = courseRepository;
+            _userService = userService;
         }
 
         public List<Course> GetAllCourses()
@@ -73,6 +75,38 @@ namespace BusinessLogicLayer.Services
             if (res)
                 return 0;
             return 2;
+        }
+
+        //public Dictionary<User, int?> GetGradebookForCourse(int courseId)
+        //{
+        //    Dictionary<User, int?> gradebook = new Dictionary<User, int?>();
+        //    var marks =_courseRepository.GetAllMarks().Where(m=>m.Course.CourseId==courseId).ToList();
+        //    
+        //    foreach (var mark in marks)
+        //    {
+        //        gradebook.Add(mark.Student,mark.Grade);
+        //    }
+        //
+        //    return gradebook;
+        //}
+
+
+        public List<Mark> GetGradebookForCourse(int courseId)
+        {
+            Dictionary<User, int?> gradebook = new Dictionary<User, int?>();
+            var marks = _courseRepository.GetAllMarks().Where(m => m.Course.CourseId == courseId).ToList();
+            var students = _userService.GetStudentsByCourse(courseId);
+            foreach (var student in students)
+            {
+                if(!marks.Where(m=>m.Student.Name==student.Name).Any())
+                    marks.Add(new Mark(student.Courses.Where(c=>c.CourseId==courseId).SingleOrDefault(), student, null));
+            }
+            //foreach (var mark in marks)
+            //{
+            //    gradebook.Add(mark.Student, mark.Grade);
+            //}
+
+            return marks;
         }
     }
 }

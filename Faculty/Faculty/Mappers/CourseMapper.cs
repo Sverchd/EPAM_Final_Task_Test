@@ -4,8 +4,16 @@ using Faculty.Models;
 
 namespace Faculty.Mappers
 {
+    /// <summary>
+    ///     CourseView to Course mapper class
+    /// </summary>
     public static class CourseMapper
     {
+        /// <summary>
+        ///     Map method
+        /// </summary>
+        /// <param name="courseView">courseView instance</param>
+        /// <returns>Course instance (for BLL)</returns>
         public static Course Map(this CourseView courseView)
         {
             var resultCourse = courseView.MapFlat();
@@ -15,6 +23,11 @@ namespace Faculty.Mappers
             return resultCourse;
         }
 
+        /// <summary>
+        ///     method for flat mapping (without complex properties)
+        /// </summary>
+        /// <param name="courseView">courseView instance</param>
+        /// <returns>Course instance (for BLL)</returns>
         public static Course MapFlat(this CourseView courseView)
         {
             var resultCourse = new Course();
@@ -26,8 +39,16 @@ namespace Faculty.Mappers
         }
     }
 
+    /// <summary>
+    ///     Course to CourseView mapper class
+    /// </summary>
     public static class CourseViewMapper
     {
+        /// <summary>
+        ///     Map method
+        /// </summary>
+        /// <param name="course">course instance</param>
+        /// <returns>CourseView instance (for Presentation)</returns>
         public static CourseView Map(this Course course)
         {
             var resultCourse = course.MapFlat();
@@ -37,6 +58,11 @@ namespace Faculty.Mappers
             return resultCourse;
         }
 
+        /// <summary>
+        ///     method for flat mapping (without complex properties)
+        /// </summary>
+        /// <param name="course">course instance</param>
+        /// <returns>CourseView instance (for Presentation)</returns>
         public static CourseView MapFlat(this Course course)
         {
             var resultCourse = new CourseView();

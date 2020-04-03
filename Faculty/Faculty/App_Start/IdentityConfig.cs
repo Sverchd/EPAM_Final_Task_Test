@@ -12,6 +12,10 @@ namespace Faculty
 {
     public class IdentityConfig
     {
+        /// <summary>
+        ///     Method configures identity
+        /// </summary>
+        /// <param name="app"></param>
         public void Configuration(IAppBuilder app)
         {
             app.CreatePerOwinContext(() => new FacultyDbContext("FacultyContext"));

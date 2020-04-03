@@ -35,7 +35,7 @@ namespace Faculty.App_Start
         }
 
         /// <summary>
-        ///     Creates the kernel that will manage your application.
+        ///     Creates the kernel that will manage application.
         /// </summary>
         /// <returns>The created kernel.</returns>
         private static IKernel CreateKernel()
@@ -57,7 +57,7 @@ namespace Faculty.App_Start
         }
 
         /// <summary>
-        ///     Load your modules or register your services here!
+        ///     Load modules or register services here!
         /// </summary>
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)

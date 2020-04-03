@@ -1,0 +1,13 @@
+﻿
+@if (TempData["Success"] != null)
+{
+    <div class="text-success">
+        <p><strong>Success:</strong> @TempData["Success"].ToString()</p>
+    </div>
+}
+@if (TempData["Error"] != null)
+{
+    <div class="text-danger">
+        <p><strong>Error:</strong> @TempData["Error"].ToString()</p>
+    </div>
+}

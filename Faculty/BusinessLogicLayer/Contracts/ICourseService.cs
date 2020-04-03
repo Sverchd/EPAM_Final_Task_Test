@@ -8,9 +8,9 @@ namespace BusinessLogicLayer.Contracts
     {
         List<Course> GetAllCourses();
         List<Course> GetCoursesByTheme(Theme theme);
-        bool AddCourse(Course course);
+        Course AddCourse(Course course);
         Course GetCourseById(int id);
-        bool EditCourse(Course course);
+        Course EditCourse(Course course);
         bool DeleteCourse(int courseId);
         List<Course> GetCoursesByTeacher(string email);
         int Register(int courseId, string username);
@@ -18,5 +18,6 @@ namespace BusinessLogicLayer.Contracts
         List<Mark> GetGradebookForCourse(int courseId);
         List<Mark> GetGradebookForStudent(string username);
         List<Mark> SaveGradebookForCourse(List<Mark> gradebook);
+        Course GetCourseByName(string name);
     }
 }

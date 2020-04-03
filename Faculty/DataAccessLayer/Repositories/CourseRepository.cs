@@ -49,17 +49,41 @@ namespace DataAccessLayer.Repositories
         /// </summary>
         /// <param name="course">provided course that need to be added to context</param>
         /// <returns></returns>
-        public bool AddCourse(Course course)
+        //public bool AddCourse(Course course)
+        //{
+        //    var user = _facultyDbContext.Users.Include(x => x.Courses)
+        //        .FirstOrDefault(x => x.Email == course.teacher.Email);
+        //
+        //    var entityCourse = course.Map();
+        //    entityCourse.Theme = _facultyDbContext.Themes
+        //        .SingleOrDefault(x => x.ThemeEntityId == course.theme.ThemeId);
+        //    entityCourse.Teacher = user;
+        //    user.Courses.Add(entityCourse);
+        //    _facultyDbContext.SaveChanges();
+        //    return true;
+        //}
+
+
+
+        /// <summary>
+        ///     Method adds provided course to context
+        /// </summary>
+        /// <param name="course">provided course that need to be added to context</param>
+        /// <returns></returns>
+        public Course AddCourse(Course course)
         {
             var user = _facultyDbContext.Users.Include(x => x.Courses)
                 .FirstOrDefault(x => x.Email == course.teacher.Email);
-            var entityCourse = course.Map();
-            entityCourse.Theme = _facultyDbContext.Themes
+            var theme = _facultyDbContext.Themes
                 .SingleOrDefault(x => x.ThemeEntityId == course.theme.ThemeId);
+            if (user == null||theme==null)
+                return null;
+            var entityCourse = course.Map();
+            entityCourse.Theme = theme;
             entityCourse.Teacher = user;
             user.Courses.Add(entityCourse);
             _facultyDbContext.SaveChanges();
-            return true;
+            return entityCourse.Map();
         }
 
         /// <summary>
@@ -79,26 +103,28 @@ namespace DataAccessLayer.Repositories
         /// </summary>
         /// <param name="course">edited course that need to be saved</param>
         /// <returns></returns>
-        public bool EditCourse(Course course)
+        public Course EditCourse(Course course)
         {
             var entityCourse = _facultyDbContext.Courses.Include(x => x.Teacher)
                 .FirstOrDefault(x => x.CourseEntityId == course.CourseId);
-            entityCourse.Name = course.name;
+            
             var newtTeacher = _facultyDbContext.Users.Include(x => x.Courses)
                 .FirstOrDefault(x => x.Email == course.teacher.Email);
+            if (entityCourse == null || newtTeacher == null)
+                return null;
             if (entityCourse.Teacher == null || newtTeacher.Email != entityCourse.Teacher.Email)
             {
                 entityCourse.Teacher =
                     _facultyDbContext.Users.FirstOrDefault(x => x.Email == course.teacher.Email);
                 newtTeacher.Courses.Add(entityCourse);
             }
-
+            entityCourse.Name = course.name;
             entityCourse.Start = course.start;
             entityCourse.End = course.end;
             entityCourse.Theme = _facultyDbContext.Themes
                 .FirstOrDefault(x => x.ThemeEntityId == course.theme.ThemeId);
             _facultyDbContext.SaveChanges();
-            return true;
+            return entityCourse.Map();
         }
 
         /// <summary>

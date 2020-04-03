@@ -6,6 +6,7 @@ using BusinessLogicLayer.Contracts;
 using BusinessLogicLayer.Models;
 using Faculty.Mappers;
 using Faculty.Models;
+using Faculty.Utils;
 
 namespace Faculty.Controllers
 {
@@ -102,6 +103,7 @@ namespace Faculty.Controllers
             addCourseViewModel.Themes = new SelectList(themeListView, "Value", "Text");
             addCourseViewModel.Start = DateTime.Today;
             addCourseViewModel.end = DateTime.Today;
+            
             return View(addCourseViewModel);
         }
 
@@ -110,22 +112,28 @@ namespace Faculty.Controllers
         {
             var model = addCourseViewModel;
             var viewCourse = new Course();
-            viewCourse.theme = _themeService.GetThemeById(addCourseViewModel.Theme);
-            viewCourse.name = addCourseViewModel.Name;
-            viewCourse.teacher = _userService.GetTeacherByEmail(addCourseViewModel.Teacher);
-            viewCourse.start = addCourseViewModel.Start;
-            viewCourse.end = addCourseViewModel.end;
-            _courseService.AddCourse(viewCourse);
-            //use Get Theme by id
-            
-            //ModelState.AddModelError("Name", "Course already exists!");
-            if (ModelState.IsValid)
+            if (_courseService.GetCourseByName(addCourseViewModel.Name) == null)
             {
-                //do something
-                TempData["Success"] = "Course successfully created!";
-                return RedirectToAction("List");
+                viewCourse.theme = _themeService.GetThemeById(addCourseViewModel.Theme);
+                viewCourse.name = addCourseViewModel.Name;
+                viewCourse.teacher = _userService.GetTeacherByEmail(addCourseViewModel.Teacher);
+                viewCourse.start = addCourseViewModel.Start;
+                viewCourse.end = addCourseViewModel.end;
+                _courseService.AddCourse(viewCourse);
+                if (ModelState.IsValid)
+                {
+                    //do something
+                    TempData["Success"] = "Course successfully created!";
+                    Logger.Log.Info($"Course with Name - {viewCourse.name}, created successfully.");
+                    return RedirectToAction("List");
+                }
             }
-            return RedirectToAction("List");
+            else
+                //use Get Theme by id
+                TempData["Error"] = $"Course with Name {viewCourse.name} already exists!";
+            //ModelState.AddModelError("Name", "Course already exists!");
+            Logger.Log.Info($"Course with Name - {viewCourse.name} wasn`t created, Course already exists!");
+            return RedirectToAction("Add");
         }
 
         [HttpGet]
@@ -172,7 +180,7 @@ namespace Faculty.Controllers
             viewCourse.teacher = _userService.GetTeacherByEmail(addCourseViewModel.Teacher);
             viewCourse.start = addCourseViewModel.Start;
             viewCourse.end = addCourseViewModel.end;
-            _courseService.EditCourse(viewCourse);
+            var course = _courseService.EditCourse(viewCourse);
             //use Get Theme by id
             ModelState.AddModelError("Name", "Course already exists!");
             return RedirectToAction("List");

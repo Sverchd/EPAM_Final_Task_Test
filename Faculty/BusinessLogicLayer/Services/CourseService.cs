@@ -50,7 +50,7 @@ namespace BusinessLogicLayer.Services
         /// </summary>
         /// <param name="course">Course needed to add</param>
         /// <returns></returns>
-        public bool AddCourse(Course course)
+        public Course AddCourse(Course course)
         {
             return _courseRepository.AddCourse(course);
         }
@@ -65,14 +65,32 @@ namespace BusinessLogicLayer.Services
             return _courseRepository.GetCourseById(id);
         }
 
+        public Course GetCourseByName(string name)
+        {
+            var courses = _courseRepository.GetAllCourses();
+            var course = courses.SingleOrDefault(x => x.name == name);
+            return course;
+        }
         /// <summary>
         ///     Method updates provided course
         /// </summary>
         /// <param name="course">provided course</param>
         /// <returns></returns>
-        public bool EditCourse(Course course)
+        public Course EditCourse(Course course)
         {
-            return _courseRepository.EditCourse(course);
+            var newCourse = _courseRepository.EditCourse(course);
+            if (newCourse.name==course.name&&
+                newCourse.theme.ThemeId==course.theme.ThemeId&&
+                newCourse.start==course.start&&
+                newCourse.end==course.end&&
+                newCourse.teacher.Name==course.teacher.Name)
+            {
+                return _courseRepository.EditCourse(course);
+            }
+            else
+            {
+                return null;
+            }
         }
 
         /// <summary>

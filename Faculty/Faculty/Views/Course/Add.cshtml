@@ -4,43 +4,46 @@
     ViewBag.Title = "Add";
 }
 
-<section >
-    <h2 style="text-align: center">Add</h2>
+    <section>
 
-    @using (Html.BeginForm(FormMethod.Post))
-    {
-        @Html.AntiForgeryToken()
-        <div class="col-md-10">
-            @Html.ValidationSummary(true, "", new {@class = "text-danger"})
+        <h2 style="text-align: center">Add</h2>
+        
+        @using (Html.BeginForm(FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+    <div class="col-md-10">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-            <div class="form-group">
-                @Html.LabelFor(m => m.Name, new {@class = "col-md-2"})
+        <div class="form-group">
+            @Html.LabelFor(m => m.Name, new { @class = "col-md-2" })
 
-                @Html.TextBoxFor(m => m.Name, new {@class = "form-control"})
-                @Html.ValidationMessageFor(m => m.Name, "", new {@class = "text-danger"})
-            </div>
-            <div class="form-group">
-                @Html.LabelFor(m => m.Theme, new {@class = "col-md-2"})
-                @Html.DropDownListFor(m => m.Theme, Model.Themes, new {@class = "form-control"})
-                @Html.ValidationMessageFor(m => m.Theme, "", new {@class = "text-danger"})
-            </div>
-            <div class="form-group">
-                @Html.LabelFor(m => m.Teacher, new {@class = "col-md-2"})
-                @Html.DropDownListFor(m => m.Teacher, Model.Teachers, new {@class = "form-control"})
-                @Html.ValidationMessageFor(m => m.Teacher, "", new {@class = "text-danger"})
-            </div>
-            <div class="form-group">
-                @Html.LabelFor(m => m.Start, new {@class = "col-md-2"})
-                @Html.TextBoxFor(model => model.Start, "{0:yyyy-MM-ddThh:mm}", new {@class = "form-control", type = "datetime-local"})
-                @Html.ValidationMessageFor(m => m.Start, "", new {@class = "text-danger"})
-            </div>
-            <div class="form-group">
-                @Html.LabelFor(m => m.end, new {@class = "col-md-2"})
-                @Html.TextBoxFor(model => model.end, "{0:yyyy-MM-ddThh:mm}", new {@class = "form-control", type = "datetime-local"})
-                @Html.ValidationMessageFor(m => m.end, "", new {@class = "text-danger"})
-            </div>
-            <a class="btn btn-default" role="button" href="@Url.Action("List", "Theme")"><i class="fas fa-arrow-left"></i> Back to List</a>
-            <input type="submit" value="Create" class="btn btn-success" style="background-color: blue"/>
+
+            @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Name, "", new { @class = "text-danger" })
         </div>
-    }
-</section>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Theme, new { @class = "col-md-2" })
+            @Html.DropDownListFor(m => m.Theme, Model.Themes, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Theme, "", new { @class = "text-danger" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Teacher, new { @class = "col-md-2" })
+            @Html.DropDownListFor(m => m.Teacher, Model.Teachers, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Teacher, "", new { @class = "text-danger" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Start, new { @class = "col-md-2" })
+            @Html.TextBoxFor(model => model.Start, "{0:yyyy-MM-ddThh:mm}", new { @class = "form-control", type = "datetime-local" })
+            @Html.ValidationMessageFor(m => m.Start, "", new { @class = "text-danger" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.end, new { @class = "col-md-2" })
+            @Html.TextBoxFor(model => model.end, "{0:yyyy-MM-ddThh:mm}", new { @class = "form-control", type = "datetime-local" })
+            @Html.ValidationMessageFor(m => m.end, "", new { @class = "text-danger" })
+        </div>
+        @Html.Partial("~/Views/NotificationPartial.cshtml")
+        <a class="btn btn-default" role="button" href="@Url.Action("List", "Theme")"><i class="fas fa-arrow-left"></i> Back to List</a>
+        <input type="submit" value="Create" class="btn btn-success" style="background-color: blue" />
+    </div>
+        }
+    </section>

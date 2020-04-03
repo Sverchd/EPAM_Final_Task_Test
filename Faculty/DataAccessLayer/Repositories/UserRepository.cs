@@ -21,41 +21,29 @@ namespace DataAccessLayer.Repositories
             _facultyDbContext = facultyDbContext;
         }
 
+        /// <summary>
+        ///     Method gets all teachers from context
+        /// </summary>
+        /// <returns>list of teachers</returns>
         public List<User> GetAllTeachers()
         {
             var role = _facultyDbContext.Roles.SingleOrDefault(m => m.Name == "Teacher");
-            var EnityTeachers = role.Users;
-
             var userIds = role.Users
                 .Select(y => y.UserId)
                 .ToList();
-
-            //EnityTeachers =EnityTeachers.ToList();
             var entityTeachers = _facultyDbContext.Users
                 .Include(us => us.Courses)
                 .Where(us => userIds.Contains(us.Id))
                 .ToList();
-
-            //var teachers = new List<User>();
-
-            //foreach (var eteacher in EnityTeachers)
-            //{
-            //    var entityTeacher = _facultyDbContext.Users.Include(x => x.courses.Select(y => y.Theme)).SingleOrDefault(u => u.Id == eteacher.UserId);
-            //    //var courses = new List<Course>();
-            //    var courses = entityTeacher.courses.Select(x => x.Map()).ToList();
-            //    //TODO: Use mappers
-
-            //    teachers.Add(new User(entityTeacher.Email, entityTeacher.Roles.ToString(), courses));
-            //}
-
-            //var d = "";
-            //Получается циклический мап
-
             var resultTeachers = entityTeachers.AsEnumerable().Select(x => x.Map()).ToList();
 
             return resultTeachers;
         }
 
+        /// <summary>
+        ///     Method gets all students from context
+        /// </summary>
+        /// <returns>list of students</returns>
         public List<User> GetAllStudents()
         {
             var role = _facultyDbContext.Roles.SingleOrDefault(m => m.Name == "student");
@@ -73,6 +61,13 @@ namespace DataAccessLayer.Repositories
             return resultStudents;
         }
 
+        /// <summary>
+        ///     Method adds (registers) provided user to context
+        /// </summary>
+        /// <param name="user"></param>
+        /// <param name="role"></param>
+        /// <param name="password"></param>
+        /// <returns></returns>
         public bool AddUser(User user, string role, string password)
         {
             var userManager = new AppUserManager(new UserStore<AppUser>(_facultyDbContext));
@@ -85,10 +80,14 @@ namespace DataAccessLayer.Repositories
                 return true;
             }
 
-
             return false;
         }
 
+        /// <summary>
+        ///     Method removes selected user from context
+        /// </summary>
+        /// <param name="email">email of selected user</param>
+        /// <returns></returns>
         public bool DeleteUser(string email)
         {
             var userManager = new AppUserManager(new UserStore<AppUser>(_facultyDbContext));

@@ -16,21 +16,22 @@ namespace DataAccessLayer.Repositories
             _facultyDbContext = facultyDbContext;
         }
 
+        /// <summary>
+        ///     Method gets all themes from context
+        /// </summary>
+        /// <returns>list of themes</returns>
         public List<Theme> GetAllThemes()
         {
             var datalist = _facultyDbContext.Themes.ToList();
-
-            //TODO: use mapper
             var themes = datalist.Select(x => x.Map()).ToList();
-            //foreach (var themeEntity in datalist)
-            //{
-            //    
-            //    themes.Add(new Theme(themeEntity.ThemeEntityId,themeEntity.Name));
-            //}
-
             return themes;
         }
 
+        /// <summary>
+        ///     Method adds provided theme to context
+        /// </summary>
+        /// <param name="theme">provided theme</param>
+        /// <returns></returns>
         public bool AddTheme(Theme theme)
         {
             var entityTheme = theme.Map();
@@ -44,6 +45,11 @@ namespace DataAccessLayer.Repositories
             return !existingTheme;
         }
 
+        /// <summary>
+        ///     Method removes selected theme from context
+        /// </summary>
+        /// <param name="themeId">id of selected theme</param>
+        /// <returns></returns>
         public bool DeleteTheme(int themeId)
         {
             var theme = _facultyDbContext.Themes.FirstOrDefault(i => i.ThemeEntityId == themeId);
@@ -53,6 +59,11 @@ namespace DataAccessLayer.Repositories
             return true;
         }
 
+        /// <summary>
+        ///     Method saves edited theme to context
+        /// </summary>
+        /// <param name="theme">edited theme</param>
+        /// <returns></returns>
         public bool Edit(Theme theme)
         {
             var themes = _facultyDbContext.Themes.ToList();

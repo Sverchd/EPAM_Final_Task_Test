@@ -146,7 +146,7 @@ namespace BusinessLogicLayer.Services
         //}
         public List<Mark> GetGradebookForCourse(int courseId)
         {
-            var gradebook = new Dictionary<User, int?>();
+            
             var marks = _courseRepository.GetAllMarks().Where(m => m.CourseId == courseId).ToList();
             var students = _userService.GetStudentsByCourse(courseId);
             foreach (var student in students)
@@ -155,10 +155,17 @@ namespace BusinessLogicLayer.Services
                         null));
             return marks;
         }
+
+        public List<Mark> GetGradebookForStudent(string username)
+        {
+            var marks = _courseRepository.GetAllMarks().Where(m => m.StudentUsername == username).ToList();
+            return marks;
+        }
         public List<Mark> SaveGradebookForCourse(List<Mark> gradebook)
         {
             var newgradebook =_courseRepository.SaveMarks(gradebook);
             return newgradebook;
         }
+
     }
 }

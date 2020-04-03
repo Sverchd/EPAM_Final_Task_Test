@@ -117,7 +117,14 @@ namespace Faculty.Controllers
             viewCourse.end = addCourseViewModel.end;
             _courseService.AddCourse(viewCourse);
             //use Get Theme by id
-            ModelState.AddModelError("Name", "Course already exists!");
+            
+            //ModelState.AddModelError("Name", "Course already exists!");
+            if (ModelState.IsValid)
+            {
+                //do something
+                TempData["Success"] = "Course successfully created!";
+                return RedirectToAction("List");
+            }
             return RedirectToAction("List");
         }
 

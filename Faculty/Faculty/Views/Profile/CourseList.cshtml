@@ -30,9 +30,13 @@
                         <th>
                             @Html.DisplayNameFor(model => model.Courses[0].Length)
                         </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.Courses[0].Students.Count)
-                        </th>
+                        @if (User.IsInRole("student")&&ViewBag.CourseStatus=="Finished")
+
+                        {
+                            <th>
+                                @Html.DisplayName("Mark")
+                            </th>
+                        }
                         <th>
                             Controls
                         </th>
@@ -73,10 +77,19 @@
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.Length)
+
                         </td>
+                        @if (User.IsInRole("student")&&@ViewBag.CourseStatus=="Finished")
+
+                        {
                         <td>
-                            @Html.DisplayFor(modelItem => item.Students.Count)
+                            @{
+                                var a = Model.Grades.Where(x => x.CourseId == item.CourseEntityId).SingleOrDefault()?.Mark.ToString();
+                            }
+                            @a
+                            
                         </td>
+                        }
                         <td>
                             @{
                                 if (User.IsInRole("admin"))
@@ -147,13 +160,13 @@
                                 else if (User.IsInRole("teacher"))
                                 {
                                     @Html.ActionLink("Gradebook", "List", "Gradebook", new { courseId = item.CourseEntityId }, new { role = "button", @class = "btn btn-success", style = "float:right" })
+                                }
                             }
-                            }
 
 
-                            </td>
+                        </td>
 
-                        </tr>
+                    </tr>
                     }
                 </tbody>
             </table>

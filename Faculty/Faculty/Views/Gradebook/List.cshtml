@@ -43,7 +43,7 @@
                         <td>
 
                             @Html.EditorFor(modelItem => Model[i].Mark)
-
+                            @Html.ValidationMessageFor(modelItem => Model[i].Mark, "", new { @class = "text-danger" })
                         </td>
                     </tr>
                 }

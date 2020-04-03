@@ -12,6 +12,7 @@ namespace Faculty.Models
         public string Student { get; set; }
         [Required]
         [Display(Name = "Grade")]
+        [Range(1, 100)]
         public int? Mark { get; set; }
         public int CourseId { get; set; }
 

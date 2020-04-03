@@ -42,6 +42,9 @@ namespace Faculty.Controllers
             {
                 profileModel.role = "Student";
                 courses = _courseService.GetCoursesByStudent(User.Identity.Name).Select(c => c.Map()).ToList();
+                var grades = _courseService.GetGradebookForStudent(User.Identity.Name);
+                profileModel.Grades = new List<GradeViewModel>();
+                grades.ForEach(g=>profileModel.Grades.Add(new GradeViewModel(g.StudentUsername,g.CourseId,g.Grade)));
                 profileModel.CoursesApplied = courses.Where(x => x.Start > DateTime.Now).ToList();
                 profileModel.CoursesFinished = courses.Where(x => x.End < DateTime.Now).ToList();
                 profileModel.CoursesInProgress =

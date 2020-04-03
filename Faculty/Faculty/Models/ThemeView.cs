@@ -12,22 +12,22 @@ namespace Faculty.Models
         {
         }
 
-        public ThemeView(string nm)
+        public ThemeView(string name)
         {
-            Name = nm;
+            Name = name;
         }
 
-        public ThemeView(int id, string nm, int courseCount)
+        public ThemeView(int id, string name, int courseCount)
         {
             ThemeEntityId = id;
-            Name = nm;
+            Name = name;
             CourseCount = courseCount;
         }
 
-        public ThemeView(int id, string nm)
+        public ThemeView(int id, string name)
         {
             ThemeEntityId = id;
-            Name = nm;
+            Name = name;
         }
     }
 }

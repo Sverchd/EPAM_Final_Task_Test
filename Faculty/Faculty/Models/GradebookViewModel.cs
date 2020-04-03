@@ -9,7 +9,7 @@ namespace Faculty.Models
     public class GradebookViewModel
     {
         public IList<GradeViewModel> Grades;
-        public int courseId;
+        public int CourseId;
 
         public GradebookViewModel()
         {

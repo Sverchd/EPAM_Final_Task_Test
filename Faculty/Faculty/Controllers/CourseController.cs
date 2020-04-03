@@ -77,7 +77,7 @@ namespace Faculty.Controllers
             //}
             ViewBag.Title = "List";
             if (email != null)
-                courseList.user = _userService.GetStudentByEmail(email).Map();
+                courseList.User = _userService.GetStudentByEmail(email).Map();
             return View(courseList);
         }
 
@@ -100,7 +100,7 @@ namespace Faculty.Controllers
                 themeListView.Add(new SelectListItem {Value = theme.ThemeId.ToString(), Text = theme.Name});
             addCourseViewModel.Teachers = new SelectList(teacherListView, "Value", "Text");
             addCourseViewModel.Themes = new SelectList(themeListView, "Value", "Text");
-            addCourseViewModel.start = DateTime.Today;
+            addCourseViewModel.Start = DateTime.Today;
             addCourseViewModel.end = DateTime.Today;
             return View(addCourseViewModel);
         }
@@ -110,10 +110,10 @@ namespace Faculty.Controllers
         {
             var model = addCourseViewModel;
             var viewCourse = new Course();
-            viewCourse.theme = _themeService.GetThemeById(addCourseViewModel.theme);
-            viewCourse.name = addCourseViewModel.name;
+            viewCourse.theme = _themeService.GetThemeById(addCourseViewModel.Theme);
+            viewCourse.name = addCourseViewModel.Name;
             viewCourse.teacher = _userService.GetTeacherByEmail(addCourseViewModel.Teacher);
-            viewCourse.start = addCourseViewModel.start;
+            viewCourse.start = addCourseViewModel.Start;
             viewCourse.end = addCourseViewModel.end;
             _courseService.AddCourse(viewCourse);
             //use Get Theme by id
@@ -143,11 +143,11 @@ namespace Faculty.Controllers
             addCourseViewModel.Teachers = new SelectList(teacherListView, "Value", "Text");
             addCourseViewModel.Themes = new SelectList(themeListView, "Value", "Text");
             var course = _courseService.GetCourseById(CourseId);
-            addCourseViewModel.name = course.name;
+            addCourseViewModel.Name = course.name;
 
             addCourseViewModel.Teacher = course.teacher.Name;
-            addCourseViewModel.theme = course.theme.ThemeId;
-            addCourseViewModel.start = course.start;
+            addCourseViewModel.Theme = course.theme.ThemeId;
+            addCourseViewModel.Start = course.start;
             addCourseViewModel.end = course.end;
 
 
@@ -160,10 +160,10 @@ namespace Faculty.Controllers
             var model = addCourseViewModel;
             var viewCourse = new Course();
             viewCourse.CourseId = addCourseViewModel.CourseId;
-            viewCourse.theme = _themeService.GetThemeById(addCourseViewModel.theme);
-            viewCourse.name = addCourseViewModel.name;
+            viewCourse.theme = _themeService.GetThemeById(addCourseViewModel.Theme);
+            viewCourse.name = addCourseViewModel.Name;
             viewCourse.teacher = _userService.GetTeacherByEmail(addCourseViewModel.Teacher);
-            viewCourse.start = addCourseViewModel.start;
+            viewCourse.start = addCourseViewModel.Start;
             viewCourse.end = addCourseViewModel.end;
             _courseService.EditCourse(viewCourse);
             //use Get Theme by id

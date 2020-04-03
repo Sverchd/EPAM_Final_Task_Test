@@ -12,9 +12,9 @@ namespace Faculty.Models
         [Required]
         [Display(Name = "Name")]
         [StringLength(75)]
-        public string name { get; set; }
+        public string Name { get; set; }
 
-        [Required] [Display(Name = "Theme")] public int theme { get; set; }
+        [Required] [Display(Name = "Theme")] public int Theme { get; set; }
         public IEnumerable<SelectListItem> Themes { get; set; }
         [Required] [Display(Name = "Teacher")] public string Teacher { get; set; }
         public IEnumerable<SelectListItem> Teachers { get; set; }
@@ -22,7 +22,7 @@ namespace Faculty.Models
         [Required]
         [DataType(DataType.DateTime)]
         [Display(Name = "Start date")]
-        public DateTime start { get; set; }
+        public DateTime Start { get; set; }
 
         [Required]
         [DataType(DataType.DateTime)]

@@ -14,25 +14,25 @@
             <thead>
             <tr>
                 <th>
-                    @Html.DisplayNameFor(model => model.Courses[0].name)
+                    @Html.DisplayNameFor(model => model.Courses[0].Name)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Courses[0].theme)
+                    @Html.DisplayNameFor(model => model.Courses[0].Theme)
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.Courses[0].teacher)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Courses[0].start)
+                    @Html.DisplayNameFor(model => model.Courses[0].Start)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Courses[0].end)
+                    @Html.DisplayNameFor(model => model.Courses[0].End)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Courses[0].length)
+                    @Html.DisplayNameFor(model => model.Courses[0].Length)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Courses[0].students.Count)
+                    @Html.DisplayNameFor(model => model.Courses[0].Students.Count)
                 </th>
                 <th>
                     Controls
@@ -45,10 +45,10 @@
             {
                 <tr>
                     <td>
-                        @Html.DisplayFor(modelItem => item.name)
+                        @Html.DisplayFor(modelItem => item.Name)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.theme.Name)
+                        @Html.DisplayFor(modelItem => item.Theme.Name)
 
                     </td>
 
@@ -68,16 +68,16 @@
 
 
                     <td>
-                        @Html.DisplayFor(modelItem => item.start)
+                        @Html.DisplayFor(modelItem => item.Start)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.end)
+                        @Html.DisplayFor(modelItem => item.End)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.length)
+                        @Html.DisplayFor(modelItem => item.Length)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.students.Count)
+                        @Html.DisplayFor(modelItem => item.Students.Count)
                     </td>
                     <td>
                         @{
@@ -117,7 +117,7 @@
                                 </div>
                             }
                             else if (User.IsInRole("student") &&
-                                     !item.students.Where(x => x.Name == User.Identity.Name).Any()
+                                     !item.Students.Any(x => x.Name == User.Identity.Name)
                                 )
                                 //item.teacher.Name != null
                             {

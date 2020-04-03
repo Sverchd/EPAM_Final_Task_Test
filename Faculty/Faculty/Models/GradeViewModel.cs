@@ -13,15 +13,17 @@ namespace Faculty.Models
         [Required]
         [Display(Name = "Grade")]
         public int? Mark { get; set; }
+        public int CourseId { get; set; }
 
         public GradeViewModel()
         {
 
         }
 
-        public GradeViewModel(string student, int? mark)
+        public GradeViewModel(string student, int courseId, int? mark)
         {
             Student = student;
+            CourseId = courseId;
             Mark = mark;
         }
     }

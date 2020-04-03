@@ -18,8 +18,8 @@ namespace DataAccessLayer.Mappers
             var resultMark = new Mark
             {
                 MarkId = markEntity.MarkEntityId,
-                Course = markEntity.Course.MapFlat(),
-                Student = markEntity.Student.Map(),
+                CourseId = markEntity.Course.CourseEntityId,
+                StudentUsername = markEntity.Student.UserName,
                 Grade = markEntity.Mark
             };
             return resultMark;
@@ -29,23 +29,23 @@ namespace DataAccessLayer.Mappers
     /// <summary>
     ///     Mark to MarkEntity mapper class
     /// </summary>
-    public static class MarkEntityMapper
-    {
-        /// <summary>
-        ///     map method
-        /// </summary>
-        /// <param name="mark">Mark instance</param>
-        /// <returns>MarkEntity (for DAL)</returns>
-        public static MarkEntity Map(this Mark mark)
-        {
-            var resultMark = new MarkEntity
-            {
-                MarkEntityId = mark.MarkId,
-                Course = mark.Course.Map(),
-                Student = mark.Student.Map(),
-                Mark = mark.Grade
-            };
-            return resultMark;
-        }
-    }
+    //public static class MarkEntityMapper
+    //{
+    //    /// <summary>
+    //    ///     map method
+    //    /// </summary>
+    //    /// <param name="mark">Mark instance</param>
+    //    /// <returns>MarkEntity (for DAL)</returns>
+    //    public static MarkEntity Map(this Mark mark)
+    //    {
+    //        var resultMark = new MarkEntity
+    //        {
+    //            MarkEntityId = mark.MarkId,
+    //            Course = mark.Course.Map(),
+    //            Student = mark.Student.Map(),
+    //            Mark = mark.Grade
+    //        };
+    //        return resultMark;
+    //    }
+    //}
 }

@@ -13,5 +13,6 @@ namespace BusinessLogicLayer.Contracts
         bool DeleteCourse(int courseId);
         bool Register(int courseId, string username);
         List<Mark> GetAllMarks();
+        List<Mark> SaveMarks(List<Mark> marks);
     }
 }

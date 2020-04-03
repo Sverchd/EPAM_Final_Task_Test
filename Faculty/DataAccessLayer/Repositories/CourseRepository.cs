@@ -5,6 +5,7 @@ using BusinessLogicLayer.Contracts;
 using BusinessLogicLayer.Models;
 using DataAccessLayer.Context;
 using DataAccessLayer.Mappers;
+using DataAccessLayer.Models;
 
 namespace DataAccessLayer.Repositories
 {
@@ -145,6 +146,32 @@ namespace DataAccessLayer.Repositories
                 .Select(m => m.Map()).ToList();
 
             return marks;
+        }
+
+        public List<Mark> SaveMarks(List<Mark> marks)
+        {
+            var Oldmarks = _facultyDbContext.Marks.Include(m => m.Course).Include(m => m.Student).ToList()
+                ;
+            dynamic d;
+            //marks.ForEach(x=>Oldmarks.Where(old=>old.Course.CourseEntityId==x.CourseId&&old.Student.Email==x.StudentUsername).ToList().ForEach(a=>a.Mark=x.Grade;\));
+            foreach (var mark in _facultyDbContext.Marks)
+                _facultyDbContext.Marks.Remove(mark);
+            _facultyDbContext.SaveChanges();
+            foreach (var newMark in marks)
+            {
+                var course = _facultyDbContext.Courses.Where(x => x.CourseEntityId == newMark.CourseId)
+                    .SingleOrDefault();
+                var student = _facultyDbContext.Users.Where(x => x.UserName == newMark.StudentUsername)
+                    .SingleOrDefault();
+                _facultyDbContext.Marks.Add(new MarkEntity(course, student, newMark.Grade));
+            }
+
+            _facultyDbContext.SaveChanges();
+            //_facultyDbContext.Marks.Remove()
+            var newMarks = _facultyDbContext.Marks.Include(m => m.Course).Include(m => m.Student).ToList()
+                .Select(x => x.Map()).ToList();
+                
+            return newMarks;
         }
     }
 }

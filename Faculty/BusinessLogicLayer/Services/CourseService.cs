@@ -133,16 +133,32 @@ namespace BusinessLogicLayer.Services
         /// </summary>
         /// <param name="courseId">id of selected course</param>
         /// <returns>list of marks for selected course (gradebook)</returns>
+        //public List<Mark> GetGradebookForCourse(int courseId)
+        //{
+        //    var gradebook = new Dictionary<User, int?>();
+        //    var marks = _courseRepository.GetAllMarks().Where(m => m.Course.CourseId == courseId).ToList();
+        //    var students = _userService.GetStudentsByCourse(courseId);
+        //    foreach (var student in students)
+        //        if (!marks.Where(m => m.Student.Name == student.Name).Any())
+        //            marks.Add(new Mark(student.Courses.Where(c => c.CourseId == courseId).SingleOrDefault(), student,
+        //                null));
+        //    return marks;
+        //}
         public List<Mark> GetGradebookForCourse(int courseId)
         {
             var gradebook = new Dictionary<User, int?>();
-            var marks = _courseRepository.GetAllMarks().Where(m => m.Course.CourseId == courseId).ToList();
+            var marks = _courseRepository.GetAllMarks().Where(m => m.CourseId == courseId).ToList();
             var students = _userService.GetStudentsByCourse(courseId);
             foreach (var student in students)
-                if (!marks.Where(m => m.Student.Name == student.Name).Any())
-                    marks.Add(new Mark(student.Courses.Where(c => c.CourseId == courseId).SingleOrDefault(), student,
+                if (!marks.Where(m => m.StudentUsername == student.Name).Any())
+                    marks.Add(new Mark(courseId, student.Name,
                         null));
             return marks;
+        }
+        public List<Mark> SaveGradebookForCourse(List<Mark> gradebook)
+        {
+            var newgradebook =_courseRepository.SaveMarks(gradebook);
+            return newgradebook;
         }
     }
 }

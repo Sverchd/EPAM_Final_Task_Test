@@ -16,5 +16,6 @@ namespace BusinessLogicLayer.Contracts
         int Register(int courseId, string username);
         List<Course> GetCoursesByStudent(string email);
         List<Mark> GetGradebookForCourse(int courseId);
+        List<Mark> SaveGradebookForCourse(List<Mark> gradebook);
     }
 }

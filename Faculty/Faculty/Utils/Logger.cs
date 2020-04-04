@@ -21,5 +21,6 @@ namespace Faculty.Utils
         {
             XmlConfigurator.Configure();
         }
+
     }
 }

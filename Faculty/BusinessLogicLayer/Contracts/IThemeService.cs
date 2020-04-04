@@ -7,10 +7,10 @@ namespace BusinessLogicLayer.Contracts
     {
         List<Theme> GetAllThemes();
 
-        bool AddTheme(Theme theme);
+        Theme AddTheme(Theme theme);
 
         bool DeleteTheme(int id);
-        bool Edit(Theme theme);
+        Theme Edit(Theme theme);
         Theme GetThemeById(int id);
     }
 }

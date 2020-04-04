@@ -4,6 +4,7 @@ using System.Web.Mvc;
 using DataAccessLayer.Interfaces;
 using DataAccessLayer.Managers;
 using DataAccessLayer.Models;
+using Faculty.Filters;
 using Faculty.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
@@ -12,6 +13,7 @@ using Microsoft.Owin.Security;
 namespace Faculty.Controllers
 {
     [Authorize]
+    [ExceptionFilter]
     public class AccountController : Controller
     {
         private ApplicationSignInManager _signInManager;

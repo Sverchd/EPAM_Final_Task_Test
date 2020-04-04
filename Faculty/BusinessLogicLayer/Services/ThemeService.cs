@@ -33,10 +33,10 @@ namespace BusinessLogicLayer.Services
         /// </summary>
         /// <param name="theme">Edited theme</param>
         /// <returns></returns>
-        public bool Edit(Theme theme)
+        public Theme Edit(Theme theme)
         {
-            _themeRepository.Edit(theme);
-            return true;
+            var resTheme = _themeRepository.Edit(theme);
+            return resTheme;
         }
 
         /// <summary>
@@ -44,9 +44,13 @@ namespace BusinessLogicLayer.Services
         /// </summary>
         /// <param name="theme">Theme that needed to be added</param>
         /// <returns></returns>
-        public bool AddTheme(Theme theme)
+        public Theme AddTheme(Theme theme)
         {
-            _themeRepository.GetAllThemes();
+            var themes =_themeRepository.GetAllThemes();
+            if (themes.SingleOrDefault(x => x.Name == theme.Name)!=null)
+            {
+                return null;
+            }
             //TODO: Get all themes
             //TODO: Check if exists
             //TODO: if not exists - delete

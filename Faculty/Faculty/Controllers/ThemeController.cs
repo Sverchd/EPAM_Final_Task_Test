@@ -1,11 +1,14 @@
 ﻿using System.Linq;
 using System.Web.Mvc;
 using BusinessLogicLayer.Contracts;
+using Faculty.Filters;
 using Faculty.Mappers;
 using Faculty.Models;
+using Faculty.Utils;
 
 namespace Faculty.Controllers
 {
+    [ExceptionFilter]
     public class ThemeController : Controller
     {
         // GET: Theme
@@ -51,9 +54,14 @@ namespace Faculty.Controllers
         public ActionResult Add(ThemeView theme)
         {
             var result = _themeService.AddTheme(theme.Map());
-            if (result) return RedirectToAction("List");
-
-            ModelState.AddModelError("Name", "Theme already exists!");
+            if (result != null)
+            {
+                TempData["Success"] = "Theme successfully created!";
+                Logger.Log.Info($"Theme with Name - {theme.Name}, created successfully.");
+                return RedirectToAction("List");
+            }
+            Logger.Log.Info($"Theme with Name - {theme.Name}, already exists!");
+            TempData["Error"] = "Theme already exists!";
             return View();
         }
 
@@ -77,9 +85,16 @@ namespace Faculty.Controllers
         {
             var result = _themeService.Edit(theme.Map());
             //var result = _themeService.AddTheme(new Theme(Theme.ThemeEntityId, Theme.Name));
-            if (result) return RedirectToAction("List");
+            if (result != null)
+            {
+                TempData["Success"] = "Theme successfully modified!";
+                Logger.Log.Info($"Theme with Name - {theme.Name}, modified.");
+                return RedirectToAction("List");
+            }
 
             ModelState.AddModelError("Name", "Theme already exists!");
+            Logger.Log.Info($"Theme with Name - {theme.Name}, wasn`t modified!");
+            TempData["Error"] = "Theme wasn`t modified!";
             return View();
         }
 

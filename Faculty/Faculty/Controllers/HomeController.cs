@@ -1,8 +1,11 @@
-﻿using System.Web.Mvc;
+﻿using System;
+using System.Web.Mvc;
 using BusinessLogicLayer.Contracts;
+using Faculty.Filters;
 
 namespace Faculty.Controllers
 {
+    [ExceptionFilter]
     public class HomeController : Controller
     {
         private readonly ICourseService _courseService;

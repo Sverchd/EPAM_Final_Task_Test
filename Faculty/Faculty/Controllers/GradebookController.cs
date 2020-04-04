@@ -5,11 +5,13 @@ using System.Web;
 using System.Web.Mvc;
 using BusinessLogicLayer.Contracts;
 using BusinessLogicLayer.Models;
+using Faculty.Filters;
 using Faculty.Mappers;
 using Faculty.Models;
 
 namespace Faculty.Controllers
 {
+    [ExceptionFilter]
     public class GradebookController : Controller
     {
         private readonly ICourseService _courseService;

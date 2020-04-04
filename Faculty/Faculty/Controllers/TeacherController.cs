@@ -1,11 +1,13 @@
 ﻿using System.Linq;
 using System.Web.Mvc;
 using BusinessLogicLayer.Contracts;
+using Faculty.Filters;
 using Faculty.Mappers;
 using Faculty.Models;
 
 namespace Faculty.Controllers
 {
+    [ExceptionFilter]
     public class TeacherController : Controller
     {
         private readonly IUserService _userService;

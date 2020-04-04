@@ -32,17 +32,13 @@ namespace DataAccessLayer.Repositories
         /// </summary>
         /// <param name="theme">provided theme</param>
         /// <returns></returns>
-        public bool AddTheme(Theme theme)
+        public Theme AddTheme(Theme theme)
         {
             var entityTheme = theme.Map();
-            var existingTheme = _facultyDbContext.Themes.Select(m => m.Name).Contains(theme.Name);
-            if (!existingTheme)
-            {
-                _facultyDbContext.Themes.Add(entityTheme);
-                _facultyDbContext.SaveChanges();
-            }
+            _facultyDbContext.Themes.Add(entityTheme);
+            _facultyDbContext.SaveChanges();
 
-            return !existingTheme;
+            return entityTheme.Map();
         }
 
         /// <summary>
@@ -64,13 +60,13 @@ namespace DataAccessLayer.Repositories
         /// </summary>
         /// <param name="theme">edited theme</param>
         /// <returns></returns>
-        public bool Edit(Theme theme)
+        public Theme Edit(Theme theme)
         {
             var themes = _facultyDbContext.Themes.ToList();
             var entityTheme = _facultyDbContext.Themes.First(x => x.ThemeEntityId == theme.ThemeId);
             entityTheme.Name = theme.Name;
             _facultyDbContext.SaveChanges();
-            return true;
+            return entityTheme.Map();
         }
     }
 }

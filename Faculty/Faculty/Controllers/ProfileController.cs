@@ -5,12 +5,14 @@ using System.Web;
 using System.Web.Mvc;
 using BusinessLogicLayer.Contracts;
 using DataAccessLayer.Managers;
+using Faculty.Filters;
 using Faculty.Mappers;
 using Faculty.Models;
 using Microsoft.AspNet.Identity.Owin;
 
 namespace Faculty.Controllers
 {
+    [ExceptionFilter]
     public class ProfileController : Controller
     {
         private readonly IUserService _userService;

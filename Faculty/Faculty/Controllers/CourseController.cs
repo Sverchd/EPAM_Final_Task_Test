@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web.Mvc;
 using BusinessLogicLayer.Contracts;
 using BusinessLogicLayer.Models;
+using Faculty.Filters;
 using Faculty.Mappers;
 using Faculty.Models;
 using Faculty.Utils;
@@ -11,6 +12,7 @@ using Faculty.Utils;
 namespace Faculty.Controllers
 {
     [Authorize(Roles = "admin, student, teacher")]
+    [ExceptionFilter]
     public class CourseController : Controller
     {
         private readonly ICourseService _courseService;
@@ -130,9 +132,9 @@ namespace Faculty.Controllers
             }
             else
                 //use Get Theme by id
-                TempData["Error"] = $"Course with Name {viewCourse.name} already exists!";
+                TempData["Error"] = $"Course with Name {addCourseViewModel.Name} already exists!";
             //ModelState.AddModelError("Name", "Course already exists!");
-            Logger.Log.Info($"Course with Name - {viewCourse.name} wasn`t created, Course already exists!");
+            Logger.Log.Info($"Course with Name - {addCourseViewModel.Name} wasn`t created, Course already exists!");
             return RedirectToAction("Add");
         }
 

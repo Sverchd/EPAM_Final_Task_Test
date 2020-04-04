@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics.Eventing.Reader;
 using System.Linq;
 using BusinessLogicLayer.Contracts;
 using BusinessLogicLayer.Models;
@@ -52,7 +54,14 @@ namespace BusinessLogicLayer.Services
         /// <returns></returns>
         public Course AddCourse(Course course)
         {
-            return _courseRepository.AddCourse(course);
+            if (GetCourseByName(course.name) != null)
+            {
+                throw new Exception("Course already exists!");
+            }
+            else
+            {
+                return _courseRepository.AddCourse(course);
+            }
         }
 
         /// <summary>
@@ -87,11 +96,8 @@ namespace BusinessLogicLayer.Services
             {
                 return _courseRepository.EditCourse(course);
             }
-            else
-            {
-                return null;
+            return null;
             }
-        }
 
         /// <summary>
         ///     Method deletes course with provided id
@@ -164,11 +170,10 @@ namespace BusinessLogicLayer.Services
         //}
         public List<Mark> GetGradebookForCourse(int courseId)
         {
-            
             var marks = _courseRepository.GetAllMarks().Where(m => m.CourseId == courseId).ToList();
             var students = _userService.GetStudentsByCourse(courseId);
             foreach (var student in students)
-                if (!marks.Where(m => m.StudentUsername == student.Name).Any())
+                if (!marks.Any(m => m.StudentUsername == student.Name))
                     marks.Add(new Mark(courseId, student.Name,
                         null));
             return marks;

@@ -155,11 +155,11 @@ namespace DataAccessLayer.Repositories
         /// <returns></returns>
         public bool Register(int courseId, string username)
         {
-            var student = _facultyDbContext.Users.Include(u => u.Courses)
+            var student = _facultyDbContext.Users.Include(u => u.Scourses)
                 .SingleOrDefault(s => s.UserName == username);
             var course = _facultyDbContext.Courses.Include(c => c.Students)
                 .SingleOrDefault(c => c.CourseEntityId == courseId);
-            student.Courses.Add(course);
+            student.Scourses.Add(course);
             course.Students.Add(student);
             _facultyDbContext.SaveChanges();
             return true;

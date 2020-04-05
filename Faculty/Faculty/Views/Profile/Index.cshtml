@@ -12,12 +12,12 @@
                 <li class="nav-item">
                     <a href="" data-target="#profile" data-toggle="tab" class="nav-link active">Profile</a>
                 </li>
-                @if (Model.role == "Student")
-                {}
+                @if (Model.role != "admin")
+                {
                     <li class="nav-item">
                         <a href="" data-target="#courses" data-toggle="tab" class="nav-link">Courses</a>
                     </li>
-                
+                }
 
 
             </ul>
@@ -34,10 +34,9 @@
 
 
                     </div>
-                    <!--/row-->
                 </div>
-            @if (Model.role == "Student")
-            {}
+            @if (Model.role != "admin")
+            {
                 <div class="tab-pane" id="courses">
 
                     @{
@@ -57,26 +56,13 @@
                     }
                     @Html.Partial("CourseList", Model)
                 </div>
-            
+            }
                 </div>
         </div>
 
     </div>
 </div>
 <hr>
-
-
-
-@{
-    var s = ViewContext.RouteData.Values["action"].ToString();
-}
-@if (User.IsInRole("admin") && ViewContext.RouteData.Values["action"].ToString() == "List")
-{
-    <div class="row">
-        @Html.ActionLink("Add new Course", "Add", "Course", null, new {role = "button", @class = "btn btn-primary btn-lg active", style = "margin-bottom: 10px"})
-    </div>
-}
-
 
 <script type="text/javascript" src="~/Scripts/jquery-3.4.1.min.js"></script>
 <script type="text/javascript" src="~/Scripts/data-table/datatables.js"></script>

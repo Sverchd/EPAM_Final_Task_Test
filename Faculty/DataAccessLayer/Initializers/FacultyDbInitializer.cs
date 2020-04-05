@@ -95,7 +95,8 @@ namespace DataAccessLayer.Initializers
             var course = new CourseEntity(themes[0], "Physics", DateTime.Today, DateTime.Now);
             var course1 = new CourseEntity(themes[1], "Programming", new DateTime(2020, 4, 14),
                 new DateTime(2020, 8, 5));
-
+            course1.Teacher = context.Users
+                .SingleOrDefault(u => u.Email == "teacher@gmail.com");
             //Adding users to course
             course.Teacher = context.Users
                 .SingleOrDefault(u => u.Email == "teacher@gmail.com");
@@ -111,9 +112,12 @@ namespace DataAccessLayer.Initializers
             context.Courses.Add(course1);
 
             //Adding courses to users
-            context.Users?.Include("courses").SingleOrDefault(u => u.Email == "teacher@gmail.com")
+            context.Users.Include("courses").SingleOrDefault(u => u.Email == "teacher@gmail.com")
                 .Courses
                 .Add(course);
+            context.Users?.Include("courses").SingleOrDefault(u => u.Email == "teacher@gmail.com")
+                .Courses
+                .Add(course1);
             context.Users.Include("courses").SingleOrDefault(u => u.Email == "student@gmail.com").Scourses
                 .Add(course);
             context.Users.Include("courses").SingleOrDefault(u => u.Email == "student1@gmail.com").Scourses

@@ -121,19 +121,24 @@ namespace Faculty.Controllers
                 viewCourse.teacher = _userService.GetTeacherByEmail(addCourseViewModel.Teacher);
                 viewCourse.start = addCourseViewModel.Start;
                 viewCourse.end = addCourseViewModel.end;
-                _courseService.AddCourse(viewCourse);
-                if (ModelState.IsValid)
+                if (addCourseViewModel.Start.Day>=addCourseViewModel.end.Day)
                 {
-                    //do something
-                    TempData["Success"] = "Course successfully created!";
-                    Logger.Log.Info($"Course with Name - {viewCourse.name}, created successfully.");
-                    return RedirectToAction("List");
+                    TempData["Error"] = "End date should be bigger!";
                 }
+                else
+                {
+                    var newCourse = _courseService.AddCourse(viewCourse);
+                    if (ModelState.IsValid && newCourse != null)
+                    {
+                        TempData["Success"] = "Course successfully created!";
+                        Logger.Log.Info($"Course with Name - {viewCourse.name}, created successfully.");
+                        return RedirectToAction("List");
+                    }
+                }
+                
             }
             else
-                //use Get Theme by id
                 TempData["Error"] = $"Course with Name {addCourseViewModel.Name} already exists!";
-            //ModelState.AddModelError("Name", "Course already exists!");
             Logger.Log.Info($"Course with Name - {addCourseViewModel.Name} wasn`t created, Course already exists!");
             return RedirectToAction("Add");
         }
@@ -183,7 +188,12 @@ namespace Faculty.Controllers
             viewCourse.start = addCourseViewModel.Start;
             viewCourse.end = addCourseViewModel.end;
             var course = _courseService.EditCourse(viewCourse);
-            //use Get Theme by id
+            if (course != null)
+            {
+                TempData["Success"] = "Course successfully edited!";
+                Logger.Log.Info($"Course with Name - {viewCourse.name}, edited successfully.");
+                return RedirectToAction("List");
+            }
             ModelState.AddModelError("Name", "Course already exists!");
             return RedirectToAction("List");
         }

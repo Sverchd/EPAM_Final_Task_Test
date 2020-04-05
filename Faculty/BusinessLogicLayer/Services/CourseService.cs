@@ -56,7 +56,7 @@ namespace BusinessLogicLayer.Services
         {
             if (GetCourseByName(course.name) != null)
             {
-                throw new Exception("Course already exists!");
+                return null;
             }
             else
             {
@@ -87,14 +87,19 @@ namespace BusinessLogicLayer.Services
         /// <returns></returns>
         public Course EditCourse(Course course)
         {
-            var newCourse = _courseRepository.EditCourse(course);
-            if (newCourse.name==course.name&&
-                newCourse.theme.ThemeId==course.theme.ThemeId&&
-                newCourse.start==course.start&&
-                newCourse.end==course.end&&
-                newCourse.teacher.Name==course.teacher.Name)
+            var oldCourse = GetCourseById(course.CourseId);
+            if (oldCourse!=null)
             {
-                return _courseRepository.EditCourse(course);
+                var newCourse = _courseRepository.EditCourse(course);
+                if (newCourse != null &&
+                    newCourse.name == course.name &&
+                    newCourse.theme.ThemeId == course.theme.ThemeId &&
+                    newCourse.start == course.start &&
+                    newCourse.end == course.end &&
+                    newCourse.teacher.Name == course.teacher.Name)
+                {
+                    return newCourse;
+                }
             }
             return null;
             }

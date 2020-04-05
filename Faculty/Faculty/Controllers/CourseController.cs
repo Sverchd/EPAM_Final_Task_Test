@@ -212,6 +212,8 @@ namespace Faculty.Controllers
         public ActionResult Register(int CourseId)
         {
             var result = _courseService.Register(CourseId, User.Identity.Name);
+            TempData["Success"] = "User was successfully registered for course!";
+            Logger.Log.Info($"User with name - {User.Identity.Name}");
             return RedirectToAction("List");
         }
 

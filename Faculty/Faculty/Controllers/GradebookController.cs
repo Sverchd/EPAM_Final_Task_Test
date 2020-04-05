@@ -8,6 +8,7 @@ using BusinessLogicLayer.Models;
 using Faculty.Filters;
 using Faculty.Mappers;
 using Faculty.Models;
+using Faculty.Utils;
 
 namespace Faculty.Controllers
 {
@@ -29,28 +30,6 @@ namespace Faculty.Controllers
         public ActionResult List(int courseId)
         {
             var gradebook = _courseService.GetGradebookForCourse(courseId);
-            
-            //var vb = ViewBag;
-            //var students = _userService.GetStudentsByCourse(courseId);
-            //List<GradeViewModel> grades = new List<GradeViewModel>();
-            
-            //foreach (var student in students)
-            //{
-            //    if (!gradebook.Where(x => x.Key.id == student.id).Any())
-            //    {
-            //        gradebook.Add(student, null);
-            //    }
-            //}
-
-            
-            
-            //var viewgrade = new Dictionary<UserView, int>();
-            //var keys = gradebook.Keys.Select(k => k.Map()).ToList();
-            //var values = gradebook.Values.ToList();
-            //var viewGradebook = new GradebookViewModel(keys,values);
-            //var dic = keys.Select((k, i) => new { k, v = values[i] })
-             //   .ToDictionary(x => x.k, x => x.v);
-            
             var a = gradebook;
             List<GradeViewModel> grades= new List<GradeViewModel>();
             gradebook.ForEach(x=>grades.Add(new GradeViewModel(x.StudentUsername,courseId,x.Grade)));
@@ -71,7 +50,8 @@ namespace Faculty.Controllers
             {
                 marks.Add(new Mark(course,gradeViewModel.Student,gradeViewModel.Mark));
             }
-
+            TempData["Success"] = "Course successfully edited!";
+            Logger.Log.Info($"Teacher with Name - {User.Identity.Name}, edited gradebook for course with ID - {course}");
             _courseService.SaveGradebookForCourse(marks);
             return RedirectToAction("List",new { courseId = course });
         }

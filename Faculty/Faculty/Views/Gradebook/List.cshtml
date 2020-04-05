@@ -7,49 +7,50 @@
 <h2 style="text-align: center">List</h2>
 
 <section style="margin-left: auto; margin-right: auto">
+    @Html.Partial("~/Views/NotificationPartial.cshtml")
     @if (Model == null || !Model.Any())
     {
         <p>Here is no teachers :(</p>
     }
     else
     {
-        using (Html.BeginForm("Save", "Gradebook",FormMethod.Post))
+        using (Html.BeginForm("Save", "Gradebook", FormMethod.Post))
         {
             <table id="CourseListTable" class="table table-striped table-bordered" style="width: 100%">
                 <thead>
-                <tr>
-                    <th>
-                        Name
-                    </th>
-                    <th>
-                        Mark
-                    </th>
+                    <tr>
+                        <th>
+                            Name
+                        </th>
+                        <th>
+                            Mark
+                        </th>
 
 
-                </tr>
+                    </tr>
                 </thead>
                 <tbody>
 
 
-                @for (var i = 0; i < Model.Count; i++)
-                {
-                    <tr>
-                        <td>
-                            @Model[i].Student
-                            @Html.HiddenFor(modelItem => Model[i].Student)
-                            @Html.HiddenFor(modelItem => Model[i].CourseId)
+                    @for (var i = 0; i < Model.Count; i++)
+                    {
+                        <tr>
+                            <td>
+                                @Model[i].Student
+                                @Html.HiddenFor(modelItem => Model[i].Student)
+                                @Html.HiddenFor(modelItem => Model[i].CourseId)
 
-                        </td>
-                        <td>
+                            </td>
+                            <td>
 
-                            @Html.EditorFor(modelItem => Model[i].Mark)
-                            @Html.ValidationMessageFor(modelItem => Model[i].Mark, "", new { @class = "text-danger" })
-                        </td>
-                    </tr>
-                }
+                                @Html.EditorFor(modelItem => Model[i].Mark)
+                                @Html.ValidationMessageFor(modelItem => Model[i].Mark, "", new { @class = "text-danger" })
+                            </td>
+                        </tr>
+                    }
                 </tbody>
             </table>
-            <input type="submit" value="Save" class="btn btn-success" style="background-color: blue"/>
+            <input type="submit" value="Save" class="btn btn-success" style="background-color: blue" />
         }
     }
 

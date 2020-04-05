@@ -176,27 +176,26 @@ namespace DataAccessLayer.Repositories
 
             return marks;
         }
-
+        /// <summary>
+        /// Method saves all marks to context
+        /// </summary>
+        /// <param name="marks">list of marks</param>
+        /// <returns>list of saved marks</returns>
         public List<Mark> SaveMarks(List<Mark> marks)
         {
-            var Oldmarks = _facultyDbContext.Marks.Include(m => m.Course).Include(m => m.Student).ToList()
-                ;
-            dynamic d;
-            //marks.ForEach(x=>Oldmarks.Where(old=>old.Course.CourseEntityId==x.CourseId&&old.Student.Email==x.StudentUsername).ToList().ForEach(a=>a.Mark=x.Grade;\));
             foreach (var mark in _facultyDbContext.Marks)
                 _facultyDbContext.Marks.Remove(mark);
             _facultyDbContext.SaveChanges();
             foreach (var newMark in marks)
             {
-                var course = _facultyDbContext.Courses.Where(x => x.CourseEntityId == newMark.CourseId)
-                    .SingleOrDefault();
-                var student = _facultyDbContext.Users.Where(x => x.UserName == newMark.StudentUsername)
-                    .SingleOrDefault();
+                var course = _facultyDbContext.Courses
+                    .SingleOrDefault(x => x.CourseEntityId == newMark.CourseId);
+                var student = _facultyDbContext.Users
+                    .SingleOrDefault(x => x.UserName == newMark.StudentUsername);
                 _facultyDbContext.Marks.Add(new MarkEntity(course, student, newMark.Grade));
             }
 
             _facultyDbContext.SaveChanges();
-            //_facultyDbContext.Marks.Remove()
             var newMarks = _facultyDbContext.Marks.Include(m => m.Course).Include(m => m.Student).ToList()
                 .Select(x => x.Map()).ToList();
                 

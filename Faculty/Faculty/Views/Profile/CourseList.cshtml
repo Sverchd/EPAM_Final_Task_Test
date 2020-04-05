@@ -93,17 +93,18 @@
 
                         </td>
                     }
-                    <td>
-                        @{
-                            if (User.IsInRole("admin"))
-                            {
+
+                    @{
+                        if (User.IsInRole("admin"))
+                        {
+                            <td>
                                 <div style="float: right">
                                     @{
                                         var id = "exampleModal" + item.CourseEntityId;
                                         var hid = "#" + id;
                                     }
 
-                                    @Html.ActionLink("Edit", "Edit", "Course", new {CourseId = item.CourseEntityId}, new {role = "button", @class = "btn btn-success"})
+                                    @Html.ActionLink("Edit", "Edit", "Course", new { CourseId = item.CourseEntityId }, new { role = "button", @class = "btn btn-success" })
                                     <button type="button" class="btn btn-danger" data-toggle="modal" data-target="@hid">
                                         Delete
                                     </button>
@@ -121,7 +122,7 @@
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                    @Html.ActionLink("Delete", "Delete", "Course", new {CourseId = item.CourseEntityId}, new {@class = "btn btn-danger"})
+                                                    @Html.ActionLink("Delete", "Delete", "Course", new { CourseId = item.CourseEntityId }, new { @class = "btn btn-danger" })
 
                                                 </div>
                                             </div>
@@ -129,13 +130,14 @@
                                     </div>
 
                                 </div>
-                            }
-                            else if (User.IsInRole("student"))
+                            </td>
+                        }
+                        else if (User.IsInRole("student"))
 
-                            {
-                                var id = "exampleModal" + item.CourseEntityId;
-                                var hid = "#" + id;
-
+                        {
+                            var id = "exampleModal" + item.CourseEntityId;
+                            var hid = "#" + id;
+                            <td>
                                 <button type="button" class="btn btn-warning" data-toggle="modal" data-target="@hid">
                                     Leave
                                 </button>
@@ -153,23 +155,26 @@
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                @Html.ActionLink("Leave", "Leave", "Course", new {CourseId = item.CourseEntityId, username = User.Identity.Name}, new {@class = "btn btn-warning"})
+                                                @Html.ActionLink("Leave", "Leave", "Course", new { CourseId = item.CourseEntityId, username = User.Identity.Name }, new { @class = "btn btn-warning" })
 
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            }
-                            else if (User.IsInRole("teacher") && ViewBag.CourseStatus == "Finished")
-                            {
-                                @Html.ActionLink("Gradebook", "List", "Gradebook", new {courseId = item.CourseEntityId}, new {role = "button", @class = "btn btn-success", style = "float:right"})
-                            }
+                            </td>
                         }
-
-
+                        else if (User.IsInRole("teacher") && ViewBag.CourseStatus == "Finished")
+                        {
+                            <td>
+                                @Html.ActionLink("Gradebook", "List", "Gradebook", new { courseId = item.CourseEntityId }, new { role = "button", @class = "btn btn-success", style = "float:right" })
                     </td>
+                                }
+                                }
 
-                </tr>
+
+
+
+                        </tr>
             }
             </tbody>
         </table>

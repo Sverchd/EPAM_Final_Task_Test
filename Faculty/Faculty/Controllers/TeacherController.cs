@@ -4,6 +4,7 @@ using BusinessLogicLayer.Contracts;
 using Faculty.Filters;
 using Faculty.Mappers;
 using Faculty.Models;
+using Faculty.Utils;
 
 namespace Faculty.Controllers
 {
@@ -30,11 +31,7 @@ namespace Faculty.Controllers
             var teacherList = new TeacherListViewModel();
             var vb = ViewBag;
             var teachersListb = _userService.GetAllTeachers();
-            //if (isUser)
-            //{
             teacherList.Teachers = teachersListb.Select(x => x.Map()).ToList();
-
-            //}
             return View(teacherList);
         }
 
@@ -49,8 +46,14 @@ namespace Faculty.Controllers
         public ActionResult Add(AddUserViewModel user)
         {
             var result = _userService.AddTeacher(new UserView(user.Email, "teacher").MapFlat(), user.Password);
-            if (result) return RedirectToAction("List");
-            ModelState.AddModelError("Name", "User already exists!");
+            if (result != null)
+            {
+                TempData["Success"] = "Teacher successfully created!";
+                Logger.Log.Info($"Teacher with Name - {user.Email}, created successfully.");
+                return RedirectToAction("List");
+            }
+            TempData["Error"] = "There is a user with such name!";
+
             return View();
         }
 

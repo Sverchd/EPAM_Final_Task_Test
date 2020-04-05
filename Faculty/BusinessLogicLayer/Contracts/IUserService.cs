@@ -7,7 +7,7 @@ namespace BusinessLogicLayer.Contracts
     {
         List<User> GetAllTeachers();
 
-        bool AddTeacher(User teacher, string password);
+        User AddTeacher(User teacher, string password);
 
         bool DeleteTeacher(string email);
         User GetTeacherByEmail(string email);

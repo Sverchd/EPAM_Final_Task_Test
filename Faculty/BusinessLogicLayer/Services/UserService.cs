@@ -42,12 +42,16 @@ namespace BusinessLogicLayer.Services
         ///     Method adds(register) provided teacher
         /// </summary>
         /// <param name="teacher">teacher instance</param>
-        /// <param name="password">Passsword for teacher account</param>
+        /// <param name="password">Password for teacher account</param>
         /// <returns></returns>
-        public bool AddTeacher(User teacher, string password)
+        public User AddTeacher(User teacher, string password)
         {
-            var result = _userRepository.AddUser(teacher, "teacher", password);
-            return result;
+            if (_userRepository.GetAllStudents().SingleOrDefault(x => x.Email == teacher.Email) == null)
+            {
+                return _userRepository.AddUser(teacher, "teacher", password);
+            }
+            
+            return null;
         }
 
         /// <summary>

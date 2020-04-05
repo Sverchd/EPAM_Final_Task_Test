@@ -68,7 +68,7 @@ namespace DataAccessLayer.Repositories
         /// <param name="role"></param>
         /// <param name="password"></param>
         /// <returns></returns>
-        public bool AddUser(User user, string role, string password)
+        public User AddUser(User user, string role, string password)
         {
             var userManager = new AppUserManager(new UserStore<AppUser>(_facultyDbContext));
             var appUser = new AppUser {Email = user.Email, UserName = user.Name};
@@ -77,10 +77,10 @@ namespace DataAccessLayer.Repositories
             if (resultTeacher.Succeeded)
             {
                 userManager.AddToRole(appUser.Id, role);
-                return true;
+                return appUser.MapFlat();
             }
 
-            return false;
+            return null;
         }
 
         /// <summary>

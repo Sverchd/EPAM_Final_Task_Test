@@ -367,8 +367,6 @@
     <Content Include="Views\Theme\Edit.cshtml" />
     <Content Include="Views\Teacher\Add.cshtml" />
     <Content Include="Views\Theme\FormPartial.cshtml" />
-    <Content Include="Views\Teacher\FormPartial.cshtml" />
-    <Content Include="Views\Teacher\Edit.cshtml" />
     <Content Include="Views\Course\Edit.cshtml" />
     <Content Include="Views\Shared\_StudentLayout.cshtml" />
     <Content Include="Views\Course\ListByTeacher.cshtml" />

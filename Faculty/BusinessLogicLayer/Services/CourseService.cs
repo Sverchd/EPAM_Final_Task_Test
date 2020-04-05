@@ -88,7 +88,8 @@ namespace BusinessLogicLayer.Services
         public Course EditCourse(Course course)
         {
             var oldCourse = GetCourseById(course.CourseId);
-            if (oldCourse!=null)
+            var courseWithName = GetCourseByName(course.name);
+            if (courseWithName==null||courseWithName.CourseId==course.CourseId)
             {
                 var newCourse = _courseRepository.EditCourse(course);
                 if (newCourse != null &&

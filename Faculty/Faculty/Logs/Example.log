@@ -106,3 +106,68 @@
    в System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
    в System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass3_6.<BeginInvokeAction>b__4()
    в System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass3_1.<BeginInvokeAction>b__1(IAsyncResult asyncResult)
+2020-04-05 16:15:56,922  INFO  Course with ID - 2, deleted successfully.
+2020-04-05 16:16:02,322  INFO  Course with ID - 1, deleted successfully.
+2020-04-05 16:16:18,282  INFO  Theme with Name - Taste, created successfully.
+2020-04-05 16:18:05,914  INFO  Theme with Name - Taste, already exists!
+2020-04-05 16:18:06,984  INFO  Theme with Name - Taste, already exists!
+2020-04-05 16:18:08,855  INFO  Theme with Name - Tastes, created successfully.
+2020-04-05 16:18:21,879  INFO  Course with Name - Taste wasn`t created, Course already exists!
+2020-04-05 16:18:31,190  INFO  Course with Name - Taste, created successfully.
+2020-04-05 16:18:42,612  INFO  Course with Name - Taste wasn`t created, Course already exists!
+2020-04-05 16:18:53,640  INFO  Course with Name - Languagess, created successfully.
+2020-04-05 16:18:59,334  INFO  Theme with Name - Programmings, created successfully.
+2020-04-05 16:19:06,640  INFO  Theme with Name - Programmings, already exists!
+2020-04-05 16:19:09,386  INFO  Theme with Name - Programmingsssssss, created successfully.
+2020-04-05 16:19:42,119  INFO  Theme with Name - Taste, already exists!
+2020-04-05 16:19:45,302  INFO  Theme with Name - Tastess, created successfully.
+2020-04-05 16:19:53,607  INFO  Theme with Name - Taste, already exists!
+2020-04-05 16:20:20,409  INFO  Course with Name - Taste, edited successfully.
+2020-04-05 16:44:06,534  INFO  Course with Name - Taste wasn`t created, Course already exists!
+2020-04-05 16:44:16,019  INFO  Course with Name - Taste wasn`t created, Course already exists!
+2020-04-05 16:44:23,888  INFO  Course with Name - Taste wasn`t created, Course already exists!
+2020-04-05 16:45:26,639  INFO  Course with Name - Taste wasn`t created, Course already exists!
+2020-04-05 16:45:36,278  INFO  Course with Name - Taste wasn`t created, Course already exists!
+2020-04-05 16:46:27,009  INFO  Course with Name - Taste wasn`t created, Course already exists!
+2020-04-05 16:48:10,522  INFO  Course with Name - Taste wasn`t created, Course already exists!
+2020-04-05 16:48:17,146  INFO  Course with Name - Taste, created successfully.
+2020-04-05 16:53:10,651  ERROR Requested url: https://localhost:44369/Course/Edit exception thrown: 
+ The parameters dictionary contains a null entry for parameter 'CourseId' of non-nullable type 'System.Int32' for method 'System.Web.Mvc.ActionResult Edit(Int32)' in 'Faculty.Controllers.CourseController'. An optional parameter must be a reference type, a nullable type, or be declared as an optional parameter.
+»м€ параметра: parameters 
+    в System.Web.Mvc.ActionDescriptor.ExtractParameterFromDictionary(ParameterInfo parameterInfo, IDictionary`2 parameters, MethodInfo methodInfo)
+   в System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   в System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c.<BeginInvokeSynchronousActionMethod>b__9_0(IAsyncResult asyncResult, ActionInvocation innerInvokeState)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`2.CallEndDelegate(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<>c__DisplayClass11_0.<InvokeActionMethodFilterAsynchronouslyRecursive>b__0()
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<>c__DisplayClass11_2.<InvokeActionMethodFilterAsynchronouslyRecursive>b__2()
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass7_0.<BeginInvokeActionMethodWithFilters>b__1(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.CallEndDelegate(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass3_6.<BeginInvokeAction>b__4()
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass3_1.<BeginInvokeAction>b__1(IAsyncResult asyncResult)
+2020-04-05 16:53:18,441  ERROR Requested url: https://localhost:44369/Course/Edit exception thrown: 
+ The parameters dictionary contains a null entry for parameter 'CourseId' of non-nullable type 'System.Int32' for method 'System.Web.Mvc.ActionResult Edit(Int32)' in 'Faculty.Controllers.CourseController'. An optional parameter must be a reference type, a nullable type, or be declared as an optional parameter.
+»м€ параметра: parameters 
+    в System.Web.Mvc.ActionDescriptor.ExtractParameterFromDictionary(ParameterInfo parameterInfo, IDictionary`2 parameters, MethodInfo methodInfo)
+   в System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   в System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c.<BeginInvokeSynchronousActionMethod>b__9_0(IAsyncResult asyncResult, ActionInvocation innerInvokeState)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`2.CallEndDelegate(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<>c__DisplayClass11_0.<InvokeActionMethodFilterAsynchronouslyRecursive>b__0()
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<>c__DisplayClass11_2.<InvokeActionMethodFilterAsynchronouslyRecursive>b__2()
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass7_0.<BeginInvokeActionMethodWithFilters>b__1(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.CallEndDelegate(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass3_6.<BeginInvokeAction>b__4()
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass3_1.<BeginInvokeAction>b__1(IAsyncResult asyncResult)
+2020-04-05 17:15:00,138  INFO  Course with Name - Programming, edited successfully.
+2020-04-05 17:15:08,367  INFO  Course with Name - Programming, edited successfully.
+2020-04-05 17:15:34,457  INFO  Course with ID - 2, deleted successfully.
+2020-04-05 17:16:11,186  INFO  Course with Name - Taste, created successfully.

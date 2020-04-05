@@ -6,7 +6,8 @@
 <h2 style="text-align: center">List</h2>
 
 <section style="margin-left: auto; margin-right: auto">
-    @if (Model == null || Model.Themes.Count() == 0)
+    @Html.Partial("~/Views/NotificationPartial.cshtml")
+    @if (Model == null || !Model.Themes.Any())
     {
         <p>Here is no courses :(</p>
     }
@@ -14,77 +15,77 @@
     {
         <table id="CourseListTable" class="table table-striped table-bordered" style="width: 100%">
             <thead>
-            <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.Themes[0].Name)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Themes[0].CourseCount)
-                </th>
-                @if (User.IsInRole("admin"))
-                {
-                    <th>
-                        Controls
-                    </th>
-                }
-
-            </tr>
-            </thead>
-            <tbody>
-            @foreach (var item in Model.Themes)
-            {
                 <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Name)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.CourseCount)
-                        @Html.ActionLink("List", "ListByTheme", "Course", new {themeId = item.ThemeEntityId}, new {role = "button", @class = "btn btn-success", style = "float:right"})
-                    </td>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Themes[0].Name)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Themes[0].CourseCount)
+                    </th>
                     @if (User.IsInRole("admin"))
                     {
-                        <td>
-                            <div style="float: right">
-                                @{
-                                    var id = "exampleModal" + item.ThemeEntityId;
-                                    var hid = "#" + id;
-                                }
-                                @Html.ActionLink("Edit", "Edit", "Theme", new {themeId = item.ThemeEntityId}, new {role = "button", @class = "btn btn-success"})
-                                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="@hid">
-                                    Delete
-                                </button>
-                                <div class="modal fade" id="@id" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="exampleModalLabel">Delete</h5>
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                    <span aria-hidden="true">&times;</span>
-                                                </button>
-                                            </div>
-                                            <div class="modal-body">
-                                                Are you sure want to delete?
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                @Html.ActionLink("Delete", "Delete", "Theme", new {themeId = item.ThemeEntityId}, new {@class = "btn btn-danger"})
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-
-                        </td>
+                        <th>
+                            Controls
+                        </th>
                     }
 
                 </tr>
-            }
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Themes)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CourseCount)
+                            @Html.ActionLink("List", "ListByTheme", "Course", new { themeId = item.ThemeEntityId }, new { role = "button", @class = "btn btn-success", style = "float:right" })
+                        </td>
+                        @if (User.IsInRole("admin"))
+                        {
+                            <td>
+                                <div style="float: right">
+                                    @{
+                                        var id = "exampleModal" + item.ThemeEntityId;
+                                        var hid = "#" + id;
+                                    }
+                                    @Html.ActionLink("Edit", "Edit", "Theme", new { themeId = item.ThemeEntityId }, new { role = "button", @class = "btn btn-success" })
+                                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="@hid">
+                                        Delete
+                                    </button>
+                                    <div class="modal fade" id="@id" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabel">Delete</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    Are you sure want to delete?
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                    @Html.ActionLink("Delete", "Delete", "Theme", new { themeId = item.ThemeEntityId }, new { @class = "btn btn-danger" })
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </td>
+                        }
+
+                    </tr>
+                }
             </tbody>
         </table>
     }
-    @Html.ActionLink("Add new Theme", "Add", "Theme", null, new {role = "button", @class = "btn btn-primary btn-lg active", style = "margin-bottom: 10px"})
+    @Html.ActionLink("Add new Theme", "Add", "Theme", null, new { role = "button", @class = "btn btn-primary btn-lg active", style = "margin-bottom: 10px" })
 
 
 </section>

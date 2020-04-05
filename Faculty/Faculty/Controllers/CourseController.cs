@@ -121,7 +121,7 @@ namespace Faculty.Controllers
                 viewCourse.teacher = _userService.GetTeacherByEmail(addCourseViewModel.Teacher);
                 viewCourse.start = addCourseViewModel.Start;
                 viewCourse.end = addCourseViewModel.end;
-                if (addCourseViewModel.Start>DateTime.Now||addCourseViewModel.Start.Day>=addCourseViewModel.end.Day)
+                if (addCourseViewModel.Start<DateTime.Now||addCourseViewModel.Start>=addCourseViewModel.end)
                 {
                     TempData["Error"] = "Wrong dates!";
                 }
@@ -187,7 +187,7 @@ namespace Faculty.Controllers
             viewCourse.teacher = _userService.GetTeacherByEmail(addCourseViewModel.Teacher);
             viewCourse.start = addCourseViewModel.Start;
             viewCourse.end = addCourseViewModel.end;
-            if (addCourseViewModel.Start > DateTime.Now || addCourseViewModel.Start.Day >= addCourseViewModel.end.Day)
+            if (addCourseViewModel.Start < DateTime.Now || addCourseViewModel.Start >= addCourseViewModel.end)
             {
                 TempData["Error"] = "Wrong dates!";
             }
@@ -200,15 +200,21 @@ namespace Faculty.Controllers
                     Logger.Log.Info($"Course with Name - {viewCourse.name}, edited successfully.");
                     return RedirectToAction("List");
                 } 
-                TempData["Error"] = "Some error";
+                TempData["Error"] = "There is a course with such name!";
             }
-            return RedirectToAction("Add");
+            return RedirectToAction("List");
         }
 
         [HttpGet]
         public ActionResult Delete(int courseId)
         {
-            _courseService.DeleteCourse(courseId);
+            if (_courseService.DeleteCourse(courseId))
+            {
+                TempData["Success"] = "Course was successfully deleted!";
+                Logger.Log.Info($"Course with ID - {courseId}, deleted successfully.");
+            }
+            else
+                TempData["Error"] = "No such course!";
             return RedirectToAction("List");
         }
 

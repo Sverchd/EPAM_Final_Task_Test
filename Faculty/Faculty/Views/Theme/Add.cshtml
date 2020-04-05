@@ -2,22 +2,23 @@
 @{
     ViewBag.Title = "Add";
 }
-<section>
-    <h2 style="text-align: center">Add</h2>
+    <section>
+        <h2 style="text-align: center">Add</h2>
 
-    @using (Html.BeginForm(FormMethod.Post))
-    {
-        @Html.AntiForgeryToken()
-        <div class="col-md-10">
-            @Html.ValidationSummary(true, "", new {@class = "text-danger"})
-            @Html.HiddenFor(m => m.ThemeEntityId)
-            <div class="form-group">
-                @Html.LabelFor(m => m.Name, new {@class = "col-md-2"})
-                @Html.TextBoxFor(m => m.Name, new {@class = "form-control"})
-                @Html.ValidationMessageFor(m => m.Name, "", new {@class = "text-danger"})
+        @using (Html.BeginForm(FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+            <div class="col-md-10">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @Html.HiddenFor(m => m.ThemeEntityId)
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Name, new { @class = "col-md-2" })
+                    @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.Name, "", new { @class = "text-danger" })
+                </div>
             </div>
-        </div>
-        <a class="btn btn-default" role="button" href="@Url.Action("List", "Theme")"><i class="fas fa-arrow-left"></i> Back to List</a>
-        <input type="submit" value="Create" class="btn btn-success" style="background-color: blue"/>
-    }
-</section>
+            @Html.Partial("~/Views/NotificationPartial.cshtml")
+            <a class="btn btn-default" role="button" href="@Url.Action("List", "Theme")"><i class="fas fa-arrow-left"></i> Back to List</a>
+            <input type="submit" value="Create" class="btn btn-success" style="background-color: blue" />
+        }
+    </section>

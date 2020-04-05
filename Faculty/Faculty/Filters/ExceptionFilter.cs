@@ -20,8 +20,8 @@ namespace Faculty.Filters
             context.Result = new RedirectToRouteResult(
                 new RouteValueDictionary
                 {
-                    { "controller", "Home"},
-                    { "action", "Index"},
+                    { "controller", "Error"},
+                    { "action", "InternalError"},
                 }
             );
         }

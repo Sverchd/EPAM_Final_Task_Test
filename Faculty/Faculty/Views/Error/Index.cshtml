@@ -1,0 +1,23 @@
+﻿@{
+    Layout = null;
+}
+@Scripts.Render("~/bundles/bootstrap")
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link type="text/css" rel="stylesheet" href="~/Content/bootstrap.min.css" />
+    <title>@ViewBag.Error</title>
+</head>
+<body>
+    <div class="container text-center" style="padding-top: 13em;font-size: 26px;">
+        <div class="text-center">Oh My!!! Error!</div>
+        <img alt="error" src="~/Content/images/error.png" />
+        <div class="text-center">
+            @ViewBag.Error
+        </div>
+        <div class="form-group text-center">@Html.ActionLink("Back to home", "Index", new { controller = "Home" })</div>
+    </div>
+</body>
+</html>

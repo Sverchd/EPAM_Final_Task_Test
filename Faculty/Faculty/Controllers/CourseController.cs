@@ -121,9 +121,9 @@ namespace Faculty.Controllers
                 viewCourse.teacher = _userService.GetTeacherByEmail(addCourseViewModel.Teacher);
                 viewCourse.start = addCourseViewModel.Start;
                 viewCourse.end = addCourseViewModel.end;
-                if (addCourseViewModel.Start.Day>=addCourseViewModel.end.Day)
+                if (addCourseViewModel.Start>DateTime.Now||addCourseViewModel.Start.Day>=addCourseViewModel.end.Day)
                 {
-                    TempData["Error"] = "End date should be bigger!";
+                    TempData["Error"] = "Wrong dates!";
                 }
                 else
                 {
@@ -187,21 +187,28 @@ namespace Faculty.Controllers
             viewCourse.teacher = _userService.GetTeacherByEmail(addCourseViewModel.Teacher);
             viewCourse.start = addCourseViewModel.Start;
             viewCourse.end = addCourseViewModel.end;
-            var course = _courseService.EditCourse(viewCourse);
-            if (course != null)
+            if (addCourseViewModel.Start > DateTime.Now || addCourseViewModel.Start.Day >= addCourseViewModel.end.Day)
             {
-                TempData["Success"] = "Course successfully edited!";
-                Logger.Log.Info($"Course with Name - {viewCourse.name}, edited successfully.");
-                return RedirectToAction("List");
+                TempData["Error"] = "Wrong dates!";
             }
-            ModelState.AddModelError("Name", "Course already exists!");
-            return RedirectToAction("List");
+            else
+            {
+                var course = _courseService.EditCourse(viewCourse);
+                if (course != null)
+                {
+                    TempData["Success"] = "Course successfully edited!";
+                    Logger.Log.Info($"Course with Name - {viewCourse.name}, edited successfully.");
+                    return RedirectToAction("List");
+                } 
+                TempData["Error"] = "Some error";
+            }
+            return RedirectToAction("Add");
         }
 
         [HttpGet]
-        public ActionResult Delete(int CourseId)
+        public ActionResult Delete(int courseId)
         {
-            _courseService.DeleteCourse(CourseId);
+            _courseService.DeleteCourse(courseId);
             return RedirectToAction("List");
         }
 

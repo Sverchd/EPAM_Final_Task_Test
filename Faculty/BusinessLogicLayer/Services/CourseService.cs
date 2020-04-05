@@ -111,7 +111,14 @@ namespace BusinessLogicLayer.Services
         /// <returns></returns>
         public bool DeleteCourse(int courseId)
         {
-            return _courseRepository.DeleteCourse(courseId);
+            var course = GetCourseById(courseId);
+            if (course!=null)
+            {
+                _courseRepository.DeleteCourse(courseId);
+                return true;
+            }
+
+            return false;
         }
 
         /// <summary>

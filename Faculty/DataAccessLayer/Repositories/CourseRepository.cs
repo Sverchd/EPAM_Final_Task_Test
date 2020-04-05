@@ -139,6 +139,9 @@ namespace DataAccessLayer.Repositories
             var usersWithCourse =
                 _facultyDbContext.Users.Include(x => x.Courses).Where(x => x.Courses.Contains(course));
             usersWithCourse.Select(x => x.Courses.Remove(course));
+            
+            var marks = _facultyDbContext.Marks.Where(m => m.Course.CourseEntityId == courseId);
+            _facultyDbContext.Marks.RemoveRange(marks);
             _facultyDbContext.Courses.Remove(course);
             _facultyDbContext.SaveChanges();
             return true;

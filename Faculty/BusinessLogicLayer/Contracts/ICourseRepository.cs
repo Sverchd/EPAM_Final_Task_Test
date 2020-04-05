@@ -6,7 +6,7 @@ namespace BusinessLogicLayer.Contracts
     public interface ICourseRepository
     {
         List<Course> GetAllCourses();
-        List<Course> GetCoursesByTheme(Theme theme);
+        //List<Course> GetCoursesByTheme(Theme theme);
         Course AddCourse(Course course);
         Course GetCourseById(int id);
         Course EditCourse(Course course);

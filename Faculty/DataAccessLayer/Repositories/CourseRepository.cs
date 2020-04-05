@@ -35,14 +35,14 @@ namespace DataAccessLayer.Repositories
         /// </summary>
         /// <param name="theme">selected theme</param>
         /// <returns>list of selected themes</returns>
-        public List<Course> GetCoursesByTheme(Theme theme)
-        {
-            var entityCourses = _facultyDbContext.Courses
-                .Include(x => x.Theme).Include(x => x.Students).Include(x => x.Teacher)
-                .Where(x => x.Theme.Name == theme.Name).ToList();
-            var courses = entityCourses.Select(x => x.Map()).ToList();
-            return courses;
-        }
+        //public List<Course> GetCoursesByTheme(Theme theme)
+        //{
+        //    var entityCourses = _facultyDbContext.Courses
+        //        .Include(x => x.Theme).Include(x => x.Students).Include(x => x.Teacher)
+        //        .Where(x => x.Theme.Name == theme.Name).ToList();
+        //    var courses = entityCourses.Select(x => x.Map()).ToList();
+        //    return courses;
+        //}
 
         /// <summary>
         ///     Method adds provided course to context

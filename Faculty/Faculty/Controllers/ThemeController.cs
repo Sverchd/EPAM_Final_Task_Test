@@ -29,17 +29,11 @@ namespace Faculty.Controllers
             var themeList = new ThemeListViewModel();
             var vb = ViewBag;
             var themeListb = _themeService.GetAllThemes();
-            //if (isUser)
-            //{
             foreach (var theme in themeListb)
             {
-                //_themeService.GetFilteredCoursesByTheme(Theme);
-                var count = _courseService.GetCoursesByTheme(theme).Count();
+                var count = _courseService.GetCoursesByTheme(theme.ThemeId).Count();
                 themeList.Themes.Add(theme.Map(count));
             }
-
-            //}
-
             return View(themeList);
         }
 

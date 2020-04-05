@@ -32,7 +32,7 @@ namespace Faculty.Controllers
         {
             var courseList = new CourseListViewModel();
             var theme = _themeService.GetThemeById(themeId);
-            var courses = _courseService.GetCoursesByTheme(theme);
+            var courses = _courseService.GetCoursesByTheme(themeId);
             courseList.Courses = courses.Select(x => x.Map()).ToList();
             ViewBag.Title = "Courses of " + theme.Name;
             return View("List", courseList);
@@ -65,19 +65,9 @@ namespace Faculty.Controllers
             var courseList = new CourseListViewModel();
             var vb = ViewBag;
             var courseListb = _courseService.GetAllCourses();
-            //if (isUser)
-            //{
-            //courseList.user = _userService.get
             var clist = courseListb.Select(x => x.Map()).ToList();
             courseList.Courses = clist;
-            //TODO: use mapper
-            // foreach (var course in courseListb)
-            //  {
-            //
-            //        courseList.Courses.Add(new CourseView(course.CourseId,new ThemeView(course.Theme.Name), course.name,course.start,course.end));
-            //     }
 
-            //}
             ViewBag.Title = "List";
             if (email != null)
                 courseList.User = _userService.GetStudentByEmail(email).Map();

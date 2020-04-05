@@ -35,8 +35,17 @@ namespace BusinessLogicLayer.Services
         /// <returns></returns>
         public Theme Edit(Theme theme)
         {
-            var resTheme = _themeRepository.Edit(theme);
-            return resTheme;
+            var oldTheme = GetThemeById(theme.ThemeId);
+            var themeWithName = GetThemeByName(theme.Name);
+
+            if (themeWithName == null || themeWithName.ThemeId == theme.ThemeId)
+            {
+
+                return _themeRepository.Edit(theme);
+                
+            }
+            
+            return null;
         }
 
         /// <summary>
@@ -51,10 +60,6 @@ namespace BusinessLogicLayer.Services
             {
                 return null;
             }
-            //TODO: Get all themes
-            //TODO: Check if exists
-            //TODO: if not exists - delete
-
             var result = _themeRepository.AddTheme(theme);
             return result;
         }
@@ -66,8 +71,12 @@ namespace BusinessLogicLayer.Services
         /// <returns>theme with selected id</returns>
         public Theme GetThemeById(int id)
         {
-            var theme = _themeRepository.GetAllThemes().FirstOrDefault(x => x.ThemeId == id);
-            return theme;
+            return _themeRepository.GetAllThemes().FirstOrDefault(x => x.ThemeId == id);
+        }
+
+        public Theme GetThemeByName(string themeName)
+        {
+            return _themeRepository.GetAllThemes().FirstOrDefault(x => x.Name == themeName);
         }
 
         /// <summary>

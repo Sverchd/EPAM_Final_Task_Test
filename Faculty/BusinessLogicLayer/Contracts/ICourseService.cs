@@ -7,7 +7,7 @@ namespace BusinessLogicLayer.Contracts
     public interface ICourseService
     {
         List<Course> GetAllCourses();
-        List<Course> GetCoursesByTheme(Theme theme);
+        List<Course> GetCoursesByTheme(int themeId);
         Course AddCourse(Course course);
         Course GetCourseById(int id);
         Course EditCourse(Course course);

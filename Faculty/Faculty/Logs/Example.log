@@ -171,3 +171,15 @@
 2020-04-05 17:15:08,367  INFO  Course with Name - Programming, edited successfully.
 2020-04-05 17:15:34,457  INFO  Course with ID - 2, deleted successfully.
 2020-04-05 17:16:11,186  INFO  Course with Name - Taste, created successfully.
+2020-04-05 17:17:58,059  INFO  Theme with Name - Taste, created successfully.
+2020-04-05 17:18:00,405  INFO  Theme with Name - Taste, already exists!
+2020-04-05 17:19:39,456  INFO  Theme with Name - Taste, modified.
+2020-04-05 17:19:43,074  INFO  Theme with Name - Taste, modified.
+2020-04-05 17:19:50,312  INFO  Theme with Name - Science, modified.
+2020-04-05 17:30:38,527  INFO  Course with Name - Physics, edited successfully.
+2020-04-05 17:34:07,222  INFO  Course with Name - Taste wasn`t created, Course already exists!
+2020-04-05 17:34:15,294  INFO  Course with Name - Taste, created successfully.
+2020-04-05 17:54:12,819  INFO  Theme with Name - Taste, created successfully.
+2020-04-05 17:54:15,685  INFO  Theme with Name - Taste, already exists!
+2020-04-05 17:54:34,165  INFO  Course with Name - Taste, created successfully.
+2020-04-05 17:54:56,769  INFO  Course with Name - Taste wasn`t created, Course already exists!

@@ -37,13 +37,13 @@ namespace BusinessLogicLayer.Services
         /// <summary>
         ///     Method gets all courses that belongs to requested theme
         /// </summary>
-        /// <param name="theme">selected theme</param>
+        /// <param name="themeId">selected theme</param>
         /// <returns>Returns courses of selected theme</returns>
-        public List<Course> GetCoursesByTheme(Theme theme)
+        public List<Course> GetCoursesByTheme(int themeId)
         {
             var courses = _courseRepository.GetAllCourses();
             courses.ForEach(x => x.length = (x.end - x.start).Days);
-            var resultCourses = courses.Where(x => x.theme.Name == theme.Name).ToList();
+            var resultCourses = courses.Where(x => x.theme.ThemeId == themeId).ToList();
             return resultCourses;
         }
 

@@ -12,5 +12,6 @@ namespace BusinessLogicLayer.Contracts
         bool DeleteTheme(int id);
         Theme Edit(Theme theme);
         Theme GetThemeById(int id);
+        Theme GetThemeByName(string themeName);
     }
 }

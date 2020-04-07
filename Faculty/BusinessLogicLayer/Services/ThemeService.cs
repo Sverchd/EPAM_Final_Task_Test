@@ -32,7 +32,7 @@ namespace BusinessLogicLayer.Services
         ///     Method saves edited theme
         /// </summary>
         /// <param name="theme">Edited theme</param>
-        /// <returns></returns>
+        /// <returns>Theme that was edited</returns>
         public Theme Edit(Theme theme)
         {
             var oldTheme = GetThemeById(theme.ThemeId);
@@ -42,9 +42,7 @@ namespace BusinessLogicLayer.Services
             {
 
                 return _themeRepository.Edit(theme);
-                
             }
-            
             return null;
         }
 
@@ -52,7 +50,7 @@ namespace BusinessLogicLayer.Services
         ///     Method adds provided themes
         /// </summary>
         /// <param name="theme">Theme that needed to be added</param>
-        /// <returns></returns>
+        /// <returns>Theme that was added</returns>
         public Theme AddTheme(Theme theme)
         {
             var themes =_themeRepository.GetAllThemes();
@@ -73,7 +71,11 @@ namespace BusinessLogicLayer.Services
         {
             return _themeRepository.GetAllThemes().FirstOrDefault(x => x.ThemeId == id);
         }
-
+        /// <summary>
+        /// Method gets theme with provided name
+        /// </summary>
+        /// <param name="themeName"></param>
+        /// <returns>theme with selected name</returns>
         public Theme GetThemeByName(string themeName)
         {
             return _themeRepository.GetAllThemes().FirstOrDefault(x => x.Name == themeName);
@@ -83,7 +85,7 @@ namespace BusinessLogicLayer.Services
         ///     Deletes theme with provided id
         /// </summary>
         /// <param name="themeId">id of selected theme</param>
-        /// <returns></returns>
+        /// <returns>result of operation</returns>
         public bool DeleteTheme(int themeId)
         {
             var res = _themeRepository.DeleteTheme(themeId);

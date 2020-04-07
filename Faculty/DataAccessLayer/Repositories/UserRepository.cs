@@ -62,6 +62,25 @@ namespace DataAccessLayer.Repositories
         }
 
         /// <summary>
+        ///     Method gets all students from context
+        /// </summary>
+        /// <returns>list of students</returns>
+        public List<User> GetAllBanned()
+        {
+            var role = _facultyDbContext.Roles.SingleOrDefault(m => m.Name == "banned");
+            var userIds = role.Users
+                .Select(y => y.UserId)
+                .ToList();
+
+            var entityBanned = _facultyDbContext.Users
+                .Include(us => us.Scourses)
+                .Where(us => userIds.Contains(us.Id))
+                .ToList();
+            var resultBanned = entityBanned.AsEnumerable().Select(x => x.Map()).ToList();
+            return resultBanned;
+        }
+
+        /// <summary>
         ///     Method adds (registers) provided user to context
         /// </summary>
         /// <param name="user"></param>
@@ -99,6 +118,22 @@ namespace DataAccessLayer.Repositories
             var user = userManager.FindByName(email);
             userManager.Delete(user);
             return false;
+        }
+        public User Ban(string username)
+        {
+            var user = _facultyDbContext.Users.SingleOrDefault(x => x.UserName == username);
+            var userManager = new AppUserManager(new UserStore<AppUser>(_facultyDbContext));
+            userManager.RemoveFromRole(user.Id, "student");
+            userManager.AddToRole(user.Id, "banned");
+            return user.MapFlat();
+        }
+        public User Activate(string username)
+        {
+            var user = _facultyDbContext.Users.SingleOrDefault(x => x.UserName == username);
+            var userManager = new AppUserManager(new UserStore<AppUser>(_facultyDbContext));
+            userManager.RemoveFromRole(user.Id, "banned");
+            userManager.AddToRole(user.Id, "student");
+            return user.MapFlat();
         }
     }
 }

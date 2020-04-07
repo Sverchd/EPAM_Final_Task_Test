@@ -14,5 +14,8 @@ namespace BusinessLogicLayer.Contracts
         List<User> GetAllStudents();
         User GetStudentByEmail(string email);
         List<User> GetStudentsByCourse(int courseId);
+        List<User> GetAllBanned();
+        User Ban(string username);
+        User Activate(string username);
     }
 }

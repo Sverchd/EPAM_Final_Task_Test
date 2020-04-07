@@ -23,19 +23,17 @@ namespace Faculty.Controllers
         {
         }
 
-        public DataAccessLayer.Interfaces.IUserService UserManager
-        {
-            get => _userManager ?? HttpContext.GetOwinContext().GetUserManager<AppUserManager>();
-            private set => _userManager = value;
-        }
-
         public ProfileController(IUserService userService, ICourseService courseService)
         {
             _userService = userService;
             _courseService = courseService;
         }
 
-        // GET: Profile
+        /// <summary>
+        /// action for index page of profile
+        /// </summary>
+        /// <returns>view of profile</returns>
+        [Authorize]
         public ActionResult Index()
         {
             var courses = new List<CourseView>();
@@ -60,16 +58,12 @@ namespace Faculty.Controllers
                 profileModel.CoursesFinished = courses.Where(x => x.End < DateTime.Now).ToList();
                 profileModel.CoursesInProgress =
                     courses.Where(x => x.Start < DateTime.Now && x.End > DateTime.Now).ToList();
-                //courses = _userService.GetTeacherByEmail(User.Identity.Name).Courses.Select(c => c.Map()).ToList();
             }
             else if (User.IsInRole("admin"))
             {
                 profileModel.role = "Admin";
             }
-
-            
             profileModel.Email = User.Identity.Name;
-
             return View(profileModel);
         }
     }

@@ -29,8 +29,8 @@ namespace BusinessLogicLayer.Services
         /// <returns>All the courses</returns>
         public List<Course> GetAllCourses()
         {
-            var courses = _courseRepository.GetAllCourses().Where(c => c.theme.Name != null).ToList();
-            courses.ForEach(x => x.length = (x.end - x.start).Days);
+            var courses = _courseRepository.GetAllCourses().Where(c => c.Theme.Name != null).ToList();
+            courses.ForEach(x => x.Length = (x.End - x.Start).Days);
             return courses;
         }
 
@@ -42,8 +42,8 @@ namespace BusinessLogicLayer.Services
         public List<Course> GetCoursesByTheme(int themeId)
         {
             var courses = _courseRepository.GetAllCourses();
-            courses.ForEach(x => x.length = (x.end - x.start).Days);
-            var resultCourses = courses.Where(x => x.theme.ThemeId == themeId).ToList();
+            courses.ForEach(x => x.Length = (x.End - x.Start).Days);
+            var resultCourses = courses.Where(x => x.Theme.ThemeId == themeId).ToList();
             return resultCourses;
         }
 
@@ -51,10 +51,10 @@ namespace BusinessLogicLayer.Services
         ///     Methods adds a new course
         /// </summary>
         /// <param name="course">Course needed to add</param>
-        /// <returns></returns>
+        /// <returns>Course that was created</returns>
         public Course AddCourse(Course course)
         {
-            if (GetCourseByName(course.name) != null)
+            if (GetCourseByName(course.Name) != null)
             {
                 return null;
             }
@@ -77,27 +77,27 @@ namespace BusinessLogicLayer.Services
         public Course GetCourseByName(string name)
         {
             var courses = _courseRepository.GetAllCourses();
-            var course = courses.SingleOrDefault(x => x.name == name);
+            var course = courses.SingleOrDefault(x => x.Name == name);
             return course;
         }
         /// <summary>
         ///     Method updates provided course
         /// </summary>
         /// <param name="course">provided course</param>
-        /// <returns></returns>
+        /// <returns>Course that was edited</returns>
         public Course EditCourse(Course course)
         {
             var oldCourse = GetCourseById(course.CourseId);
-            var courseWithName = GetCourseByName(course.name);
+            var courseWithName = GetCourseByName(course.Name);
             if (courseWithName==null||courseWithName.CourseId==course.CourseId)
             {
                 var newCourse = _courseRepository.EditCourse(course);
                 if (newCourse != null &&
-                    newCourse.name == course.name &&
-                    newCourse.theme.ThemeId == course.theme.ThemeId &&
-                    newCourse.start == course.start &&
-                    newCourse.end == course.end &&
-                    newCourse.teacher.Name == course.teacher.Name)
+                    newCourse.Name == course.Name &&
+                    newCourse.Theme.ThemeId == course.Theme.ThemeId &&
+                    newCourse.Start == course.Start &&
+                    newCourse.End == course.End &&
+                    newCourse.Teacher.Name == course.Teacher.Name)
                 {
                     return newCourse;
                 }
@@ -109,7 +109,7 @@ namespace BusinessLogicLayer.Services
         ///     Method deletes course with provided id
         /// </summary>
         /// <param name="courseId">id of course that needs to be removed</param>
-        /// <returns></returns>
+        /// <returns>result of operation</returns>
         public bool DeleteCourse(int courseId)
         {
             var course = GetCourseById(courseId);
@@ -130,8 +130,8 @@ namespace BusinessLogicLayer.Services
         public List<Course> GetCoursesByTeacher(string email)
         {
             var courses = _courseRepository.GetAllCourses();
-            var selectedCourses = courses.Where(x => x.teacher.Email == email).ToList();
-            courses.ForEach(x => x.length = (x.end - x.start).Days);
+            var selectedCourses = courses.Where(x => x.Teacher.Email == email).ToList();
+            courses.ForEach(x => x.Length = (x.End - x.Start).Days);
             return selectedCourses;
         }
 
@@ -143,8 +143,8 @@ namespace BusinessLogicLayer.Services
         public List<Course> GetCoursesByStudent(string email)
         {
             var courses = _courseRepository.GetAllCourses();
-            var selectedCourses = courses.Where(c => c.students.Find(x => x.Name == email) != null).ToList();
-            courses.ForEach(x => x.length = (x.end - x.start).Days);
+            var selectedCourses = courses.Where(c => c.Students.Find(x => x.Name == email) != null).ToList();
+            courses.ForEach(x => x.Length = (x.End - x.Start).Days);
             return selectedCourses;
         }
 
@@ -156,14 +156,18 @@ namespace BusinessLogicLayer.Services
         /// <returns>code of result</returns>
         public int Register(int CourseId, string username)
         {
-            if (_courseRepository.GetCourseById(CourseId).students.Any(s => s.Name == username)) return 1;
+            if (_courseRepository.GetCourseById(CourseId).Students.Any(s => s.Name == username)) return 1;
 
             var res = _courseRepository.Register(CourseId, username);
             if (res)
                 return 0;
             return 2;
         }
-
+        /// <summary>
+        /// Method gets gradebook for selected course
+        /// </summary>
+        /// <param name="courseId">id of selected course</param>
+        /// <returns>list of marks</returns>
         public List<Mark> GetGradebookForCourse(int courseId)
         {
             var marks = _courseRepository.GetAllMarks().Where(m => m.CourseId == courseId).ToList();
@@ -174,12 +178,21 @@ namespace BusinessLogicLayer.Services
                         null));
             return marks;
         }
-
+        /// <summary>
+        /// Method gets gradebook for selected student
+        /// </summary>
+        /// <param name="username">username of selected student</param>
+        /// <returns>list of marks</returns>
         public List<Mark> GetGradebookForStudent(string username)
         {
             var marks = _courseRepository.GetAllMarks().Where(m => m.StudentUsername == username).ToList();
             return marks;
         }
+        /// <summary>
+        /// Method saves edited gradebook
+        /// </summary>
+        /// <param name="gradebook">edited gradebook</param>
+        /// <returns>list of marks</returns>
         public List<Mark> SaveGradebookForCourse(List<Mark> gradebook)
         {
             var newgradebook =_courseRepository.SaveMarks(gradebook);

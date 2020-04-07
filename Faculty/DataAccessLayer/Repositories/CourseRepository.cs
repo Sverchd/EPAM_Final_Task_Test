@@ -4,6 +4,7 @@ using System.Linq;
 using BusinessLogicLayer.Contracts;
 using BusinessLogicLayer.Models;
 using DataAccessLayer.Context;
+using DataAccessLayer.Managers;
 using DataAccessLayer.Mappers;
 using DataAccessLayer.Models;
 
@@ -31,41 +32,6 @@ namespace DataAccessLayer.Repositories
         }
 
         /// <summary>
-        ///     Method gets courses of selected theme from context
-        /// </summary>
-        /// <param name="theme">selected theme</param>
-        /// <returns>list of selected themes</returns>
-        //public List<Course> GetCoursesByTheme(Theme theme)
-        //{
-        //    var entityCourses = _facultyDbContext.Courses
-        //        .Include(x => x.Theme).Include(x => x.Students).Include(x => x.Teacher)
-        //        .Where(x => x.Theme.Name == theme.Name).ToList();
-        //    var courses = entityCourses.Select(x => x.Map()).ToList();
-        //    return courses;
-        //}
-
-        /// <summary>
-        ///     Method adds provided course to context
-        /// </summary>
-        /// <param name="course">provided course that need to be added to context</param>
-        /// <returns></returns>
-        //public bool AddCourse(Course course)
-        //{
-        //    var user = _facultyDbContext.Users.Include(x => x.Courses)
-        //        .FirstOrDefault(x => x.Email == course.teacher.Email);
-        //
-        //    var entityCourse = course.Map();
-        //    entityCourse.Theme = _facultyDbContext.Themes
-        //        .SingleOrDefault(x => x.ThemeEntityId == course.theme.ThemeId);
-        //    entityCourse.Teacher = user;
-        //    user.Courses.Add(entityCourse);
-        //    _facultyDbContext.SaveChanges();
-        //    return true;
-        //}
-
-
-
-        /// <summary>
         ///     Method adds provided course to context
         /// </summary>
         /// <param name="course">provided course that need to be added to context</param>
@@ -73,9 +39,9 @@ namespace DataAccessLayer.Repositories
         public Course AddCourse(Course course)
         {
             var user = _facultyDbContext.Users.Include(x => x.Courses)
-                .FirstOrDefault(x => x.Email == course.teacher.Email);
+                .FirstOrDefault(x => x.Email == course.Teacher.Email);
             var theme = _facultyDbContext.Themes
-                .SingleOrDefault(x => x.ThemeEntityId == course.theme.ThemeId);
+                .SingleOrDefault(x => x.ThemeEntityId == course.Theme.ThemeId);
             if (user == null||theme==null)
                 return null;
             var entityCourse = course.Map();
@@ -109,20 +75,20 @@ namespace DataAccessLayer.Repositories
                 .FirstOrDefault(x => x.CourseEntityId == course.CourseId);
             
             var newtTeacher = _facultyDbContext.Users.Include(x => x.Courses)
-                .FirstOrDefault(x => x.Email == course.teacher.Email);
+                .FirstOrDefault(x => x.Email == course.Teacher.Email);
             if (entityCourse == null || newtTeacher == null)
                 return null;
             if (entityCourse.Teacher == null || newtTeacher.Email != entityCourse.Teacher.Email)
             {
                 entityCourse.Teacher =
-                    _facultyDbContext.Users.FirstOrDefault(x => x.Email == course.teacher.Email);
+                    _facultyDbContext.Users.FirstOrDefault(x => x.Email == course.Teacher.Email);
                 newtTeacher.Courses.Add(entityCourse);
             }
-            entityCourse.Name = course.name;
-            entityCourse.Start = course.start;
-            entityCourse.End = course.end;
+            entityCourse.Name = course.Name;
+            entityCourse.Start = course.Start;
+            entityCourse.End = course.End;
             entityCourse.Theme = _facultyDbContext.Themes
-                .FirstOrDefault(x => x.ThemeEntityId == course.theme.ThemeId);
+                .FirstOrDefault(x => x.ThemeEntityId == course.Theme.ThemeId);
             _facultyDbContext.SaveChanges();
             return entityCourse.Map();
         }
@@ -201,5 +167,7 @@ namespace DataAccessLayer.Repositories
                 
             return newMarks;
         }
+
+
     }
 }

@@ -13,62 +13,62 @@ namespace BusinessLogicLayer.Models
         /// <summary>
         ///     theme of the course
         /// </summary>
-        public Theme theme { get; set; }
+        public Theme Theme { get; set; }
 
         /// <summary>
         ///     name of the course
         /// </summary>
-        public string name { get; set; }
+        public string Name { get; set; }
 
         /// <summary>
         ///     start time of the course
         /// </summary>
-        public DateTime start { get; set; }
+        public DateTime Start { get; set; }
 
         /// <summary>
         ///     end time of course
         /// </summary>
-        public DateTime end { get; set; }
+        public DateTime End { get; set; }
 
         /// <summary>
         ///     list of student of the course
         /// </summary>
-        public List<User> students;
+        public List<User> Students;
 
         /// <summary>
         ///     teacher of the course
         /// </summary>
-        public User teacher;
+        public User Teacher;
 
         /// <summary>
         ///     length of the course (days)
         /// </summary>
-        public int length { get; set; }
+        public int Length { get; set; }
 
         /// <summary>
         ///     constructor of the course
         /// </summary>
         public Course()
         {
-            teacher = new User();
-            students = new List<User>();
+            Teacher = new User();
+            Students = new List<User>();
         }
 
         /// <summary>
         ///     constructor of the course
         /// </summary>
         /// <param name="id">id</param>
-        /// <param name="th">theme</param>
-        /// <param name="nm">name</param>
-        /// <param name="sdt">start date</param>
-        /// <param name="edt">end date</param>
-        public Course(int id, Theme th, string nm, DateTime sdt, DateTime edt)
+        /// <param name="theme">theme</param>
+        /// <param name="name">name</param>
+        /// <param name="start">start date</param>
+        /// <param name="end">end date</param>
+        public Course(int id, Theme theme, string name, DateTime start, DateTime end)
         {
             CourseId = id;
-            theme = th;
-            name = nm;
-            start = sdt;
-            end = edt;
+            Theme = theme;
+            Name = name;
+            Start = start;
+            End = end;
         }
 
         /// <summary>
@@ -83,11 +83,11 @@ namespace BusinessLogicLayer.Models
         public Course(int id, Theme th, string nm, DateTime sdt, DateTime edt, User tch)
         {
             CourseId = id;
-            theme = th;
-            name = nm;
-            start = sdt;
-            end = edt;
-            teacher = tch;
+            Theme = th;
+            Name = nm;
+            Start = sdt;
+            End = edt;
+            Teacher = tch;
         }
     }
 }

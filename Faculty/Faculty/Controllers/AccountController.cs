@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using DataAccessLayer.Interfaces;
@@ -20,10 +21,16 @@ namespace Faculty.Controllers
         private IUserService _userManager;
         private BusinessLogicLayer.Contracts.IUserService _userService;
 
+        /// <summary>
+        /// default constructor
+        /// </summary>
         public AccountController()
         {
         }
-
+        /// <summary>
+        /// constructor with parameters
+        /// </summary>
+        /// <param name="userService">user service interface</param>
         public AccountController(BusinessLogicLayer.Contracts.IUserService userService)
         {
             _userService = userService;
@@ -44,9 +51,11 @@ namespace Faculty.Controllers
         private IAuthenticationManager AuthenticationManager => HttpContext.GetOwinContext().Authentication;
 
 
-        // GET: Account
-        //
-        // GET: /Account/Login
+        /// <summary>
+        /// Login action
+        /// </summary>
+        /// <param name="returnUrl">url</param>
+        /// <returns>Login view</returns>
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
@@ -54,26 +63,30 @@ namespace Faculty.Controllers
             return View();
         }
 
-        //
-        // POST: /Account/Login
+        /// <summary>
+        /// Login action
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="returnUrl"></param>
+        /// <returns></returns>
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Login(LoginViewModel model, string returnUrl)
         {
             if (!ModelState.IsValid) return View(model);
-
-            // This doesn't count login failures towards account lockout
-            // To enable password failures to trigger account lockout, change to shouldLockout: true
-
+            var user = SignInManager.UserManager.Users.SingleOrDefault(x => x.Email == model.Email);
+            if (user!=null&&UserManager.IsInRole(user.Id, "banned"))
+            {
+                return View("Banned");
+            }
             var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, false);
-            //var user = _userService.GetUserByEmail(model.Email);
-            // bool banned;
-            //if (UserManager.IsInRole(user.id, "banned"))
-            //    banned = true;
+            
+            
             switch (result)
             {
                 case SignInStatus.Success:
+
                     return RedirectToLocal(returnUrl);
                 case SignInStatus.LockedOut:
                     return View("Lockout");
@@ -85,7 +98,7 @@ namespace Faculty.Controllers
             }
         }
         /// <summary>
-        /// Action for get registration 
+        /// Get action for registration 
         /// </summary>
         /// <returns></returns>
         [AllowAnonymous]
@@ -95,7 +108,7 @@ namespace Faculty.Controllers
         }
 
         /// <summary>
-        /// A
+        /// register action
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
@@ -119,13 +132,14 @@ namespace Faculty.Controllers
                 AddErrors(result);
             }
 
-            // If we got this far, something failed, redisplay form
             return View(model);
         }
 
 
-        //
-        // POST: /Account/LogOff
+        /// <summary>
+        /// logoff action
+        /// </summary>
+        /// <returns></returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult LogOff()

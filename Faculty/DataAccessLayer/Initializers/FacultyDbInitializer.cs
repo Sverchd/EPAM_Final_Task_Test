@@ -75,7 +75,7 @@ namespace DataAccessLayer.Initializers
 
                 userManager.AddToRole(student.Id, roleStudent.Name);
 
-                userManager.AddToRole(student1.Id, roleStudent.Name);
+                userManager.AddToRole(student1.Id, roleBanned.Name);
             }
         }
 

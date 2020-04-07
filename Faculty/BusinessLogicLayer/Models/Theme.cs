@@ -17,11 +17,11 @@
         ///     theme constructor
         /// </summary>
         /// <param name="id">id</param>
-        /// <param name="nm">name</param>
-        public Theme(int id, string nm)
+        /// <param name="name">name</param>
+        public Theme(int id, string name)
         {
             ThemeId = id;
-            Name = nm;
+            Name = name;
         }
     }
 }

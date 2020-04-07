@@ -4,6 +4,7 @@ using BusinessLogicLayer.Contracts;
 using Faculty.Filters;
 using Faculty.Mappers;
 using Faculty.Models;
+using Faculty.Utils;
 
 namespace Faculty.Controllers
 {
@@ -21,22 +22,43 @@ namespace Faculty.Controllers
             _userService = userService;
         }
 
-
+        /// <summary>
+        /// Get action to get list of students
+        /// </summary>
+        /// <returns>View with list of students</returns>
         [HttpGet]
         [Authorize]
         public ActionResult List()
         {
-            var isUser = IsUser();
             var studentList = new StudentListViewModel();
-            var vb = ViewBag;
             var studentsListb = _userService.GetAllStudents();
+            var bannedList = _userService.GetAllBanned();
             studentList.Students = studentsListb.Select(x => x.Map()).ToList();
+            studentList.Banned = bannedList.Select(x => x.Map()).ToList();
             return View(studentList);
         }
 
-        private bool IsUser()
+        public ActionResult Ban(string userEmail)
         {
-            return !(User.IsInRole("admin") || User.IsInRole("teacher"));
+            var user = _userService.Ban(userEmail);
+            if (user == null)
+            {
+                TempData["Error"] = "User wasn`t banned!";
+            }
+            TempData["Success"] = "Teacher successfully created!";
+            Logger.Log.Info($"User with Name - {userEmail}, created successfully.");
+            return RedirectToAction("List");
+        }
+        public ActionResult Activate(string userEmail)
+        {
+            var user = _userService.Activate(userEmail);
+            if (user == null)
+            {
+                TempData["Error"] = "User wasn`t activated!";
+            }
+            TempData["Success"] = "Teacher successfully created!";
+            Logger.Log.Info($"User with Name - {userEmail}, activated successfully.");
+            return RedirectToAction("List");
         }
     }
 }

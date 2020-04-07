@@ -41,7 +41,10 @@ namespace DataAccessLayer.Managers
         {
             return AddToRoleAsync(userId, role).Result;
         }
-
+        public IdentityResult RemoveFromRole(string userId, string role)
+        {
+            return RemoveFromRoleAsync(userId, role).Result;
+        }
         public IdentityResult Create(AppUser user, string password)
         {
             return CreateAsync(user, password).Result;

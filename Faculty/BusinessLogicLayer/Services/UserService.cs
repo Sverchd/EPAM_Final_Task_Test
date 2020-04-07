@@ -39,18 +39,27 @@ namespace BusinessLogicLayer.Services
         }
 
         /// <summary>
+        ///     Method gets all students from repository
+        /// </summary>
+        /// <returns>All students</returns>
+        public List<User> GetAllBanned()
+        {
+            var banned = _userRepository.GetAllBanned();
+            return banned;
+        }
+
+        /// <summary>
         ///     Method adds(register) provided teacher
         /// </summary>
         /// <param name="teacher">teacher instance</param>
         /// <param name="password">Password for teacher account</param>
-        /// <returns></returns>
+        /// <returns>User that was added</returns>
         public User AddTeacher(User teacher, string password)
         {
             if (_userRepository.GetAllStudents().SingleOrDefault(x => x.Email == teacher.Email) == null)
             {
                 return _userRepository.AddUser(teacher, "teacher", password);
             }
-            
             return null;
         }
 
@@ -58,7 +67,7 @@ namespace BusinessLogicLayer.Services
         ///     Method deletes teacher with provided email
         /// </summary>
         /// <param name="email">email of teacher that needs to be deleted</param>
-        /// <returns></returns>
+        /// <returns>result of operation</returns>
         public bool DeleteTeacher(string email)
         {
             var result = _userRepository.DeleteUser(email);
@@ -99,6 +108,17 @@ namespace BusinessLogicLayer.Services
             var students = _userRepository.GetAllStudents();
             var selectedStudents = students.Where(s => s.Courses.Find(x => x.CourseId == courseId) != null).ToList();
             return selectedStudents;
+        }
+
+        public User Ban(string username)
+        {
+            var user = _userRepository.Ban(username);
+            return user;
+        }
+        public User Activate(string username)
+        {
+            var user = _userRepository.Activate(username);
+            return user;
         }
     }
 }

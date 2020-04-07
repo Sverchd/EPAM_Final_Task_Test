@@ -17,9 +17,9 @@ namespace Faculty.Mappers
         public static Course Map(this CourseView courseView)
         {
             var resultCourse = courseView.MapFlat();
-            resultCourse.theme = courseView.Theme.Map();
-            resultCourse.students = courseView.Students.Select(x => x.MapFlat()).ToList();
-            resultCourse.teacher = courseView.teacher.MapFlat();
+            resultCourse.Theme = courseView.Theme.Map();
+            resultCourse.Students = courseView.Students.Select(x => x.MapFlat()).ToList();
+            resultCourse.Teacher = courseView.teacher.MapFlat();
             return resultCourse;
         }
 
@@ -31,10 +31,10 @@ namespace Faculty.Mappers
         public static Course MapFlat(this CourseView courseView)
         {
             var resultCourse = new Course();
-            resultCourse.name = courseView.Name;
+            resultCourse.Name = courseView.Name;
             resultCourse.CourseId = courseView.CourseEntityId;
-            resultCourse.start = courseView.Start;
-            resultCourse.end = courseView.End;
+            resultCourse.Start = courseView.Start;
+            resultCourse.End = courseView.End;
             return resultCourse;
         }
     }
@@ -52,9 +52,9 @@ namespace Faculty.Mappers
         public static CourseView Map(this Course course)
         {
             var resultCourse = course.MapFlat();
-            resultCourse.Theme = course.theme.Map();
-            resultCourse.Students = course.students.Select(x => x.MapFlat()).ToList();
-            resultCourse.teacher = course.teacher.MapFlat();
+            resultCourse.Theme = course.Theme.Map();
+            resultCourse.Students = course.Students.Select(x => x.MapFlat()).ToList();
+            resultCourse.teacher = course.Teacher.MapFlat();
             return resultCourse;
         }
 
@@ -66,11 +66,11 @@ namespace Faculty.Mappers
         public static CourseView MapFlat(this Course course)
         {
             var resultCourse = new CourseView();
-            resultCourse.Name = course.name;
+            resultCourse.Name = course.Name;
             resultCourse.CourseEntityId = course.CourseId;
-            resultCourse.Start = course.start;
-            resultCourse.End = course.end;
-            resultCourse.Length = course.length;
+            resultCourse.Start = course.Start;
+            resultCourse.End = course.End;
+            resultCourse.Length = course.Length;
             return resultCourse;
         }
     }

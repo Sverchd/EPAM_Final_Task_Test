@@ -17,10 +17,10 @@ namespace DataAccessLayer.Mappers
         public static Course Map(this CourseEntity courseEntity)
         {
             var resultCourse = courseEntity.MapFlat();
-            resultCourse.theme = courseEntity.Theme.Map();
+            resultCourse.Theme = courseEntity.Theme.Map();
             if (courseEntity.Teacher != null)
-                resultCourse.teacher = courseEntity.Teacher.MapFlat();
-            resultCourse.students = courseEntity.Students.Select(x => x.MapFlat()).ToList();
+                resultCourse.Teacher = courseEntity.Teacher.MapFlat();
+            resultCourse.Students = courseEntity.Students.Select(x => x.MapFlat()).ToList();
 
             return resultCourse;
         }
@@ -33,10 +33,10 @@ namespace DataAccessLayer.Mappers
         public static Course MapFlat(this CourseEntity courseEntity)
         {
             var resultCourse = new Course();
-            resultCourse.name = courseEntity.Name;
+            resultCourse.Name = courseEntity.Name;
             resultCourse.CourseId = courseEntity.CourseEntityId;
-            resultCourse.start = courseEntity.Start;
-            resultCourse.end = courseEntity.End;
+            resultCourse.Start = courseEntity.Start;
+            resultCourse.End = courseEntity.End;
             return resultCourse;
         }
     }
@@ -54,9 +54,9 @@ namespace DataAccessLayer.Mappers
         public static CourseEntity Map(this Course course)
         {
             var resultCourse = course.MapFlat();
-            resultCourse.Theme = course.theme.Map();
-            resultCourse.Teacher = course.teacher.MapFlat();
-            resultCourse.Students = course.students.Select(x => x.MapFlat()).ToList();
+            resultCourse.Theme = course.Theme.Map();
+            resultCourse.Teacher = course.Teacher.MapFlat();
+            resultCourse.Students = course.Students.Select(x => x.MapFlat()).ToList();
             return resultCourse;
         }
 
@@ -68,9 +68,9 @@ namespace DataAccessLayer.Mappers
         public static CourseEntity MapFlat(this Course course)
         {
             var resultCourse = new CourseEntity();
-            resultCourse.Name = course.name;
-            resultCourse.Start = course.start;
-            resultCourse.End = course.end;
+            resultCourse.Name = course.Name;
+            resultCourse.Start = course.Start;
+            resultCourse.End = course.End;
             return resultCourse;
         }
     }

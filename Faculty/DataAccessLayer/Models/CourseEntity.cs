@@ -12,8 +12,8 @@ namespace DataAccessLayer.Models
         public string Name { get; set; }
         public DateTime Start { get; set; }
         public DateTime End { get; set; }
-        [InverseProperty("scourses")] public List<AppUser> Students { get; set; }
-        [InverseProperty("courses")] public AppUser Teacher { get; set; }
+        [InverseProperty("Scourses")] public List<AppUser> Students { get; set; }
+        [InverseProperty("Courses")] public AppUser Teacher { get; set; }
         
         /// <summary>
         /// course constructor

@@ -25,6 +25,11 @@ namespace Faculty.Controllers
             _userService = userService;
             _themeService = themeService;
         }
+        /// <summary>
+        /// Get List action for getting gradebook
+        /// </summary>
+        /// <param name="courseId">id of requested course</param>
+        /// <returns>view of gradebook list</returns>
         [HttpGet]
         [Authorize]
         public ActionResult List(int courseId)
@@ -35,15 +40,17 @@ namespace Faculty.Controllers
             gradebook.ForEach(x=>grades.Add(new GradeViewModel(x.StudentUsername,courseId,x.Grade)));
             IList <GradeViewModel > igrades = grades;
             ViewBag.CourseId = courseId;
-
             return View(igrades);
         }
-
+        /// <summary>
+        /// Post action for saving gradebook
+        /// </summary>
+        /// <param name="igrades">list of marks</param>
+        /// <returns>redirection to list action</returns>
         [HttpPost]
+        [Authorize(Roles = "admin, teacher")]
         public ActionResult Save(IList<GradeViewModel> igrades)
         {
-            var d = igrades;
-            string s = ViewBag.CourseId;
             var course = igrades[0].CourseId;
             var marks = new List<Mark>();
             foreach (var gradeViewModel in igrades)

@@ -34,7 +34,7 @@ namespace DataAccessLayer.Mappers
         public static User MapFlat(this AppUser userEntity, string role = "")
         {
             var resultUser = new User();
-            resultUser.id = userEntity.Id;
+            resultUser.Id = userEntity.Id;
             resultUser.Name = userEntity.UserName;
             resultUser.Email = userEntity.Email;
             resultUser.Role = role;
@@ -67,7 +67,7 @@ namespace DataAccessLayer.Mappers
         public static AppUser MapFlat(this User User)
         {
             var resultUser = new AppUser();
-            resultUser.Id = User.id;
+            resultUser.Id = User.Id;
             resultUser.UserName = User.Name;
             resultUser.Email = User.Email;
             return resultUser;

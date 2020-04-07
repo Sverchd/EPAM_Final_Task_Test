@@ -377,6 +377,7 @@
     <Content Include="Views\Gradebook\List.cshtml" />
     <Content Include="Views\NotificationPartial.cshtml" />
     <Content Include="Views\Error\Index.cshtml" />
+    <Content Include="Views\Account\Banned.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

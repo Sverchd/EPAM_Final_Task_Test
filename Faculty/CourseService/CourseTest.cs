@@ -224,7 +224,7 @@ namespace CourseService
             _courseService.DeleteCourse(res.CourseId);
             _themeService.DeleteTheme(theme.ThemeId);
             _userService.DeleteUser(teacher.Email);
-            _userService.DeleteUser(student.Email);
+
         }
         [TestMethod]
         public void GetGradebookForCourseTest()

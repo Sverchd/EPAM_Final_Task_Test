@@ -157,8 +157,14 @@ namespace BusinessLogicLayer.Services
         public int Register(int CourseId, string username)
         {
             if (_courseRepository.GetCourseById(CourseId).Students.Any(s => s.Name == username)) return 1;
-
+            var course = GetCourseById(CourseId);
+            if (course.Teacher.Name == null)
+            {
+                throw new Exception("No teacher");
+            }
             var res = _courseRepository.Register(CourseId, username);
+            
+            
             if (res)
                 return 0;
             return 2;

@@ -56,7 +56,8 @@
                     @if (item.teacher.Name != null)
                     {
                         <td>
-                            @Html.DisplayFor(modelItem => item.teacher.Name)
+                            @Html.ActionLink(item.teacher.Name, "ListByTeacher", "Course", new {userEmail = item.teacher.Name}, new {role = "button", @class = "btn", style = "float:left"})
+
                         </td>
                     }
                     else

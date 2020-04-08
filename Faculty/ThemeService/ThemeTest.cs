@@ -21,9 +21,11 @@ namespace ThemeService
         public ThemeTest()
         {
             var dbContext = new FacultyDbContext("FacultyContext");
+
             var themeRepository = new ThemeRepository(dbContext);
             var courseRepository = new CourseRepository(dbContext);
             var userRepository = new UserRepository(dbContext);
+
             _userService = new UserService(userRepository);
             _courseService = new CourseService(courseRepository,_userService);
             _themeService = new BusinessLogicLayer.Services.ThemeService(themeRepository, _courseService);
@@ -40,10 +42,6 @@ namespace ThemeService
                 new Theme(3,"Language",0)
             };
             
-                //foreach (var theme in expected)
-                //{
-                //    _themeService.AddTheme(new Theme(theme.Name));
-               // }
 
                 var res = _themeService.GetAllThemes();
                 Assert.AreEqual(expected.Count, res.Count);

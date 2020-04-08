@@ -4,6 +4,7 @@ using BusinessLogicLayer.Contracts;
 using BusinessLogicLayer.Models;
 using DataAccessLayer.Context;
 using DataAccessLayer.Mappers;
+using System.Data.Entity;
 
 namespace DataAccessLayer.Repositories
 {
@@ -49,7 +50,10 @@ namespace DataAccessLayer.Repositories
         public bool DeleteTheme(int themeId)
         {
             var theme = _facultyDbContext.Themes.FirstOrDefault(i => i.ThemeEntityId == themeId);
-
+          //  foreach (var course in _facultyDbContext.Courses.Include(x => x.Theme))
+          //      if (course.Theme != null && course.Theme.ThemeEntityId == themeId)
+         //           course.Theme = null;
+         //   _facultyDbContext.SaveChanges();
             _facultyDbContext.Themes.Remove(theme);
             _facultyDbContext.SaveChanges();
             return true;

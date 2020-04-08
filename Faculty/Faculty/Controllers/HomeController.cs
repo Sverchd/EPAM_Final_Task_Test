@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Web.Mvc;
 using BusinessLogicLayer.Contracts;
+using BusinessLogicLayer.Models;
 using Faculty.Filters;
 
 namespace Faculty.Controllers
@@ -9,15 +11,20 @@ namespace Faculty.Controllers
     public class HomeController : Controller
     {
         private readonly ICourseService _courseService;
+        private readonly IThemeService _themeService;
+        private readonly IUserService _userService;
 
-        public HomeController(ICourseService courseService)
+        public HomeController(ICourseService courseService, IThemeService themeService, IUserService userService)
         {
             _courseService = courseService;
+            _themeService = themeService;
+            _userService = userService;
         }
 
         public ActionResult Index()
         {
-            _courseService.GetAllCourses();
+
+
             return View();
         }
 

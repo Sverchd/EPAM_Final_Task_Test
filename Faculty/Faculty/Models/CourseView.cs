@@ -7,17 +7,19 @@ namespace Faculty.Models
     public class CourseView
     {
         public int CourseEntityId { get; set; }
-        [Display(Name = "Theme")] public ThemeView Theme { get; set; }
-        [Display(Name = "Name")] public string Name { get; set; }
+        [Display(Name = "Theme")]
+        public ThemeView Theme { get; set; }
+        [Display(Name = "Name")]
+        public string Name { get; set; }
 
         [Display(Name = "Start date")]
         [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd hh:mm}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd HH:mm}", ApplyFormatInEditMode = true)]
         public DateTime Start { get; set; }
 
         [Display(Name = "End date")]
         [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd hh:mm}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd HH:mm}", ApplyFormatInEditMode = true)]
         public DateTime End { get; set; }
 
         [Display(Name = "Length, days")] public int Length { get; set; }

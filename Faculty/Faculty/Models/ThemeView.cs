@@ -5,7 +5,9 @@ namespace Faculty.Models
     public class ThemeView
     {
         public int ThemeEntityId { get; set; }
-        [Required] [Display(Name = "Name")] public string Name { get; set; }
+        [Required(ErrorMessage = "Please enter name"), MaxLength(30)]
+        [Display(Name = "Name")]
+        public string Name { get; set; }
         [Display(Name = "Course count")] public int CourseCount { get; set; }
 
         public ThemeView()

@@ -1,0 +1,142 @@
+2020-04-07 00:11:44,286  INFO  Course with Name - Programming, edited successfully.
+2020-04-07 00:12:39,666  INFO  User with name - student@gmail.com
+2020-04-07 00:29:58,871  INFO  User with name - student@gmail.com
+2020-04-07 12:42:36,020  INFO  User with name - student@gmail.com
+2020-04-07 13:58:21,616  ERROR Requested url: https://localhost:44369/Teacher/Delete?userEmail=student%40gmail.com exception thrown: 
+ An error occurred while updating the entries. See the inner exception for details. 
+    в System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   в System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   в Microsoft.AspNet.Identity.EntityFramework.UserStore`6.<SaveChanges>d__61.MoveNext()
+---  онец трассировка стека из предыдущего расположени€, где возникло исключение ---
+   в System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   в System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   в Microsoft.AspNet.Identity.EntityFramework.UserStore`6.<DeleteAsync>d__39.MoveNext()
+---  онец трассировка стека из предыдущего расположени€, где возникло исключение ---
+   в System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   в System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   в Microsoft.AspNet.Identity.UserManager`2.<DeleteAsync>d__75.MoveNext()
+---  онец трассировка стека из предыдущего расположени€, где возникло исключение ---
+   в System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   в System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   в Microsoft.AspNet.Identity.AsyncHelper.RunSync[TResult](Func`1 func)
+   в Microsoft.AspNet.Identity.UserManagerExtensions.Delete[TUser,TKey](UserManager`2 manager, TUser user)
+   в DataAccessLayer.Repositories.UserRepository.DeleteUser(String email) в C:\Users\Sterben\Pictures\ASPTask3\EPAM_Final_Task_Test\Faculty\DataAccessLayer\Repositories\UserRepository.cs:строка 119
+   в BusinessLogicLayer.Services.UserService.DeleteTeacher(String email) в C:\Users\Sterben\Pictures\ASPTask3\EPAM_Final_Task_Test\Faculty\BusinessLogicLayer\Services\UserService.cs:строка 73
+   в Faculty.Controllers.TeacherController.Delete(String userEmail) в C:\Users\Sterben\Pictures\ASPTask3\EPAM_Final_Task_Test\Faculty\Faculty\Controllers\TeacherController.cs:строка 77
+   в lambda_method(Closure , ControllerBase , Object[] )
+   в System.Web.Mvc.ActionMethodDispatcher.Execute(ControllerBase controller, Object[] parameters)
+   в System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   в System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c.<BeginInvokeSynchronousActionMethod>b__9_0(IAsyncResult asyncResult, ActionInvocation innerInvokeState)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`2.CallEndDelegate(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<>c__DisplayClass11_0.<InvokeActionMethodFilterAsynchronouslyRecursive>b__0()
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<>c__DisplayClass11_2.<InvokeActionMethodFilterAsynchronouslyRecursive>b__2()
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass7_0.<BeginInvokeActionMethodWithFilters>b__1(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.CallEndDelegate(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass3_6.<BeginInvokeAction>b__4()
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass3_1.<BeginInvokeAction>b__1(IAsyncResult asyncResult)
+2020-04-07 13:59:20,179  ERROR Requested url: https://localhost:44369/Student/Ban?userEmail=student%40gmail.com exception thrown: 
+ ѕроизошла одна или несколько ошибок. 
+    в System.Threading.Tasks.Task.ThrowIfExceptional(Boolean includeTaskCanceledExceptions)
+   в System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   в System.Threading.Tasks.Task`1.get_Result()
+   в DataAccessLayer.Managers.AppUserManager.AddToRole(String userId, String role) в C:\Users\Sterben\Pictures\ASPTask3\EPAM_Final_Task_Test\Faculty\DataAccessLayer\Managers\AppUserManager.cs:строка 42
+   в DataAccessLayer.Repositories.UserRepository.Ban(String username) в C:\Users\Sterben\Pictures\ASPTask3\EPAM_Final_Task_Test\Faculty\DataAccessLayer\Repositories\UserRepository.cs:строка 127
+   в BusinessLogicLayer.Services.UserService.Ban(String username) в C:\Users\Sterben\Pictures\ASPTask3\EPAM_Final_Task_Test\Faculty\BusinessLogicLayer\Services\UserService.cs:строка 115
+   в Faculty.Controllers.StudentController.Ban(String userEmail) в C:\Users\Sterben\Pictures\ASPTask3\EPAM_Final_Task_Test\Faculty\Faculty\Controllers\StudentController.cs:строка 43
+   в lambda_method(Closure , ControllerBase , Object[] )
+   в System.Web.Mvc.ActionMethodDispatcher.Execute(ControllerBase controller, Object[] parameters)
+   в System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   в System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c.<BeginInvokeSynchronousActionMethod>b__9_0(IAsyncResult asyncResult, ActionInvocation innerInvokeState)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`2.CallEndDelegate(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<>c__DisplayClass11_0.<InvokeActionMethodFilterAsynchronouslyRecursive>b__0()
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<>c__DisplayClass11_2.<InvokeActionMethodFilterAsynchronouslyRecursive>b__2()
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass7_0.<BeginInvokeActionMethodWithFilters>b__1(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.CallEndDelegate(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass3_6.<BeginInvokeAction>b__4()
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass3_1.<BeginInvokeAction>b__1(IAsyncResult asyncResult)
+2020-04-07 13:59:35,140  ERROR Requested url: https://localhost:44369/Student/Ban?userEmail=student%40gmail.com exception thrown: 
+ ѕроизошла одна или несколько ошибок. 
+    в System.Threading.Tasks.Task.ThrowIfExceptional(Boolean includeTaskCanceledExceptions)
+   в System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   в System.Threading.Tasks.Task`1.get_Result()
+   в DataAccessLayer.Managers.AppUserManager.AddToRole(String userId, String role) в C:\Users\Sterben\Pictures\ASPTask3\EPAM_Final_Task_Test\Faculty\DataAccessLayer\Managers\AppUserManager.cs:строка 42
+   в DataAccessLayer.Repositories.UserRepository.Ban(String username) в C:\Users\Sterben\Pictures\ASPTask3\EPAM_Final_Task_Test\Faculty\DataAccessLayer\Repositories\UserRepository.cs:строка 127
+   в BusinessLogicLayer.Services.UserService.Ban(String username) в C:\Users\Sterben\Pictures\ASPTask3\EPAM_Final_Task_Test\Faculty\BusinessLogicLayer\Services\UserService.cs:строка 115
+   в Faculty.Controllers.StudentController.Ban(String userEmail) в C:\Users\Sterben\Pictures\ASPTask3\EPAM_Final_Task_Test\Faculty\Faculty\Controllers\StudentController.cs:строка 43
+   в lambda_method(Closure , ControllerBase , Object[] )
+   в System.Web.Mvc.ActionMethodDispatcher.Execute(ControllerBase controller, Object[] parameters)
+   в System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   в System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c.<BeginInvokeSynchronousActionMethod>b__9_0(IAsyncResult asyncResult, ActionInvocation innerInvokeState)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`2.CallEndDelegate(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<>c__DisplayClass11_0.<InvokeActionMethodFilterAsynchronouslyRecursive>b__0()
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<>c__DisplayClass11_2.<InvokeActionMethodFilterAsynchronouslyRecursive>b__2()
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass7_0.<BeginInvokeActionMethodWithFilters>b__1(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.CallEndDelegate(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass3_6.<BeginInvokeAction>b__4()
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass3_1.<BeginInvokeAction>b__1(IAsyncResult asyncResult)
+2020-04-07 14:03:35,688  INFO  User with Name - student@gmail.com, created successfully.
+2020-04-07 14:05:06,397  INFO  User with Name - student@gmail.com, created successfully.
+2020-04-07 14:10:35,249  INFO  User with Name - student@gmail.com, created successfully.
+2020-04-07 14:10:47,867  ERROR Requested url: https://localhost:44369/Teacher/Delete?userEmail=student%40gmail.com exception thrown: 
+ An error occurred while updating the entries. See the inner exception for details. 
+    в System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   в System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   в Microsoft.AspNet.Identity.EntityFramework.UserStore`6.<SaveChanges>d__61.MoveNext()
+---  онец трассировка стека из предыдущего расположени€, где возникло исключение ---
+   в System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   в System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   в Microsoft.AspNet.Identity.EntityFramework.UserStore`6.<DeleteAsync>d__39.MoveNext()
+---  онец трассировка стека из предыдущего расположени€, где возникло исключение ---
+   в System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   в System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   в Microsoft.AspNet.Identity.UserManager`2.<DeleteAsync>d__75.MoveNext()
+---  онец трассировка стека из предыдущего расположени€, где возникло исключение ---
+   в System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   в System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   в Microsoft.AspNet.Identity.AsyncHelper.RunSync[TResult](Func`1 func)
+   в Microsoft.AspNet.Identity.UserManagerExtensions.Delete[TUser,TKey](UserManager`2 manager, TUser user)
+   в DataAccessLayer.Repositories.UserRepository.DeleteUser(String email) в C:\Users\Sterben\Pictures\ASPTask3\EPAM_Final_Task_Test\Faculty\DataAccessLayer\Repositories\UserRepository.cs:строка 119
+   в BusinessLogicLayer.Services.UserService.DeleteTeacher(String email) в C:\Users\Sterben\Pictures\ASPTask3\EPAM_Final_Task_Test\Faculty\BusinessLogicLayer\Services\UserService.cs:строка 73
+   в Faculty.Controllers.TeacherController.Delete(String userEmail) в C:\Users\Sterben\Pictures\ASPTask3\EPAM_Final_Task_Test\Faculty\Faculty\Controllers\TeacherController.cs:строка 77
+   в lambda_method(Closure , ControllerBase , Object[] )
+   в System.Web.Mvc.ActionMethodDispatcher.Execute(ControllerBase controller, Object[] parameters)
+   в System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   в System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c.<BeginInvokeSynchronousActionMethod>b__9_0(IAsyncResult asyncResult, ActionInvocation innerInvokeState)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`2.CallEndDelegate(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<>c__DisplayClass11_0.<InvokeActionMethodFilterAsynchronouslyRecursive>b__0()
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<>c__DisplayClass11_2.<InvokeActionMethodFilterAsynchronouslyRecursive>b__2()
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass7_0.<BeginInvokeActionMethodWithFilters>b__1(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.CallEndDelegate(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass3_6.<BeginInvokeAction>b__4()
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass3_1.<BeginInvokeAction>b__1(IAsyncResult asyncResult)
+2020-04-07 14:12:42,445  INFO  User with Name - student@gmail.com, created successfully.
+2020-04-07 14:12:43,884  INFO  User with Name - student1@gmail.com, activated successfully.
+2020-04-07 14:12:45,578  INFO  User with Name - student@gmail.com, activated successfully.
+2020-04-07 16:45:53,155  INFO  Course with Name - Programming, edited successfully.
+2020-04-07 17:03:51,422  INFO  Course with Name - Programming, edited successfully.
+2020-04-07 17:03:58,552  INFO  Course with Name - Programming, edited successfully.
+2020-04-07 17:04:05,061  INFO  Course with Name - Programming2, edited successfully.
+2020-04-07 19:32:32,714  INFO  Theme with Name - Taste, created successfully.
+2020-04-07 19:32:55,610  INFO  Course with Name - Programming, edited successfully.
+2020-04-07 22:01:43,871  INFO  Teacher with Name - dima.sv121@gmail.com, created successfully.
+2020-04-07 22:01:53,084  INFO  User with Name - student@gmail.com, created successfully.

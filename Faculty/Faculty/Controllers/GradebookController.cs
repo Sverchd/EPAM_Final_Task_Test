@@ -57,7 +57,7 @@ namespace Faculty.Controllers
             {
                 marks.Add(new Mark(course,gradeViewModel.Student,gradeViewModel.Mark));
             }
-            TempData["Success"] = "Course successfully edited!";
+            TempData["Success"] = "Gradebook successfully edited!";
             Logger.Log.Info($"Teacher with Name - {User.Identity.Name}, edited gradebook for course with ID - {course}");
             _courseService.SaveGradebookForCourse(marks);
             return RedirectToAction("List",new { courseId = course });

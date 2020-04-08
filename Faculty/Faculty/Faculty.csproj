@@ -203,7 +203,7 @@
     <Compile Include="Models\ThemeListViewModel.cs" />
     <Compile Include="Models\ThemeView.cs" />
     <Compile Include="Models\UserView.cs" />
-    <Compile Include="NinjectDependencyResolver.cs" />
+    <Compile Include="Utils\NinjectDependencyResolver.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utils\Logger.cs" />
   </ItemGroup>
@@ -214,6 +214,7 @@
     <Content Include="Content\bootstrap-reboot.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\images\banned.png" />
     <Content Include="Content\images\error.png" />
     <Content Include="Content\images\sort_asc.png" />
     <Content Include="Content\images\sort_asc_disabled.png" />
@@ -378,6 +379,7 @@
     <Content Include="Views\NotificationPartial.cshtml" />
     <Content Include="Views\Error\Index.cshtml" />
     <Content Include="Views\Account\Banned.cshtml" />
+    <Content Include="Views\Error\Banned.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

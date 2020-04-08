@@ -69,25 +69,29 @@ namespace BusinessLogicLayer.Models
             Name = name;
             Start = start;
             End = end;
+            Teacher = new User();
+            Students = new List<User>();
         }
 
         /// <summary>
         ///     constructor of the course
         /// </summary>
         /// <param name="id">id</param>
-        /// <param name="th">theme</param>
-        /// <param name="nm">name</param>
-        /// <param name="sdt">start date</param>
-        /// <param name="edt">end date</param>
-        /// <param name="tch">teacher</param>
-        public Course(int id, Theme th, string nm, DateTime sdt, DateTime edt, User tch)
+        /// <param name="theme">theme</param>
+        /// <param name="name">name</param>
+        /// <param name="start">start date</param>
+        /// <param name="end">end date</param>
+        /// <param name="teacher">teacher</param>
+        public Course(int id, Theme theme, string name, DateTime start, DateTime end, User teacher)
         {
             CourseId = id;
-            Theme = th;
-            Name = nm;
-            Start = sdt;
-            End = edt;
-            Teacher = tch;
+            Theme = theme;
+            Name = name;
+            Start = start;
+            End = end;
+            Teacher = teacher;
+            
+            Students = new List<User>();
         }
     }
 }

@@ -8,14 +8,16 @@ namespace BusinessLogicLayer.Services
     public class ThemeService : IThemeService
     {
         private readonly IThemeRepository _themeRepository;
+        private readonly ICourseService _courseService;
 
         /// <summary>
         ///     Constructor of theme service
         /// </summary>
         /// <param name="themeRepository">interface of theme repository</param>
-        public ThemeService(IThemeRepository themeRepository)
+        public ThemeService(IThemeRepository themeRepository, ICourseService courseService)
         {
             _themeRepository = themeRepository;
+            _courseService = courseService;
         }
 
         /// <summary>
@@ -25,6 +27,10 @@ namespace BusinessLogicLayer.Services
         public List<Theme> GetAllThemes()
         {
             var themes = _themeRepository.GetAllThemes();
+            foreach (var theme in themes)
+            {
+                theme.CourseCount = _courseService.GetCoursesByTheme(theme.ThemeId).Count();
+            }
             return themes;
         }
 
@@ -88,7 +94,13 @@ namespace BusinessLogicLayer.Services
         /// <returns>result of operation</returns>
         public bool DeleteTheme(int themeId)
         {
+            var courses = _courseService.GetCoursesByTheme(themeId);
+            foreach (var course in courses)
+            {
+                _courseService.DeleteCourse(course.CourseId);
+            }
             var res = _themeRepository.DeleteTheme(themeId);
+
             return res;
         }
     }

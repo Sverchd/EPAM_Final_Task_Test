@@ -7,7 +7,7 @@ using DataAccessLayer.Context;
 using DataAccessLayer.Repositories;
 using Ninject;
 
-namespace Faculty
+namespace Faculty.Utils
 {
     public class NinjectDependencyResolver : IDependencyResolver
     {

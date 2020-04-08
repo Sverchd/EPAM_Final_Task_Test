@@ -74,7 +74,7 @@ namespace Faculty.Controllers
         [Authorize(Roles = "admin")]
         public ActionResult Delete(string userEmail)
         {
-            _userService.DeleteTeacher(userEmail);
+            _userService.DeleteUser(userEmail);
             return RedirectToAction("List");
         }
     }

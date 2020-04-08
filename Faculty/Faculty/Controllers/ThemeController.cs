@@ -28,12 +28,13 @@ namespace Faculty.Controllers
         public ActionResult List()
         {
             var themeList = new ThemeListViewModel();
-            var themeListb = _themeService.GetAllThemes();
-            foreach (var theme in themeListb)
-            {
-                var count = _courseService.GetCoursesByTheme(theme.ThemeId).Count();
-                themeList.Themes.Add(theme.Map(count));
-            }
+            themeList.Themes = _themeService.GetAllThemes().Select(x=>x.Map()).ToList();
+            //foreach (var theme in themeListb)
+            //{
+            //    var count = _courseService.GetCoursesByTheme(theme.ThemeId).Count();
+            //    themeList.Themes.Add(theme.Map(count));
+            //}
+            
             return View(themeList);
         }
         /// <summary>

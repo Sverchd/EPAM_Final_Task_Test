@@ -8,8 +8,9 @@ namespace BusinessLogicLayer.Contracts
         List<User> GetAllTeachers();
 
         User AddTeacher(User teacher, string password);
+        User AddStudent(User student, string password);
 
-        bool DeleteTeacher(string email);
+        bool DeleteUser(string email);
         User GetTeacherByEmail(string email);
         List<User> GetAllStudents();
         User GetStudentByEmail(string email);

@@ -35,13 +35,13 @@ namespace Faculty.Mappers
         /// <param name="theme">theme instance</param>
         /// <param name="count">count of courses</param>
         /// <returns></returns>
-        public static ThemeView Map(this Theme theme, int count = 0)
+        public static ThemeView Map(this Theme theme)
         {
             var resultTheme = new ThemeView
             {
                 ThemeEntityId = theme.ThemeId,
                 Name = theme.Name,
-                CourseCount = count
+                CourseCount = theme.CourseCount
             };
             return resultTheme;
         }

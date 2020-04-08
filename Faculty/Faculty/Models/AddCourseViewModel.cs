@@ -9,8 +9,7 @@ namespace Faculty.Models
     {
         public int CourseId { get; set; }
 
-        [Required]
-        [Display(Name = "Name")]
+        [Required(ErrorMessage = "Please enter name"), MaxLength(30)]
         [StringLength(75)]
         public string Name { get; set; }
 

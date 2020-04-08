@@ -36,7 +36,7 @@
                         @Html.DisplayName("Mark")
                     </th>
                 }
-                @if (User.IsInRole("teacher")&& ViewBag.CourseStatus == "Finished" || User.IsInRole("student") )
+                @if (User.IsInRole("teacher")&& ViewBag.CourseStatus == "Finished")
                 {
                     <th>
                         Controls
@@ -129,37 +129,6 @@
                                         </div>
                                     </div>
 
-                                </div>
-                            </td>
-                        }
-                        else if (User.IsInRole("student"))
-
-                        {
-                            var id = "exampleModal" + item.CourseEntityId;
-                            var hid = "#" + id;
-                            <td>
-                                <button type="button" class="btn btn-warning" data-toggle="modal" data-target="@hid">
-                                    Leave
-                                </button>
-                                <div class="modal fade" id="@id" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="exampleModalLabel">Delete</h5>
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                    <span aria-hidden="true">&times;</span>
-                                                </button>
-                                            </div>
-                                            <div class="modal-body">
-                                                Are you sure want to leave the course?
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                @Html.ActionLink("Leave", "Leave", "Course", new { CourseId = item.CourseEntityId, username = User.Identity.Name }, new { @class = "btn btn-warning" })
-
-                                            </div>
-                                        </div>
-                                    </div>
                                 </div>
                             </td>
                         }

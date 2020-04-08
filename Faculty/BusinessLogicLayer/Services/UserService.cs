@@ -39,9 +39,9 @@ namespace BusinessLogicLayer.Services
         }
 
         /// <summary>
-        ///     Method gets all students from repository
+        ///     Method gets all banned students from repository
         /// </summary>
-        /// <returns>All students</returns>
+        /// <returns>All banned</returns>
         public List<User> GetAllBanned()
         {
             var banned = _userRepository.GetAllBanned();
@@ -56,19 +56,27 @@ namespace BusinessLogicLayer.Services
         /// <returns>User that was added</returns>
         public User AddTeacher(User teacher, string password)
         {
-            if (_userRepository.GetAllStudents().SingleOrDefault(x => x.Email == teacher.Email) == null)
+            if (_userRepository.GetAllTeachers().SingleOrDefault(x => x.Email == teacher.Email) == null)
             {
                 return _userRepository.AddUser(teacher, "teacher", password);
             }
             return null;
         }
 
+        public User AddStudent(User student, string password)
+        {
+            if (_userRepository.GetAllStudents().SingleOrDefault(x => x.Email == student.Email) == null)
+            {
+                return _userRepository.AddUser(student, "student", password);
+            }
+            return null;
+        }
         /// <summary>
         ///     Method deletes teacher with provided email
         /// </summary>
         /// <param name="email">email of teacher that needs to be deleted</param>
         /// <returns>result of operation</returns>
-        public bool DeleteTeacher(string email)
+        public bool DeleteUser(string email)
         {
             var result = _userRepository.DeleteUser(email);
             return result;
@@ -109,12 +117,21 @@ namespace BusinessLogicLayer.Services
             var selectedStudents = students.Where(s => s.Courses.Find(x => x.CourseId == courseId) != null).ToList();
             return selectedStudents;
         }
-
+        /// <summary>
+        /// Method bans selected student
+        /// </summary>
+        /// <param name="username">name of selected student</param>
+        /// <returns>banned student</returns>
         public User Ban(string username)
         {
             var user = _userRepository.Ban(username);
             return user;
         }
+        /// <summary>
+        /// Method activates selected student
+        /// </summary>
+        /// <param name="username">name of selected student</param>
+        /// <returns>activated student</returns>
         public User Activate(string username)
         {
             var user = _userRepository.Activate(username);

@@ -119,6 +119,11 @@ namespace DataAccessLayer.Repositories
             userManager.Delete(user);
             return false;
         }
+        /// <summary>
+        /// Method bans selected user
+        /// </summary>
+        /// <param name="username">username of selected user</param>
+        /// <returns>user that was banned</returns>
         public User Ban(string username)
         {
             var user = _facultyDbContext.Users.SingleOrDefault(x => x.UserName == username);
@@ -127,6 +132,11 @@ namespace DataAccessLayer.Repositories
             userManager.AddToRole(user.Id, "banned");
             return user.MapFlat();
         }
+        /// <summary>
+        /// Method activates banned user
+        /// </summary>
+        /// <param name="username">name of selected user</param>
+        /// <returns>user that was activated</returns>
         public User Activate(string username)
         {
             var user = _facultyDbContext.Users.SingleOrDefault(x => x.UserName == username);

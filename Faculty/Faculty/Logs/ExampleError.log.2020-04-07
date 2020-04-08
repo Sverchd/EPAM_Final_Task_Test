@@ -1,55 +1,24 @@
-2020-04-08 00:01:00,451  INFO  Course with Name - Taste, created successfully.
-2020-04-08 11:25:34,183  ERROR Requested url: https://localhost:44369/ exception thrown: 
- Ссылка на объект не указывает на экземпляр объекта. 
-    в Faculty.Controllers.HomeController.Index() в C:\Users\Sterben\Pictures\Backup\Restruct\EPAM_Final_Task_Test\Faculty\Faculty\Controllers\HomeController.cs:строка 36
-   в lambda_method(Closure , ControllerBase , Object[] )
-   в System.Web.Mvc.ActionMethodDispatcher.Execute(ControllerBase controller, Object[] parameters)
-   в System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
-   в System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
-   в System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c.<BeginInvokeSynchronousActionMethod>b__9_0(IAsyncResult asyncResult, ActionInvocation innerInvokeState)
-   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`2.CallEndDelegate(IAsyncResult asyncResult)
-   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
-   в System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
-   в System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<>c__DisplayClass11_0.<InvokeActionMethodFilterAsynchronouslyRecursive>b__0()
-   в System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<>c__DisplayClass11_2.<InvokeActionMethodFilterAsynchronouslyRecursive>b__2()
-   в System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass7_0.<BeginInvokeActionMethodWithFilters>b__1(IAsyncResult asyncResult)
-   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.CallEndDelegate(IAsyncResult asyncResult)
-   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
-   в System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
-   в System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass3_6.<BeginInvokeAction>b__4()
-   в System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass3_1.<BeginInvokeAction>b__1(IAsyncResult asyncResult)
-2020-04-08 11:31:15,015  INFO  Theme with Name - Languages, created successfully.
-2020-04-08 11:31:31,153  INFO  Theme with Name - Language, modified.
-2020-04-08 11:31:34,607  INFO  Theme with Name - Languages, modified.
-2020-04-08 11:34:07,382  INFO  Teacher with Name - teacherS@gmail.com, created successfully.
-2020-04-08 11:36:18,499  INFO  Course with Name - English, created successfully.
-2020-04-08 11:36:35,305  INFO  Course with Name - English, edited successfully.
-2020-04-08 11:36:51,092  INFO  Course with Name - English, edited successfully.
-2020-04-08 11:36:57,331  INFO  Course with Name - English, edited successfully.
-2020-04-08 11:41:05,230  INFO  Course with Name - Taste, created successfully.
-2020-04-08 11:45:52,997  INFO  Course with Name - Taste, created successfully.
-2020-04-08 11:48:42,773  INFO  Course with Name - Taste, created successfully.
-2020-04-08 11:53:59,664  INFO  Course with Name - Taste, created successfully.
-2020-04-08 11:55:06,542  INFO  Course with Name - Taste, created successfully.
-2020-04-08 11:56:50,010  INFO  Course with Name - Taste, created successfully.
-2020-04-08 11:57:41,405  INFO  Theme with Name - Languages, created successfully.
-2020-04-08 11:57:55,258  INFO  Teacher with Name - teacherS@gmail.com, created successfully.
-2020-04-08 11:58:26,679  INFO  Course with Name - English, created successfully.
-2020-04-08 12:00:43,838  INFO  Course with Name - English, edited successfully.
-2020-04-08 12:01:08,305  INFO  Course with Name - Spanish, edited successfully.
-2020-04-08 12:01:21,417  INFO  Course with Name - Spanish, edited successfully.
-2020-04-08 12:05:13,647  INFO  Course with Name - Spanish, edited successfully.
-2020-04-08 12:07:38,034  INFO  User with name - student@gmail.com
-2020-04-08 12:07:39,480  INFO  User with name - student@gmail.com
-2020-04-08 12:14:32,297  INFO  Teacher with Name - teacher@gmail.com, edited gradebook for course with ID - 1
-2020-04-08 12:16:15,293  ERROR Requested url: https://localhost:44369/Theme/Delete?themeId=4 exception thrown: 
+2020-04-07 13:58:21,616 ERROR 45 LOGGER - Requested url: https://localhost:44369/Teacher/Delete?userEmail=student%40gmail.com exception thrown: 
  An error occurred while updating the entries. See the inner exception for details. 
-    в System.Data.Entity.Internal.InternalContext.SaveChanges()
-   в System.Data.Entity.Internal.LazyInternalContext.SaveChanges()
-   в System.Data.Entity.DbContext.SaveChanges()
-   в DataAccessLayer.Repositories.ThemeRepository.DeleteTheme(Int32 themeId) в C:\Users\Sterben\Pictures\Backup\Restruct\EPAM_Final_Task_Test\Faculty\DataAccessLayer\Repositories\ThemeRepository.cs:строка 54
-   в BusinessLogicLayer.Services.ThemeService.DeleteTheme(Int32 themeId) в C:\Users\Sterben\Pictures\Backup\Restruct\EPAM_Final_Task_Test\Faculty\BusinessLogicLayer\Services\ThemeService.cs:строка 97
-   в Faculty.Controllers.ThemeController.Delete(Int32 themeId) в C:\Users\Sterben\Pictures\Backup\Restruct\EPAM_Final_Task_Test\Faculty\Faculty\Controllers\ThemeController.cs:строка 79
+    в System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   в System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   в Microsoft.AspNet.Identity.EntityFramework.UserStore`6.<SaveChanges>d__61.MoveNext()
+--- Конец трассировка стека из предыдущего расположения, где возникло исключение ---
+   в System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   в System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   в Microsoft.AspNet.Identity.EntityFramework.UserStore`6.<DeleteAsync>d__39.MoveNext()
+--- Конец трассировка стека из предыдущего расположения, где возникло исключение ---
+   в System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   в System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   в Microsoft.AspNet.Identity.UserManager`2.<DeleteAsync>d__75.MoveNext()
+--- Конец трассировка стека из предыдущего расположения, где возникло исключение ---
+   в System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   в System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   в Microsoft.AspNet.Identity.AsyncHelper.RunSync[TResult](Func`1 func)
+   в Microsoft.AspNet.Identity.UserManagerExtensions.Delete[TUser,TKey](UserManager`2 manager, TUser user)
+   в DataAccessLayer.Repositories.UserRepository.DeleteUser(String email) в C:\Users\Sterben\Pictures\ASPTask3\EPAM_Final_Task_Test\Faculty\DataAccessLayer\Repositories\UserRepository.cs:строка 119
+   в BusinessLogicLayer.Services.UserService.DeleteTeacher(String email) в C:\Users\Sterben\Pictures\ASPTask3\EPAM_Final_Task_Test\Faculty\BusinessLogicLayer\Services\UserService.cs:строка 73
+   в Faculty.Controllers.TeacherController.Delete(String userEmail) в C:\Users\Sterben\Pictures\ASPTask3\EPAM_Final_Task_Test\Faculty\Faculty\Controllers\TeacherController.cs:строка 77
    в lambda_method(Closure , ControllerBase , Object[] )
    в System.Web.Mvc.ActionMethodDispatcher.Execute(ControllerBase controller, Object[] parameters)
    в System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
@@ -66,18 +35,15 @@
    в System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
    в System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass3_6.<BeginInvokeAction>b__4()
    в System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass3_1.<BeginInvokeAction>b__1(IAsyncResult asyncResult)
-2020-04-08 12:24:08,228  ERROR Requested url: https://localhost:44369/Theme/List exception thrown: 
- Ссылка на объект не указывает на экземпляр объекта. 
-    в DataAccessLayer.Mappers.ThemeMapper.Map(ThemeEntity themeEntity) в C:\Users\Sterben\Pictures\Backup\Restruct\EPAM_Final_Task_Test\Faculty\DataAccessLayer\Mappers\ThemeMapper.cs:строка 18
-   в DataAccessLayer.Mappers.CourseMapper.Map(CourseEntity courseEntity) в C:\Users\Sterben\Pictures\Backup\Restruct\EPAM_Final_Task_Test\Faculty\DataAccessLayer\Mappers\CourseMapper.cs:строка 20
-   в DataAccessLayer.Repositories.CourseRepository.<>c.<GetAllCourses>b__2_3(CourseEntity x) в C:\Users\Sterben\Pictures\Backup\Restruct\EPAM_Final_Task_Test\Faculty\DataAccessLayer\Repositories\CourseRepository.cs:строка 30
-   в System.Linq.Enumerable.WhereSelectListIterator`2.MoveNext()
-   в System.Collections.Generic.List`1..ctor(IEnumerable`1 collection)
-   в System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
-   в DataAccessLayer.Repositories.CourseRepository.GetAllCourses() в C:\Users\Sterben\Pictures\Backup\Restruct\EPAM_Final_Task_Test\Faculty\DataAccessLayer\Repositories\CourseRepository.cs:строка 30
-   в BusinessLogicLayer.Services.CourseService.GetCoursesByTheme(Int32 themeId) в C:\Users\Sterben\Pictures\Backup\Restruct\EPAM_Final_Task_Test\Faculty\BusinessLogicLayer\Services\CourseService.cs:строка 44
-   в BusinessLogicLayer.Services.ThemeService.GetAllThemes() в C:\Users\Sterben\Pictures\Backup\Restruct\EPAM_Final_Task_Test\Faculty\BusinessLogicLayer\Services\ThemeService.cs:строка 32
-   в Faculty.Controllers.ThemeController.List() в C:\Users\Sterben\Pictures\Backup\Restruct\EPAM_Final_Task_Test\Faculty\Faculty\Controllers\ThemeController.cs:строка 31
+2020-04-07 13:59:20,179 ERROR 46 LOGGER - Requested url: https://localhost:44369/Student/Ban?userEmail=student%40gmail.com exception thrown: 
+ Произошла одна или несколько ошибок. 
+    в System.Threading.Tasks.Task.ThrowIfExceptional(Boolean includeTaskCanceledExceptions)
+   в System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   в System.Threading.Tasks.Task`1.get_Result()
+   в DataAccessLayer.Managers.AppUserManager.AddToRole(String userId, String role) в C:\Users\Sterben\Pictures\ASPTask3\EPAM_Final_Task_Test\Faculty\DataAccessLayer\Managers\AppUserManager.cs:строка 42
+   в DataAccessLayer.Repositories.UserRepository.Ban(String username) в C:\Users\Sterben\Pictures\ASPTask3\EPAM_Final_Task_Test\Faculty\DataAccessLayer\Repositories\UserRepository.cs:строка 127
+   в BusinessLogicLayer.Services.UserService.Ban(String username) в C:\Users\Sterben\Pictures\ASPTask3\EPAM_Final_Task_Test\Faculty\BusinessLogicLayer\Services\UserService.cs:строка 115
+   в Faculty.Controllers.StudentController.Ban(String userEmail) в C:\Users\Sterben\Pictures\ASPTask3\EPAM_Final_Task_Test\Faculty\Faculty\Controllers\StudentController.cs:строка 43
    в lambda_method(Closure , ControllerBase , Object[] )
    в System.Web.Mvc.ActionMethodDispatcher.Execute(ControllerBase controller, Object[] parameters)
    в System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
@@ -94,14 +60,52 @@
    в System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
    в System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass3_6.<BeginInvokeAction>b__4()
    в System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass3_1.<BeginInvokeAction>b__1(IAsyncResult asyncResult)
-2020-04-08 12:27:39,353  ERROR Requested url: https://localhost:44369/Theme/Delete?themeId=1 exception thrown: 
+2020-04-07 13:59:35,140 ERROR 46 LOGGER - Requested url: https://localhost:44369/Student/Ban?userEmail=student%40gmail.com exception thrown: 
+ Произошла одна или несколько ошибок. 
+    в System.Threading.Tasks.Task.ThrowIfExceptional(Boolean includeTaskCanceledExceptions)
+   в System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   в System.Threading.Tasks.Task`1.get_Result()
+   в DataAccessLayer.Managers.AppUserManager.AddToRole(String userId, String role) в C:\Users\Sterben\Pictures\ASPTask3\EPAM_Final_Task_Test\Faculty\DataAccessLayer\Managers\AppUserManager.cs:строка 42
+   в DataAccessLayer.Repositories.UserRepository.Ban(String username) в C:\Users\Sterben\Pictures\ASPTask3\EPAM_Final_Task_Test\Faculty\DataAccessLayer\Repositories\UserRepository.cs:строка 127
+   в BusinessLogicLayer.Services.UserService.Ban(String username) в C:\Users\Sterben\Pictures\ASPTask3\EPAM_Final_Task_Test\Faculty\BusinessLogicLayer\Services\UserService.cs:строка 115
+   в Faculty.Controllers.StudentController.Ban(String userEmail) в C:\Users\Sterben\Pictures\ASPTask3\EPAM_Final_Task_Test\Faculty\Faculty\Controllers\StudentController.cs:строка 43
+   в lambda_method(Closure , ControllerBase , Object[] )
+   в System.Web.Mvc.ActionMethodDispatcher.Execute(ControllerBase controller, Object[] parameters)
+   в System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   в System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c.<BeginInvokeSynchronousActionMethod>b__9_0(IAsyncResult asyncResult, ActionInvocation innerInvokeState)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`2.CallEndDelegate(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<>c__DisplayClass11_0.<InvokeActionMethodFilterAsynchronouslyRecursive>b__0()
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<>c__DisplayClass11_2.<InvokeActionMethodFilterAsynchronouslyRecursive>b__2()
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass7_0.<BeginInvokeActionMethodWithFilters>b__1(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.CallEndDelegate(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass3_6.<BeginInvokeAction>b__4()
+   в System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass3_1.<BeginInvokeAction>b__1(IAsyncResult asyncResult)
+2020-04-07 14:10:47,867 ERROR 15 LOGGER - Requested url: https://localhost:44369/Teacher/Delete?userEmail=student%40gmail.com exception thrown: 
  An error occurred while updating the entries. See the inner exception for details. 
-    в System.Data.Entity.Internal.InternalContext.SaveChanges()
-   в System.Data.Entity.Internal.LazyInternalContext.SaveChanges()
-   в System.Data.Entity.DbContext.SaveChanges()
-   в DataAccessLayer.Repositories.ThemeRepository.DeleteTheme(Int32 themeId) в C:\Users\Sterben\Pictures\Backup\Restruct\EPAM_Final_Task_Test\Faculty\DataAccessLayer\Repositories\ThemeRepository.cs:строка 58
-   в BusinessLogicLayer.Services.ThemeService.DeleteTheme(Int32 themeId) в C:\Users\Sterben\Pictures\Backup\Restruct\EPAM_Final_Task_Test\Faculty\BusinessLogicLayer\Services\ThemeService.cs:строка 97
-   в Faculty.Controllers.ThemeController.Delete(Int32 themeId) в C:\Users\Sterben\Pictures\Backup\Restruct\EPAM_Final_Task_Test\Faculty\Faculty\Controllers\ThemeController.cs:строка 79
+    в System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   в System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   в Microsoft.AspNet.Identity.EntityFramework.UserStore`6.<SaveChanges>d__61.MoveNext()
+--- Конец трассировка стека из предыдущего расположения, где возникло исключение ---
+   в System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   в System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   в Microsoft.AspNet.Identity.EntityFramework.UserStore`6.<DeleteAsync>d__39.MoveNext()
+--- Конец трассировка стека из предыдущего расположения, где возникло исключение ---
+   в System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   в System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   в Microsoft.AspNet.Identity.UserManager`2.<DeleteAsync>d__75.MoveNext()
+--- Конец трассировка стека из предыдущего расположения, где возникло исключение ---
+   в System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   в System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   в Microsoft.AspNet.Identity.AsyncHelper.RunSync[TResult](Func`1 func)
+   в Microsoft.AspNet.Identity.UserManagerExtensions.Delete[TUser,TKey](UserManager`2 manager, TUser user)
+   в DataAccessLayer.Repositories.UserRepository.DeleteUser(String email) в C:\Users\Sterben\Pictures\ASPTask3\EPAM_Final_Task_Test\Faculty\DataAccessLayer\Repositories\UserRepository.cs:строка 119
+   в BusinessLogicLayer.Services.UserService.DeleteTeacher(String email) в C:\Users\Sterben\Pictures\ASPTask3\EPAM_Final_Task_Test\Faculty\BusinessLogicLayer\Services\UserService.cs:строка 73
+   в Faculty.Controllers.TeacherController.Delete(String userEmail) в C:\Users\Sterben\Pictures\ASPTask3\EPAM_Final_Task_Test\Faculty\Faculty\Controllers\TeacherController.cs:строка 77
    в lambda_method(Closure , ControllerBase , Object[] )
    в System.Web.Mvc.ActionMethodDispatcher.Execute(ControllerBase controller, Object[] parameters)
    в System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)

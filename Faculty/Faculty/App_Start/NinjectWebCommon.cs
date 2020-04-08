@@ -1,7 +1,8 @@
 using System;
 using System.Web;
 using System.Web.Mvc;
-using Faculty.App_Start;
+using Faculty;
+using Faculty.Utils;
 using Microsoft.Web.Infrastructure.DynamicModuleHelper;
 using Ninject;
 using Ninject.Web.Common;
@@ -10,7 +11,7 @@ using WebActivatorEx;
 [assembly: WebActivatorEx.PreApplicationStartMethod(typeof(NinjectWebCommon), "Start")]
 [assembly: ApplicationShutdownMethod(typeof(NinjectWebCommon), "Stop")]
 
-namespace Faculty.App_Start
+namespace Faculty
 {
     public static class NinjectWebCommon
     {

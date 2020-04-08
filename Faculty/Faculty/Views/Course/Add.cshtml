@@ -33,12 +33,12 @@
         </div>
         <div class="form-group">
             @Html.LabelFor(m => m.Start, new { @class = "col-md-2" })
-            @Html.TextBoxFor(model => model.Start, "{0:yyyy-MM-ddThh:mm}", new { @class = "form-control", type = "datetime-local" })
+            @Html.TextBoxFor(model => model.Start, "{0:yyyy-MM-ddTHH:mm}", new { @class = "form-control", type = "datetime-local" })
             @Html.ValidationMessageFor(m => m.Start, "", new { @class = "text-danger" })
         </div>
         <div class="form-group">
             @Html.LabelFor(m => m.end, new { @class = "col-md-2" })
-            @Html.TextBoxFor(model => model.end, "{0:yyyy-MM-ddThh:mm}", new { @class = "form-control", type = "datetime-local" })
+            @Html.TextBoxFor(model => model.end, "{0:yyyy-MM-ddTHH:mm}", new { @class = "form-control", type = "datetime-local" })
             @Html.ValidationMessageFor(m => m.end, "", new { @class = "text-danger" })
         </div>
         @Html.Partial("~/Views/NotificationPartial.cshtml")

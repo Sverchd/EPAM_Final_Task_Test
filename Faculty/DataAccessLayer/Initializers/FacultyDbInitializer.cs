@@ -75,7 +75,7 @@ namespace DataAccessLayer.Initializers
 
                 userManager.AddToRole(student.Id, roleStudent.Name);
 
-                userManager.AddToRole(student1.Id, roleBanned.Name);
+                userManager.AddToRole(student1.Id, roleStudent.Name);
             }
         }
 
@@ -92,7 +92,7 @@ namespace DataAccessLayer.Initializers
             };
 
             //Creating courses
-            var course = new CourseEntity(themes[0], "Physics", DateTime.Today, DateTime.Now);
+            var course = new CourseEntity(themes[0], "Physics", new DateTime(2020, 1, 12), new DateTime(2020, 3, 17));
             var course1 = new CourseEntity(themes[1], "Programming", new DateTime(2020, 4, 14),
                 new DateTime(2020, 8, 5));
             course1.Teacher = context.Users

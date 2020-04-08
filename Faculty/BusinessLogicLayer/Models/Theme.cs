@@ -12,7 +12,15 @@
         public Theme()
         {
         }
-
+        /// <summary>
+        ///     theme constructor
+        /// </summary>
+        /// <param name="id">id</param>
+        /// <param name="name">name</param>
+        public Theme(string name)
+        {
+            Name = name;
+        }
         /// <summary>
         ///     theme constructor
         /// </summary>
@@ -22,6 +30,18 @@
         {
             ThemeId = id;
             Name = name;
+        }
+        /// <summary>
+        ///     theme constructor
+        /// </summary>
+        /// <param name="id">id</param>
+        /// <param name="name">name</param>
+        /// <param name="courseCount">courseCount</param>
+        public Theme(int id, string name, int courseCount)
+        {
+            ThemeId = id;
+            Name = name;
+            CourseCount = courseCount;
         }
     }
 }
